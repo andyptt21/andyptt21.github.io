@@ -29,6 +29,8 @@ p.caption {
 
 .large { font-size: 200% }
 
+.medium-large { font-size: 130% }
+
 .center-left {
   position:          relative;
   top:               50%;
@@ -49,7 +51,7 @@ p.caption {
 - Leads to development of metadatabases
   - PathwayCommons
   - ConsensusPathDB
-  - *RaMP*
+  - **RaMP**
 - Harmonizing is a major challenge and requires a unified framework. Challenges include:
   - Differences in scale
   - Nomenclature (standard vs internal)
@@ -73,11 +75,13 @@ knitr::include_graphics("BEL_3.jpg")
 
 .pull-right[
 .center-right[
+.medium-large[
 - Simple language for describing relationships between biological
 entities in a machine-readable format 
 - Typically consists of triplet describing a causal, directional relationship
 - Can be used to represent complex network of relationships
 - Widely used (developed 10 years ago)
+]
 ]
 ]
 
@@ -213,7 +217,7 @@ background-size: cover
 ---
 
 # Significance
-
+.medium-large[
 - Metabolomics and lipidomics are fields of increasing interest that
   lack standard analysis methodology
 - Differences in structural resolution makes pathway mapping of
@@ -222,47 +226,154 @@ background-size: cover
   method for inferring biological processes associated with disease
 - Tools for network visualization and analysis of lipid/metabolite data are needed
 - Network methods can be used to model interdependencies between lipids and other metabolites
-
+]
 ---
 
 # Innovation
-.large[
+.pull-left[
+.medium-large[
 - Development of comprehensive, multi-source lipid annotation database
 - Integrating multiple annotation types into a single enrichment strategy
 - Modeling interdependency of pathways
 - Network visuals of pathway and analyte similarity
 ]
+]
+
+.pull-right[
+.center-right[
+```{r,out.width = "90%",out.height="90%",echo=FALSE}
+knitr::include_graphics("Table1_F31.png")
+```
+]
+]
+
 ---
 class: inverse, middle
 background-image: url(title_background.svg)
 background-size: cover
 <font color = "white">
 
-# Expand lipid annotations within RaMP to increase coverage of lipid annotations and improve usability of open source lipidomic software
+# Aim 1:
+## Expand lipid annotations within RaMP to increase coverage of lipid annotations and improve usability of open source lipidomic software
 
 ---
 
 # Preliminary findings (aim 1)
 
----
-# Aim 1a
+.pull-left[
+```{r,out.width = "100%",out.height="100%",echo=FALSE}
+knitr::include_graphics("RaMP_fig1.png")
+```
+]
+
+.pull-right[
+```{r,out.width = "100%",out.height="100%",echo=FALSE}
+knitr::include_graphics("Network_fig2.pdf")
+```
+]
 
 ---
+# Subaim 1a: 
+## Consolidate lipid annotations in RaMP from LipidMaps, SwissLipids, LipidPedia, and LION/Web
 
-# Aim 1b
+Seven different types of information: 
+
+1. Chemical structure in the form of INChiKeys 
+2. Chemical classes (e.g. ceramides, phosphocholines) 
+3. Context, (e.g. subcellular or tissue location) 
+4. Chemical/physical properties (e.g. headgroup charge, bilayer thickness) 
+5. Biological function (e.g. signaling, storage) 
+6. Disease 
+7. Biochemical reactions
+
+- LION/Web: >250,000 annotations for >50,000 lipids, including lipid class, subcellular location, biolog- ical function, and biochemical/physical properties.
+- SwissLipids: Location, reaction, structure and chemical class annotations for 777,657 lipids (real and theoretical)
+- Lipid Maps: Structure and chemical class annotations for 43,636 lipids
+- LipidPedia: Disease, MeSH term, function, reactions for 4,487 lipids.
 
 ---
 
-# Aim 1c
+# Subaim 1b: 
+## Implement conventional ORA software for expanded lipidomic knowledgebase
+
+.medium-large[
+- Implement enrichment testing software for all annotations gathered in 1a
+- **Input:** User supplied list of significantly different analytes (or FC list for KS)
+- **Output:** P values for enrichment of annotations associated with user list
+- Types:
+  - Fisher's
+  - Hypergeometric
+  - KS (MSEA style analysis)
+]
 
 ---
 
-# Aim 2a
+# Subaim 1c: 
+## Develop methodology for the visualization of coverage of pathways in user-supplied data
+
+- Allow users to visualize annotation coverage and redundancy associated with their data
+- **Input:** User-supplied list of differentially expressed analytes
+- User chooses:
+  - Pathway sources
+  - Alternative annotation scheme
+  - Context constraints
+  - Edge weight filtration
+- Edge weights are determined by Fisher's overlap
+- Modules detected by Louvain clustering algorithm
+- Functional terms are tested for enrichment in modules (e.g. BRITE terms in KEGG graph)
+- **Output:** Network visual of pathway redundancy, where nodes are pathways and weighted edges describe metabolite overlap
 
 ---
 
-# Aim 2b
+class: inverse, middle
+background-image: url(title_background.svg)
+background-size: cover
+<font color = "white">
+
+# Aim 2:
+## Integrate metabolite/lipid annotations into a consensus similarity network to identify shifts in pathways and chemical classes associated with phenotype
 
 ---
 
-# Aim 2c
+# Subaim 2a: 
+## Develop methodology for merging similarity network models built in individual annotation schema into a consensus similarity network model.
+.medium-large[
+- Merging pathway, chemical structure, annotation, and potentially reaction networks
+- Potential methods:
+  - Grassmann Manifold
+  - Similarity Network Fusion
+  - Multiplex Page Rank
+  - Affinity Aggregation for Spectral Clustering
+  - Sum Edge Weights
+  - Union of Edges
+]
+
+---
+
+# Subaim 2b: 
+## Develop methodology for detecting enriched modules in the consensus similarity network
+- **Input:** List of statistically significant (T-test, Wilcox, PLS-DA) lipids
+- Method: 
+  - Construct similarity networks for each level of ontology and fuse
+    into consensus similarity network of lipids
+  - Random walk from significant seed lipids to identify associated lipids
+  - Empirical p value distribution to assign significance
+- **Output:** Modules of similar lipids associated with the condition of interest with statistical significance associated with them
+- Validate in simulated data as well as liposarcoma
+
+---
+
+# Subaim 2c: 
+## Develop LipidSPAN and MetaboSPAN: R package/Shiny app for Lipid/Metabolite Structure, Pathway, and Annotation Network enrichment analysis
+- Associated R package for work described in proposal
+- Separated because many of the annotations I'm gathering in the
+  proposal are exclusive to lipids and I liked the name "LipidSPAN"
+- Functionality:
+  - Uploading of data
+  - log2 transformation
+  - MSTUS normalization
+  - Differential abundance testing
+  - Associated volcano plots and heatmaps
+  - Conventional enrichment analysis (1b)
+  - Network coverage visual (1c)
+  - Network-based enrichment (2a & 2b)
