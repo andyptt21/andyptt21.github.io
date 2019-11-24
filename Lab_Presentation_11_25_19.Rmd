@@ -1,7 +1,4 @@
 ---
-title: "PathMe: merging and exploring mechanistic pathway knowledge"
-author: Andrew Patt
-date: "`r format(Sys.time(), '%B %d, %Y')`"
 output:
   xaringan::moon_reader:
     css: [default, metropolis, metropolis-fonts]
@@ -9,13 +6,28 @@ output:
     nature:
       highlightStyle: github
       countIncrementalSlides: false
+      seal: false
       ratio: '16:9'
 ---
 
+class: inverse, middle
+background-image: url(title_background.svg)
+background-size: cover
+<font color = "white">
+# PathMe: merging and exploring mechanistic pathway knowledge
+### Andrew Patt
+### Ohio State University
+Department of Biomedical Informatics/Biomedical Sciences Graduate Program
+
+`r format(Sys.time(), '%B %d, %Y')`
+
+---
 <style>
 p.caption {
   font-size: 0.6em;
 }
+
+.large { font-size: 200% }
 
 .center-left {
   position:          relative;
@@ -162,7 +174,7 @@ knitr::include_graphics("table2.png")
 # Case study: mTOR signaling pathway 
 
 .pull-left[
-```{r,echo=FALSE,out.width="400px"}
+```{r,echo=FALSE,out.width="300px"}
 knitr::include_graphics("fig4.png")
 ```
 </br>
@@ -183,8 +195,74 @@ knitr::include_graphics("fig5.png")
 ---
 
 # Conclusions
-
+.large[
 - Translation of biological relationships to BEL improved the amount of information that could be included in the database
 - Study illustrated the major obstacles in the way of harmonizing biological databases
 - Automatically updates periodically using cron
 - Flexible framework that can accommodate the inclusion of further databases
+]
+---
+
+class: inverse, middle
+background-image: url(title_background.svg)
+background-size: cover
+<font color = "white">
+
+# Improving interpretation of lipidomic and metabolomic data through comprehensive functional annotation and network approaches
+
+---
+
+# Significance
+
+- Metabolomics and lipidomics are fields of increasing interest that
+  lack standard analysis methodology
+- Differences in structural resolution makes pathway mapping of
+  lipidomics difficult
+- Pathway-level analysis of the lipidome/ metabolome is a reproducible
+  method for inferring biological processes associated with disease
+- Tools for network visualization and analysis of lipid/metabolite data are needed
+- Network methods can be used to model interdependencies between lipids and other metabolites
+
+---
+
+# Innovation
+.large[
+- Development of comprehensive, multi-source lipid annotation database
+- Integrating multiple annotation types into a single enrichment strategy
+- Modeling interdependency of pathways
+- Network visuals of pathway and analyte similarity
+]
+---
+class: inverse, middle
+background-image: url(title_background.svg)
+background-size: cover
+<font color = "white">
+
+# Expand lipid annotations within RaMP to increase coverage of lipid annotations and improve usability of open source lipidomic software
+
+---
+
+# Preliminary findings (aim 1)
+
+---
+# Aim 1a
+
+---
+
+# Aim 1b
+
+---
+
+# Aim 1c
+
+---
+
+# Aim 2a
+
+---
+
+# Aim 2b
+
+---
+
+# Aim 2c
