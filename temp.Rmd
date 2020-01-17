@@ -1,0 +1,34 @@
+---
+title: "PathMe: merging and exploring mechanistic pathway knowledge"
+author: Andrew Patt
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  xaringan::moon_reader:
+    css: [default, metropolis, metropolis-fonts]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+      ratio: '16:9'
+---
+
+<style>
+p.caption {
+  font-size: 0.6em;
+}
+
+.center-left {
+  position:          relative;
+  top:               50%;
+  transform:         translateY(50%);
+}
+.center-right {
+  position:          relative;
+  top:               50%;
+  transform:         translateY(10%);
+}
+</style>
+
+# Introduction
+
+- Test
