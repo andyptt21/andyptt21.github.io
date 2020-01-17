@@ -1,5 +1,5 @@
 ---
-title: "PathMe: merging and exploring mechanistic pathway knowledge"
+title: "Innovative approaches to analysis and integration of metabolomic data"
 author: Andrew Patt
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 output:
