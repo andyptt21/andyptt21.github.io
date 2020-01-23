@@ -174,8 +174,19 @@ ggplotly(plot + theme_classic(base_size=12))
 
 # MDM2 high tumor cells resist apoptosis
 
-```{r,echo=FALSE,out.width="1000px"}
-knitr::include_graphics("img/Glycosylated_ceramides.png")
+```{r,echo=FALSE,fig.height=8,fig.width=15}
+##knitr::include_graphics("img/Glycosylated_ceramides.png")
+
+load("img/heatmap.Rda")
+heatmap.2(y, Colv=as.dendrogram(hc), col=mycol, scale="row", density.info="none",
+          trace="none",dendrogram = "col", lhei=c(1.5,5,1),
+          lwid=c(1.5, 3),
+          ColSideColors = col_colors,
+          tracecol = "black",
+          labCol=as.vector(t(mycell)),
+          cexRow = 1.1,
+          margins=c(5,16))
+
 ```
 
 
