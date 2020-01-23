@@ -192,6 +192,16 @@ heatmap.2(y, Colv=as.dendrogram(hc), col=mycol, scale="row", density.info="none"
 
 ---
 
+# MDM2 high tumor cells resist apoptosis
+
+.medium-large[
+- Changes in sphingolipid metabolism due to shifts in glycosylated ceramides and sphingomyelins
+- Changes in fatty acids as well as metabolites regulating *de novo* fatty acid synthesis
+- Shifts in bile acid secretion
+]
+
+---
+
 # Challenges in lipid analysis
 
 .center[
