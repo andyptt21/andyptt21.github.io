@@ -619,30 +619,14 @@ knitr::include_graphics("img/pathway_coverage.png")
 	- Pathway annotations are not independent, which is an assumption of the Fisher's/Hypergeometric tests
 ---
 
-# RaMP: Relational Database of Metabolic Pathways
-.pull-left[
-- Metabolic pathway database integrating pathways from other databases
-- Pathways include enzymes that catalyze reactions on metabolites
-- Includes reactions and ontology (biofluid/disease associations)
-- Performs pathway enrichment analysis on a set of analytes 
-]
-
-.pull-right[
-```{r,echo=FALSE,out.width="1000px"}
-knitr::include_graphics("img/map00600.png")
-```
-]
-
----
-
 # Addressing Issue 1: Expanding RaMP
 
-- 6 different types of information: Chemical structure, Chemical
-  class, Context (subcellular or tissue location), Chemical/physical
-  properties, Biological function, Disease association
+- RaMP is our group's multiomic pathway database integrating
+information from KEGG, HMDB, WikiPathways and Reactome 
+
 --
 
-- Drawn from following open-source resources:
+- Integrate lipid annotations drawn from following open-source resources:
 --
 
   - LION/Web: >250,000 annotations for >50,000 lipids, including lipid class, subcellular location, biological function, and biochemical/physical properties.
