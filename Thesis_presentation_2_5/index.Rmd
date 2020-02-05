@@ -456,14 +456,6 @@ knitr::include_graphics("img/Metabolon_pathways.png")
 
 ---
 
-# MDM2 inhibition confers an MDM2 high phenotype
-
-```{r,echo=FALSE,out.width="1000px"}
-knitr::include_graphics("img/metabolites_of_interest_post_mdm2_inhibitor.png")
-```
-
----
-
 # Atorvastatin did not impact MDM2 high lipidome
 
 ```{r,fig.width=15,fig.height=7, echo=FALSE}
@@ -556,6 +548,14 @@ volcano_plotter(TreVsUntreLMME_lo,"Atorvastatin Treated vs Untreated, MDM2 Low C
                      arrow = arrow(length = unit(0.03,"npc"),type = "closed", ends = "first"),
                      size=8)
 
+```
+
+---
+
+# MDM2 inhibition confers an MDM2 high phenotype
+
+```{r,echo=FALSE,out.width="1000px"}
+knitr::include_graphics("img/metabolites_of_interest_post_mdm2_inhibitor.png")
 ```
 
 ---
