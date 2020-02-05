@@ -464,6 +464,102 @@ knitr::include_graphics("img/metabolites_of_interest_post_mdm2_inhibitor.png")
 
 ---
 
+# Atorvastatin did not impact MDM2 high lipidome
+
+```{r,fig.width=15,fig.height=7, echo=FALSE}
+volcano_plotter <- function(df,title){
+    T_test_results<-df
+    
+    ## Make insignificant points smaller and more transparent
+    T_test_results$significant = abs(T_test_results$log2fc) > fc_thresh &
+        -log10(T_test_results$mypadj) > -log10(p_thresh)
+    T_test_results$size <- ifelse(T_test_results$significant,4,2)
+    
+    ## Color code by lipid class
+    T_test_results$class<-lipidomic_key$LM.Main.Class[match(T_test_results$name,lipidomic_key$name)]
+    palette_names<-as.vector(sort(unique(T_test_results$class)))
+    T_test_results$class<-sapply(1:nrow(T_test_results),function(x){
+        ifelse(T_test_results$significant[x],
+                    return(as.vector(T_test_results$class)[x]),return("Not Significant"))
+    })
+      
+	 legend_labels<-sort(unique(sapply(T_test_results$class, function(x){
+             if(!is.na(x)){
+		 return(paste0(x," (n=",length(which(T_test_results$class==x)),")"))
+             }else{
+		 return(x)
+             }
+	 })))
+      
+	 ##legend_labels<-legend_labels[-which(is.na(legend_labels))]
+      
+	 palette<-c(brewer.pal(9,"Set1"),"sienna","springgreen4","seagreen","#40E0D0","violet","grey80")
+	 names(palette)<-c(palette_names,"Not Significant")
+	 palette<-palette[unique(T_test_results$class)]
+                                           #palette<-palette[-which(is.na(palette))]
+      
+        g = ggplot(data=T_test_results, aes(x=log2fc, y=-log10(mypadj), colour=class)) +
+            geom_point(##alpha=0.7,
+                       aes(size=size)) +
+            scale_color_manual(values = palette,
+                                        #na.value="grey80",
+                               labels=legend_labels,
+                               name="LipidMaps Main Class") +
+            theme_bw(base_size=20) +
+                                        #scale_color_brewer(palette="Paired",na.value="grey80") +
+            ggtitle(title) +
+            theme(plot.title = element_text(hjust = 0.5)) +
+            theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+            ylab("-log10 p-value") +
+            geom_hline(yintercept = -log10(p_thresh),lty = 2) +
+            geom_vline(xintercept = fc_thresh, lty = 2) +
+            geom_vline(xintercept = -fc_thresh, lty = 2) +
+            scale_size(range=c(2,4)) +
+            guides(size=FALSE)
+    
+    T_test_results_sig<-T_test_results[T_test_results$significant,]
+    text_size<-round(min(20,350/nrow(T_test_results_sig)),digits=0)
+    
+    return(g)
+}
+
+
+TreVsUntreLMME_hi<-readRDS("img/Lipid_Hi_Tre_volcano_plot.Rds")
+
+volcano_plotter(TreVsUntreLMME_hi,"Atorvastatin Treated vs Untreated, MDM2 High Cell Lines")
+```
+
+---
+
+# Atorvastatin changed sphingolipids in MDM2 low cells
+
+```{r,fig.width=15,fig.height=7, echo=FALSE}
+
+p_thresh=0.05
+fc_thresh=0.75
+TreVsUntreLMME_lo<-readRDS("img/Lipid_Lo_Tre_volcano_plot.Rds")
+
+volcano_plotter(TreVsUntreLMME_lo,"Atorvastatin Treated vs Untreated, MDM2 Low Cell Lines")
+```
+
+---
+
+# Atorvastatin changed sphingolipids in MDM2 low cells
+
+```{r,fig.width=15,fig.height=7, echo=FALSE}
+
+volcano_plotter(TreVsUntreLMME_lo,"Atorvastatin Treated vs Untreated, MDM2 Low Cell Lines") +
+            geom_label_repel(data = TreVsUntreLMME_lo %>% filter(grepl("HexCer",name)),
+                             aes(label=name),
+                     show.legend = FALSE,
+                     force=10,
+                     arrow = arrow(length = unit(0.03,"npc"),type = "closed", ends = "first"),
+                     size=8)
+
+```
+
+---
+
 # Project 1 (tentative) Conclusions
 
 ### 1. MDM2 was implicated in resistance to apoptosis, shifts in energy metabolism, and driving a pro-inflammatory phenotype
