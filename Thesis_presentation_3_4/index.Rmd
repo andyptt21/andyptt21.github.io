@@ -160,7 +160,6 @@ knitr::include_graphics("img/Metabolomics_schema.png")
 - Prognosis depends on copy number of the MDM2 oncogene
 - Some drugs (Dactinomycin, Doxorubicin) are used to treat
   liposarcoma, but they have unpredictable efficacy and toxicity.
-- Prognosis varies based on MDM2 amplification in tumor
 ]
 
 .pull-right[
