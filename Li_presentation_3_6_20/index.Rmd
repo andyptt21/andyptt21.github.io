@@ -115,7 +115,7 @@ p.caption {
   - 2,265 drug groups  
 - 11,381 reactions
   - 3,165 reaction classes  
-- API access or downloads
+- API access 
 ]
 .pull-right[
 ```{r,out.width="1000px"}
