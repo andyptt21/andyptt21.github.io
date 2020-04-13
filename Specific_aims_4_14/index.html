@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>index.utf8</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.1/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: inverse, middle
+background-image: url(title_background.svg)
+background-size: cover
+
+&lt;font color = "white"&gt;
+## Novel approaches for analysis and integration of metabolomic data
+.pull-left[
+### Andrew Patt
+### National Center for Advancing Translational Science/Ohio State University
+Biomedical Sciences Graduate Program
+
+]
+
+.pull-right[
+.center[
+&lt;img src="img/Human_metabolome_project.png" width="300px" /&gt;
+]
+]
+
+
+---
+
+&lt;style type="text/css"&gt;
+
+p.caption {
+  font-size: 0.6em;
+}
+
+.large { font-size: 200% }
+
+.medium-large { font-size: 130% }
+
+.small{ font-size: 80% }
+
+.tiny{ font-size: 60% }
+
+.center-left {
+  position:          relative;
+  top:               50%;
+  transform:         translateY(50%);
+}
+.center-right {
+  position:          relative;
+  top:               50%;
+  transform:         translateY(10%);
+}
+
+.remark-slide-content {
+  background-color: #FFFFFF;
+  border-top: 80px solid #8f1414;
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1.5;
+  padding: 1em 2em 1em 2em
+}
+
+.inverse {
+  background-color: #8f1414;
+  text-shadow: none;
+}
+
+.right-column {
+	color: #000000;
+	width: 30%;
+	height: 92%;
+	float: right;
+}
+
+.left-column {
+  width: 68%;
+  float: left;
+}
+
+&lt;/style&gt;
+
+# Background
+--
+
+- Pathway annotations are not available for most metabolites identified in an experiment
+--
+
+- There's variability in the number and types of metabolites that can be identified in similar experimental conditions
+--
+
+- Lipid annotations are sparse and difficult to consolidate
+--
+
+  - Pathway coverage is poor
+--
+
+  - Alternate schemes are not harmonized
+--
+
+- ORA statistics falsely assume that pathways are independent of each other
+
+---
+
+# Aim 1: Expanding RaMP
+
+- Integrate lipid annotations drawn from following open-source resources:
+--
+
+  - LION/Web: &gt;250,000 annotations for &gt;50,000 lipids, including lipid class, subcellular location, biological function, and biochemical/physical properties.
+--
+
+  - SwissLipids: Location, reaction, structure and chemical class annotations for 777,657 lipids (real and theoretical)
+--
+
+  - Lipid Maps: Structure and chemical class annotations for 43,636 lipids
+--
+  
+  - LipidPedia: Disease, MeSH term, function, reactions for 4,487 lipids.
+--
+
+- INCHIkeys for all metabolites in RaMP
+--
+
+- Implement enrichment analysis software for lipids/metabolites
+
+---
+
+# Aim 2
+
+&lt;img src="img/network_schematic1.png" width="1000px" /&gt;
+
+---
+
+# Aim 2
+
+&lt;img src="img/network_schematic2.png" width="1000px" /&gt;
+
+---
+
+# Aim 2
+
+&lt;img src="img/network_schematic3.png" width="1000px" /&gt;
+
+---
+
+# Aim 2
+
+&lt;img src="img/network_schematic4.png" width="1000px" /&gt;
+
+---
+
+# Aim 2
+
+&lt;img src="img/network_schematic5.png" width="1000px" /&gt;
+
+---
+
+# Aim 2
+
+&lt;img src="img/network_schematic6.png" width="1000px" /&gt;
+
+---
+
+# Aim 2
+
+&lt;img src="img/network_schematic7.png" width="1000px" /&gt;
+
+---
+
+# Aim 2
+
+&lt;img src="img/network_schematic8.png" width="1000px" /&gt;
+
+---
+
+# Aim 2
+
+&lt;img src="img/network_schematic9.png" width="1000px" /&gt;
+
+---
+
+# Aim 2
+
+&lt;img src="img/network_schematic10.png" width="1000px" /&gt;
+
+---
+
+# Aim 2
+
+&lt;img src="img/network_schematic11.png" width="1000px" /&gt;
+
+---
+# Thesis Chapters
+
+.small[
+.pull-left[
+**Part I: Metabolomics and Lipidomics: Applications in biomedical sciences (Introduction)**
+      - Applications (why do people care? Also mention 
+		liposarcoma and
+        how metabolomics aided in this study)
+
+**Part II: Metabolomics of liposarcoma**
+   
+   1) Liposarcoma review
+   
+   2) Liposarcoma treatment response and Ceramides
+   
+   3) Conclusions
+]
+
+
+.pull-right[
+**Part III: Computational approaches for functional analysis and integration of metabolomic and lipidomic data**
+.tiny[
+   1) Introduction
+   - Overview of standard metabolomic workflows (why it's not good enough)
+	  
+   - Missing annotations, identifications, and lack of standard annotations
+	  
+   - Databases
+	  
+   - Pathway analysis (methods &amp; tools &amp; challenges)
+	  
+   - Integration (methods &amp; tools &amp; challenges)
+	  
+2) RaMP chapter (addressing issues in multiomic data analysis) and
+      improved lipid pathway annotations
+	  
+3) MetaboSPAN
+   
+4) Potential COVID work integrating drug target/metabolite data
+   
+5) Conclusions
+]
+**Part IV: Conclusions (Broadly state my contributions to the field of metabolomics)**
+
+]
+]
+---
+# Timeline
+
+.tiny[
+| Relative time | Actual time | Milestone |
+|-------------------|-----------------|--------------|
+| Year 0 | August 2016 | Started program  |
+| Year 1.5 | December 2017 | RaMP publication (2nd author)  |
+| Year 2.5 | October 2018 | Candidacy exam |
+| Year 2.5 | January 2019 | RaMP textbook chapter (1st author)  |
+| Year 3 | June 2019 | Proteogenomic integration review (Co-1st author)  |
+| Year 3.5    | April 2020    | Multiomic integration review  (2nd author) |
+| Year 3.5  | May 2020    | **Liposarcoma metabolomics (Co-1st author)**   |
+| Year 4 | July 2020  | **MetaboSPAN (1st author)**  |
+| Year 4.5  | December 2020 | Defend and submit thesis |
+| Year 4.5   | Spring 2021  | **Renovated RaMP (1st author)**  |
+| ???    | ???    | Identifying potential COVID therapies |
+| ???    | ???    | LipidMatch Flow (6th author) |
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"countIncrementalSlides": false,
+"seal": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
