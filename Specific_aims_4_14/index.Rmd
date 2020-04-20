@@ -15,7 +15,7 @@ background-image: url(title_background.svg)
 background-size: cover
 
 <font color = "white">
-## Novel approaches for analysis and integration of metabolomic data
+## Thesis Specific Aims
 .pull-left[
 ### Andrew Patt
 ### National Center for Advancing Translational Science/Ohio State University
@@ -46,7 +46,7 @@ p.caption {
 
 .small{ font-size: 80% }
 
-.tiny{ font-size: 60% }
+.tiny{ font-size: 55% }
 
 .center-left {
   position:          relative;
@@ -109,125 +109,83 @@ p.caption {
 
 ---
 
-# Aim 1: Expanding RaMP
+# Aim 1 
 
-- Integrate lipid annotations drawn from following open-source resources:
+### Expand and improve usability of lipid annotations within RaMP from multiple sources
 --
 
-  - LION/Web: >250,000 annotations for >50,000 lipids, including lipid class, subcellular location, biological function, and biochemical/physical properties.
+.small[
+**Subaim 1a:  Consolidate lipid annotations in RaMP from lipid databases**
+]
 --
 
-  - SwissLipids: Location, reaction, structure and chemical class annotations for 777,657 lipids (real and theoretical)
+.small[
+- LION/Web, SwissLipids, Lipid Maps, LipidPedia, InChIKey
+]
 --
 
-  - Lipid Maps: Structure and chemical class annotations for 43,636 lipids
---
-  
-  - LipidPedia: Disease, MeSH term, function, reactions for 4,487 lipids.
---
-
-- INCHIkeys for all metabolites in RaMP
+.small[
+**Subaim 1b: Improve usability of known lipid annotations by implementing conventional ORA software
+for expanded lipidomic knowledge base.**
+]
 --
 
-- Implement enrichment analysis software for lipids/metabolites
+.small[
+- Structure, Chemical class, Disease, MeSH term, Biological Function,
+Reaction(?), Subcellular location, Biochemical/physical properties 
+]
+--
+
+.small[
+**Subaim1c: Develop methodology for the visualization of coverage of pathways in user-supplied data.**
+]
+--
+
+.small[
+- Generate a network visual for demonstrating high level functional clusters in user analytes
+]
 
 ---
+# Aim 2 
 
-# Aim 2
+### Develop a novel network-based pathway and annotation enrichment method that integrates multiple sources of metabolite/lipid annotations
+--
 
-```{r,echo=FALSE,out.width="1000px"}
-knitr::include_graphics("img/network_schematic1.png")
-```
+.small[
+**Subaim 2a:  Build a consensus similarity network model from multiple annotation types using sim-
+ilarity network fusion algorithms**
+]
+--
 
----
+.tiny[
+- Need to determine how to quantify and weight similarities between analytes on many ontological levels
+- Alternative approaches include simpler (sum edge weights, union of edges) or more complex (Grassmann manifold) strategies
+]
+--
 
-# Aim 2
+.small[
+**Subaim 2b: Develop methodology for detecting enriched pathways and annotations in the consen-
+sus similarity network**
+]
+--
 
-```{r,echo=FALSE,out.width="1000px"}
-knitr::include_graphics("img/network_schematic2.png")
-```
+.tiny[
+- Currently using random walks with restarts to identify crosstalkers with seed set (list of DE analytes)
+- This is used to build a new subnetwork that can be tested for enrichment of annotations
+- Heat diffusion is a potential alternative
+]
+--
 
----
-
-# Aim 2
-
-```{r,echo=FALSE,out.width="1000px"}
-knitr::include_graphics("img/network_schematic3.png")
-```
-
----
-
-# Aim 2
-
-```{r,echo=FALSE,out.width="1000px"}
-knitr::include_graphics("img/network_schematic4.png")
-```
-
----
-
-# Aim 2
-
-```{r,echo=FALSE,out.width="1000px"}
-knitr::include_graphics("img/network_schematic5.png")
-```
-
----
-
-# Aim 2
-
-```{r,echo=FALSE,out.width="1000px"}
-knitr::include_graphics("img/network_schematic6.png")
-```
-
----
-
-# Aim 2
-
-```{r,echo=FALSE,out.width="1000px"}
-knitr::include_graphics("img/network_schematic7.png")
-```
-
----
-
-# Aim 2
-
-```{r,echo=FALSE,out.width="1000px"}
-knitr::include_graphics("img/network_schematic8.png")
-```
-
----
-
-# Aim 2
-
-```{r,echo=FALSE,out.width="1000px"}
-knitr::include_graphics("img/network_schematic9.png")
-```
-
----
-
-# Aim 2
-
-```{r,echo=FALSE,out.width="1000px"}
-knitr::include_graphics("img/network_schematic10.png")
-```
-
----
-
-# Aim 2
-
-```{r,echo=FALSE,out.width="1000px"}
-knitr::include_graphics("img/network_schematic11.png")
-```
+.small[
+**Subaim2c: Develop MetaboSPAN: R package/Shiny app for Metabolite Structure, Pathway, and Anno-
+tation Network enrichment analysis**
+]
 
 ---
 # Thesis Chapters
 
-.small[
-.pull-left[
+.tiny[
 **Part I: Metabolomics and Lipidomics: Applications in biomedical sciences (Introduction)**
-      - Applications (why do people care? Also mention 
-		liposarcoma and
-        how metabolomics aided in this study)
 
 **Part II: Metabolomics of liposarcoma**
    
@@ -236,22 +194,15 @@ knitr::include_graphics("img/network_schematic11.png")
    2) Liposarcoma treatment response and Ceramides
    
    3) Conclusions
-]
 
-
-.pull-right[
 **Part III: Computational approaches for functional analysis and integration of metabolomic and lipidomic data**
-.tiny[
+
    1) Introduction
-   - Overview of standard metabolomic workflows (why it's not good enough)
+   - Overview of standard metabolomic workflows (Issues include missing annotations, identifications, and lack of standard annotations)
 	  
-   - Missing annotations, identifications, and lack of standard annotations
+   - Pathway analysis (Databases, methods, tools & challenges)
 	  
-   - Databases
-	  
-   - Pathway analysis (methods & tools & challenges)
-	  
-   - Integration (methods & tools & challenges)
+   - Integration (Methods, tools & challenges)
 	  
 2) RaMP chapter (addressing issues in multiomic data analysis) and
       improved lipid pathway annotations
@@ -261,10 +212,8 @@ knitr::include_graphics("img/network_schematic11.png")
 4) Potential COVID work integrating drug target/metabolite data
    
 5) Conclusions
-]
-**Part IV: Conclusions (Broadly state my contributions to the field of metabolomics)**
 
-]
+**Part IV: Conclusions (Broadly state my contributions to the field of metabolomics)**
 ]
 ---
 # Timeline
