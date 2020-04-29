@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>index.utf8</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.1/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: inverse, middle
+background-image: url(title_background.svg)
+background-size: cover
+
+&lt;font color = "white"&gt;
+## Analyzing gene expression data in terms of gene sets: methodological issues
+.pull-left[
+### Jelle J. Goeman and Peter Buhlmann
+]
+
+.pull-right[
+.center[
+&lt;img src="img/Ohio_State_University_seal.svg.png" width="300px" /&gt;
+]
+]
+
+
+---
+
+&lt;style type="text/css"&gt;
+
+p.caption {
+  font-size: 0.6em;
+}
+
+.large { font-size: 200% }
+
+.medium-large { font-size: 130% }
+
+.small{ font-size: 80% }
+
+.tiny{ font-size: 55% }
+
+.center-left {
+  position:          relative;
+  top:               50%;
+  transform:         translateY(50%);
+}
+.center-right {
+  position:          relative;
+  top:               50%;
+  transform:         translateY(10%);
+}
+
+.remark-slide-content {
+  background-color: #FFFFFF;
+  border-top: 80px solid #8f1414;
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1.5;
+  padding: 1em 2em 1em 2em
+}
+
+.inverse {
+  background-color: #8f1414;
+  text-shadow: none;
+}
+
+.right-column {
+	color: #000000;
+	width: 30%;
+	height: 92%;
+	float: right;
+}
+
+.left-column {
+  width: 68%;
+  float: left;
+}
+
+&lt;/style&gt;
+
+# Background
+
+- Assumptions are always being made when performing pathway analysis of omic data
+--
+
+- When we do enrichment testing, we're actually testing for significance of a set of terms, not a set of analytes (directly)
+--
+
+- This paper discusses erroneous statistics used for enrichment testing; ignoring shortcomings in annotation databases and issues with statistical cutoffs
+--
+
+- Main focuses of the paper:
+--
+
+  1. What is the null hypothesis that should be tested against?
+--
+  
+  2. How does one calculate and interpret a resulting p-value?
+---
+
+# Contingency table tests
+
+- Contingency table tests are *competitive* and *gene sampling* methods
+--
+
+----------------------------------
+| |DE genes|Non DE genes|
+|-|-|-|
+|**Genes in set**| DE genes in gene set of interest   | Non DE genes in gene set of interest  |
+|**Genes not in set**| DE genes not in gene set  | Non DE genes not in gene set of interest  |
+----------------------------------
+--
+
+- Assessing the likelihood that a random set of genes would have as
+  high of a DE:NonDE gene ratio as the set selected, using the ratio of the whole set measured
+--
+
+- Equivalent to finding the null distribution of a test statistic by randomly reassigning genes to the labels for being in the gene set and for being differentially expressed
+---
+
+# Competitive vs Self-contained tests
+--
+
+
+- Competitive test compares differential expression of the gene set
+being tested to a standard defined by the genes measured that were not
+in the set
+--
+
+- Null hypothesis is that the **genes in G are at most as
+often differentially expressed as the genes measured not in set G**
+--
+
+- Self contained tests compares gene set being test to fixed standard that does not rely on measurements outside the set
+--
+
+- Null hypothesis is that **no genes in G are differentially expressed (more stringent)**
+--
+
+.small[
+- Rather than using the ratio of DE/NonDE genes in the measured set, in this example they generate a binomial distribution modeling an independent relationship between DE and the gene set (expect that the number of DE genes is directly proportional to `\(\alpha\)`)
+
+]
+--
+
+- The self contained test is unaffected by the number of DE genes in your data; it is the generalization of single gene tests
+--
+
+- Self contained test can be expanded to test the hypothesis that any genes in your set are truly DE
+
+---
+
+# Gene vs Subject-sampling methods
+- Subject sampling tests are easier to conceptualize for DE analysis
+--
+
+- Think of DE analysis as testing for overrepresentation of class
+  labels in one group of genes based on fold change, whereas
+  enrichment analysis w/ gene sampling is testing for enrichment of
+  pathway labels in group of genes based on DE label
+--
+
+- Subject sampling uses distribution of data to model how likely it
+  would be for a term to be overrepresented in random data
+--
+
+- The example in table two tests the likelihood that no genes of a
+  certain label were DE; using a subject-sampling approach to test a
+  gene-sampling hypothesis
+  
+--
+
+- Since it is testing the hypothesis that no genes in the set are DE, it also ends up being self contained
+
+---
+
+# P value interpretation
+
+- P value interpretation relies solely on the sampling method employed, and thus sampling determines the extrapolations you can make
+--
+
+- Subject-sampling tests the hypothesis that you would identify the same pattern of genes in a new set of samples
+--
+
+- Gene-sampling tests the opposite; telling the probability of identifying the same ratio of DE genes in a given pathway to those outside of it in a random sampling of genes
+--
+
+- Gene-sampling artificially inflates sample size and generates misleading p values that don't align with the experimental hypothesis
+---
+
+# The IID assumption
+
+- Conventional methodologies assume that genes are independently and identically distributed
+--
+
+- This is obviously wrong for a number of reasons
+--
+
+- Related genes often have correlated expression
+--
+
+- This means that we have more genes DE than we would expect in a hypergeometric distribution
+--
+
+- Phenomenon demonstrated in simulation experiment
+
+---
+# Experimental setup
+
+- Wanted to demonstrate the anti-conservativeness of the hypergeometric test as a function of the dependence of related gene expression
+--
+
+- Generated random data of 10k genes for 20 subjects
+--
+
+- Genes are divided into 100 gene sets (uniquely)
+--
+
+- Subjects were 10 "healthy" and 10 "disease"
+--
+
+- Genes sharing a set were made to correlate across a range of 11 rho values (5000 replicates apiece)
+--
+
+- Genes not sharing a set always had correlation of 0
+--
+
+- Measure proportion of observed significant gene sets vs nominal alpha value in random data
+
+---
+
+# Results
+
+- Hypergeometric test rapidly becomes anticonservative at low correlation levels
+--
+
+- The phenomenon is more pronounced at lower p value cutoffs
+--
+
+- This is in unadjusted p vals, so the lower cutoffs are around the range we operate in presumably
+--
+
+## Recommendations
+--
+
+- Use a self-contained, subject-sampling approach
+--
+
+- The prominent example of self contained tests is the FSEA family,
+modified (use a raw p-val list instead of a ranked list for KS test against uniform distribution) 
+
+---
+
+# Dedifferentiated Liposarcoma
+
+--
+
+- Dedifferentiated liposarcoma is a common sarcoma with high morbidity
+--
+
+- Copy number of MDM2 gene determines chemosensitivity
+--
+
+- **Final major findings:**
+--
+
+- MDM2 status predicts glycosylation level of ceramides
+.center[
+&lt;img src="img/Glycosylated_ceramides.png" width="500px" /&gt;
+]
+--
+
+- Glycosylated ceramides are tied to chemoresistance
+---
+
+# Dedifferentiated Liposarcoma
+
+- Dedifferentiated liposarcoma is a common sarcoma with high morbidity
+- Copy number of MDM2 gene determines chemosensitivity
+- **Final major findings:**
+- MDM2 status is tied to differences in sphingolipid metabolism, pro-inflammation pathways/platelet activation, fatty acid metabolism , and bile acid metabolism
+.center[
+&lt;img src="img/MDM2_high_vs_low_pathways.png" width="600px" /&gt;
+]
+---
+
+# Dedifferentiated Liposarcoma
+
+- Dedifferentiated liposarcoma is a common sarcoma with high morbidity
+- Copy number of MDM2 gene determines chemosensitivity
+- **Final major findings:**
+- MDM2 inhibition lead to differences in DNA repair and amino acid metabolism
+.center[
+&lt;img src="img/MDM2_inhibitor_pathways.png" width="700px" /&gt;
+]
+---
+
+# Dedifferentiated Liposarcoma
+
+- Dedifferentiated liposarcoma is a common sarcoma with high morbidity
+- Copy number of MDM2 gene determines chemosensitivity
+- **Final major findings:**
+- Atorvastatin impacted sphingolipid pathways which could explain resistance of MDM2 higher cells
+.center[
+&lt;img src="img/Atorvastatin_MDM2_lower.png" width="600px" /&gt;
+]
+---
+# MetaboSPAN
+
+&lt;img src="img/network_schematic1.png" width="1000px" /&gt;
+
+---
+
+# MetaboSPAN
+
+&lt;img src="img/network_schematic2.png" width="1000px" /&gt;
+
+---
+
+# MetaboSPAN
+
+&lt;img src="img/network_schematic3.png" width="1000px" /&gt;
+
+---
+
+# MetaboSPAN
+
+&lt;img src="img/network_schematic4.png" width="1000px" /&gt;
+
+---
+
+# MetaboSPAN
+
+&lt;img src="img/network_schematic5.png" width="1000px" /&gt;
+
+---
+
+# MetaboSPAN
+
+&lt;img src="img/network_schematic6.png" width="1000px" /&gt;
+
+---
+
+# MetaboSPAN
+
+&lt;img src="img/network_schematic7.png" width="1000px" /&gt;
+
+---
+
+# MetaboSPAN
+
+&lt;img src="img/network_schematic8.png" width="1000px" /&gt;
+
+---
+
+# MetaboSPAN
+
+&lt;img src="img/network_schematic9.png" width="1000px" /&gt;
+
+---
+
+# MetaboSPAN
+
+&lt;img src="img/network_schematic10.png" width="1000px" /&gt;
+
+---
+
+# MetaboSPAN
+
+&lt;img src="img/network_schematic11.png" width="1000px" /&gt;
+
+---
+
+# MetaboSPAN
+
+&lt;img src="img/Network_figure_2.png" width="1000px" /&gt;
+
+---
+
+# MetaboSPAN moving forward
+
+--
+
+## What to test:
+.small[
+1. How much information to include
+2. How to encode that information
+3. How to combine network models
+4. How to evaluate network topology
+5. How to evaluate annotation enrichment
+]
+
+--
+
+## How to test:
+
+.small[
+- Requires both biological and statistical validation (computational efficiency is a concern as well)
+- **Statistical**
+  - Simulation studies showing improved detection of pathways in same list of analytes
+  - Consistent results across similar experimental setups
+- **Biological**
+  - Consistent results across similar experimental setups
+  - Test generated hypotheses in *in vitro* liposarcoma experimentation
+]
+---
+
+# COVID-19
+
+- End goal: Use 'omic data to identify a "pathway signature" of many
+  lung diseases, including covid, to suggest similar diseases that
+  have known therapies
+- This has been done on an individual protein level, but not on the higher (pathway) level
+- Clustering pathway similarities of diseases should be relatively easy, but how we detect perturbed pathways will be crucial
+- So far, transcriptomic and proteomic data are abundant, but
+  metabolomic data are scarce and lipidomic data are nonexistant
+--
+
+.center[  
+  &lt;img src="img/sad_sponge.gif" width="300px" /&gt;
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"countIncrementalSlides": false,
+"seal": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
