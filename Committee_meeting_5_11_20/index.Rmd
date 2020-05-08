@@ -776,10 +776,11 @@ knitr::include_graphics("img/MDM2_inhibitor_comparison.png")
   - Consistent results across similar experimental setups
 - **Biological**
   - Consistent results across similar experimental setups
+  - Results reflect known biology
   - Test generated hypotheses in *in vitro* liposarcoma experimentation
 ]
----
 
+---
 # Thesis Chapters
 
 .tiny[
