@@ -157,7 +157,7 @@ p.caption {
 | Year 3.5  | May 2020    | **Liposarcoma metabolomics (Co-1st author)**   |
 | Year 4 | July 2020  | **MetaboSPAN (1st author)**  |
 | Year 4.5  | December 2020 | Defend and submit thesis |
-| Year 4.5   | Spring 2021  | **Renovated RaMP (1st author)**  |
+| Year 4.5   | Spring 2021  | **Renovated RaMP (1st or 2nd author)**  |
 | ???    | ???    | Identifying potential COVID therapies |
 | ???    | ???    | LipidMatch Flow (6th author) |
 ]
@@ -216,10 +216,6 @@ class: inverse, center, middle
 --
 
 ### 3. Assess use of MDM2 inhibitors for inducing sensitivity in MDM2 higher cell lines
-
---
-
-### 4. Connect metabolomic results to human transcriptomic results
 
 ---
 
