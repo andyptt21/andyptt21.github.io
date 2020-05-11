@@ -41,7 +41,7 @@ p.caption {
 
 .medium-large { font-size: 130% }
 
-.small{ font-size: 80% }
+.small{ font-size: 70% }
 
 .tiny{ font-size: 55% }
 
@@ -87,165 +87,173 @@ p.caption {
 # Agenda
 
 --
-- Review of progress
+### 1. Review of progress
 
 --
-- Plans for future work
+### 2. Thesis plan
 
 --
-- Thesis plan
-
---
-- Timeline
+### 3. Plans for future work
 
 ---
 
-# Dedifferentiated Liposarcoma 
+# Status Update
 
-.pull-left[
-- 20% of all soft tissue sarcoma diagnoses
-- Some drugs (Dactinomycin, Doxorubicin) are used to treat
-  liposarcoma, but they have unpredictable efficacy and toxicity.
-- Prognosis depends on copy number of the MDM2 oncogene
+- 4th year in Biomedical Sciences Graduate Program wrapping up in August
+
+--
+
+- Currently a research associate contractor at NCATS
+
+--
+
+- Core coursework+Biomedical informatics coursework completed
+
+--
+
+- Hoping to defend thesis late November/early December 2020
+
+--
+
+- Looking to transition to industry eventually, examining postdoc options
+
+---
+# Current Accomplishments
+
+.small[
+#### Three first author publications
+- MDM2-Dependent Rewiring of Metabolomic and Lipidomic Profiles in Dedifferentiated Liposarcoma (DDLPS) Models (**MDPI Cancers**)
+- Challenges in proteogenomics: a comparison of analysis methods with the case study of the DREAM proteogenomics sub-challenge (**BMC Bioinformatics**)
+- Integration of Metabolomics and Transcriptomics to Identify Gene-Metabolite Relationships Specific to Phenotype (**Methods in Molecular Biology**)
 ]
+--
 
-.pull-right[
-&lt;img src="img/DDLPS_prognosis.png" width="400px" /&gt;
+.small[
+#### Three middle author publications
+- Metabolomics and Multi-Omics Integration: A Survey of Computational Methods and Resources (2nd author, **Metabolites**)
+- RaMP: A Comprehensive Relational Database of Metabolomics Pathways for Pathway Enrichment Analysis of Genes and Metabolites. (2nd author, **Metabolites**)
+- LipidMatch Flow: Automated Lipidomics Workflow shows Lipid Changes Indicative of Early Stage Alcohol Induced Liver Damage (6th author, **Submission Pending**)
+]
+--
+
+.small[
+#### Other Accomplishments:
+- T32 departmental fellowship (2017-2019)
+- Potentially fundable F31 fellowship (Score: 30)
+]
+---
+
+# Timeline
 
 .tiny[
-Bill KLJ, Seligson ND, Hays JL, et al. Degree of Amplification Affects Clinical Outcomes in Dedifferentiated Liposarcoma. Oncologist. 2019;24(7):989-996.
-]
+| Relative time | Actual time | Milestone |
+|-------------------|-----------------|--------------|
+| Year 0 | August 2016 | Started program  |
+| Year 1.5 | December 2017 | RaMP publication (2nd author)  |
+| Year 2.5 | October 2018 | Candidacy exam |
+| Year 2.5 | January 2019 | RaMP textbook chapter (1st author)  |
+| Year 3 | June 2019 | Proteogenomic integration review (Co-1st author)  |
+| Year 3.5    | April 2020    | Multiomic integration review  (2nd author) |
+| Year 3.5  | May 2020    | **Liposarcoma metabolomics (Co-1st author)**   |
+| Year 4 | July 2020  | **MetaboSPAN (1st author)**  |
+| Year 4.5  | December 2020 | Defend and submit thesis |
+| Year 4.5   | Spring 2021  | **Renovated RaMP (1st author)**  |
+| ???    | ???    | Identifying potential COVID therapies |
+| ???    | ???    | LipidMatch Flow (6th author) |
 ]
 
 ---
 
-# Objectives
+# Thesis Chapters
+
+.tiny[
+**Part I: Metabolomics and Lipidomics: Applications in biomedical sciences (Introduction)**
+
+**Part II: Metabolomics of liposarcoma**
+   
+   1) Liposarcoma review
+   
+   2) Liposarcoma treatment response and Ceramides
+   
+   3) Conclusions
+
+**Part III: Computational approaches for functional analysis and integration of metabolomic and lipidomic data**
+
+   1) Introduction
+   - Overview of standard metabolomic workflows (Issues include missing annotations, identifications, and lack of standard annotations)
+	  
+   - Pathway analysis (Databases, methods, tools &amp; challenges)
+	  
+   - Integration (Methods, tools &amp; challenges)
+	  
+2) RaMP chapter (addressing issues in multiomic data analysis) and
+      improved lipid pathway annotations
+	  
+3) MetaboSPAN: Network integration of metabolite annotations to
+improve functional interpretation
+   
+4) Conclusions
+
+**Part IV: Conclusions (Broadly state my contributions to the field of metabolomics)**
+]
+
+---
+class: inverse, center, middle
+# Current research
+
+---
+
+# Liposarcoma study objectives
 
 --
 
-### 1. Understand resistance of MDM2 high cells to atorvastatin treatment
+### 1. Understand how MDM2 amplification confers resistance to statins in DDLPS in vitro using metabolomics
 
 --
 
-### 2. Identify altered metabolites/lipids between MDM2 high and low to identify potential biomarkers/therapeutic targets 
+### 2. General survey of metabolome of DDLPS
 
 --
 
-### 3. Find higher level biological differences (e.g. pathways) between MDM2 high and low tumors that explain poorer prognosis of MDM2 high patients
+### 3. Assess use of MDM2 inhibitors for inducing sensitivity in MDM2 higher cell lines
 
----
+--
 
-# Targeting the p53-cholesterol synthesis axis
-
-.right-column[
-.small[
-- Statins (mevalonate pathway inhibitors) have been associated with
-  reduced mortality in multiple cancers
-
-- p53 downregulates transcriptional regulator of mevalonate pathway
-
-- p53-null cell lines have been shown to withstand sterol deprived
-  conditions better than WT
-  
-	  ]
-  ]
-
-.left-column[
-
-&lt;img src="img/Atorvastatin_response.png" width="800px" /&gt;
-
-]
-  
----
-# Methods
-
-&lt;img src="img/metabolite_methods.png" width="1000px" /&gt;
-
----
-
-# Methods
-
-&lt;img src="img/lipid_methods.png" width="1000px" /&gt;
-
-
----
-
-# Atorvastatin greatly impacted MDM2 low lipidome 
-
-.left-column[
-![](index_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
-]
-
-.right-column[
-- MDM2 low tumors have better prognosis
-
-- The growth of MDM2 low cell lines was slowed by atorvastatin treatment
-
-- Over a quarter of the panel was significantly altered by atorvastatin treatment ]
-
----
-
-# Atorvastatin changed sphingolipids in MDM2 low cells
-
-.left-column[
-![](index_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
-]
-
-.right-column[
-
-- 11 ceramides and 3 hexosylated ceramides were upregulated by atorvastatin treatment in MDM2 low cells
-
-- This could indicate activation of an apoptotic response
-
-]
----
-
-# Sphingolipid metabolism as a therapeutic target
-
-&lt;img src="img/sphingolipid_therapy.png" width="1100px" /&gt;
+### 4. Connect metabolomic results to human transcriptomic results
 
 ---
 
 # HexCers are upregulated by MDM2 in both panels
 .pull-left[
-![](index_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
 ]
 
 .pull-right[
-![](index_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
 ]
 
 ---
 
-
-# Ceramide glycosylation levels predict MDM2 status
-.left-column[
-![](index_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
-]
-
-.right-column[
-.small[
-- Cell lines cluster by their expression of glycosylated ceramides in
-  an unsupervised manner in the lipidomic dataset
-
-- MDM2 high is the red bar and MDM2 low is the blue bar ]
-]
-
----
-
-# Conclusions
+# Summary
 
 --
 
-### 1. MDM2 was associated with resistance to apoptosis, shifts in energy metabolism, and driving a pro-inflammatory phenotype
+### 1. MDM2 amplification was associated with resistance to apoptosis, shifts in energy metabolism, and driving a pro-inflammatory phenotype
 
 --
 
 ### 2. Atorvastatin worked through changes in the sphingolipid pathway which were counteracted by MDM2 activity
 
+--
+
+### 3. MDM2 inhibition had no impact on MDM2 higher cells and affected DNA repair and amino acid metabolism in MDM2 lower cells
+
+--
+
+### 4. Pathway analysis was crucial for formalizing the observations drawn from our two panels
 ---
 
-# Background
+# F31 Aims Background
 --
 
 - Pathway annotations are not available for most metabolites identified in an experiment
@@ -425,11 +433,11 @@ tation Network enrichment analysis**
 
 ## What to test:
 .small[
-1. How much information to include
-2. How to encode that information
-3. How to combine network models
-4. How to evaluate network topology
-5. How to evaluate annotation enrichment
+1. How much information to include (Which annotation types)
+2. How to encode that information (How are edges built?)
+3. How to combine network models (SNF algorithms, sum edge weights, multi-layer network)
+4. How to evaluate network topology (Random walks, heat diffusion)
+5. How to evaluate annotation enrichment (Fisher's vs. FSEA test)
 ]
 
 --
@@ -448,59 +456,8 @@ tation Network enrichment analysis**
 ]
 
 ---
-# Thesis Chapters
-
-.tiny[
-**Part I: Metabolomics and Lipidomics: Applications in biomedical sciences (Introduction)**
-
-**Part II: Metabolomics of liposarcoma**
-   
-   1) Liposarcoma review
-   
-   2) Liposarcoma treatment response and Ceramides
-   
-   3) Conclusions
-
-**Part III: Computational approaches for functional analysis and integration of metabolomic and lipidomic data**
-
-   1) Introduction
-   - Overview of standard metabolomic workflows (Issues include missing annotations, identifications, and lack of standard annotations)
-	  
-   - Pathway analysis (Databases, methods, tools &amp; challenges)
-	  
-   - Integration (Methods, tools &amp; challenges)
-	  
-2) RaMP chapter (addressing issues in multiomic data analysis) and
-      improved lipid pathway annotations
-	  
-3) MetaboSPAN
-   
-4) Potential COVID work integrating drug target/metabolite data
-   
-5) Conclusions
-
-**Part IV: Conclusions (Broadly state my contributions to the field of metabolomics)**
-]
----
-
-# Timeline
-
-.tiny[
-| Relative time | Actual time | Milestone |
-|-------------------|-----------------|--------------|
-| Year 0 | August 2016 | Started program  |
-| Year 1.5 | December 2017 | RaMP publication (2nd author)  |
-| Year 2.5 | October 2018 | Candidacy exam |
-| Year 2.5 | January 2019 | RaMP textbook chapter (1st author)  |
-| Year 3 | June 2019 | Proteogenomic integration review (Co-1st author)  |
-| Year 3.5    | April 2020    | Multiomic integration review  (2nd author) |
-| Year 3.5  | May 2020    | **Liposarcoma metabolomics (Co-1st author)**   |
-| Year 4 | July 2020  | **MetaboSPAN (1st author)**  |
-| Year 4.5  | December 2020 | Defend and submit thesis |
-| Year 4.5   | Spring 2021  | **Renovated RaMP (1st author)**  |
-| ???    | ???    | Identifying potential COVID therapies |
-| ???    | ???    | LipidMatch Flow (6th author) |
-]
+class: inverse, center, middle
+# Questions?
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
