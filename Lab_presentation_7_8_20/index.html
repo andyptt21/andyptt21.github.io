@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>index.utf8</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.1/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: inverse, middle
+background-image: url(title_background.svg)
+background-size: cover
+
+&lt;font color = "white"&gt;
+# Extended-Connectivity Fingerprints for Functional Clustering of Metabolites
+.pull-left[
+## Andrew Patt
+
+### National Center for Advancing Translational Science/Ohio State University Biomedical Sciences Graduate Program
+
+]
+
+.pull-right[
+.center[
+&lt;img src="img/ECF.png" width="300px" /&gt;
+]
+]
+
+
+---
+
+&lt;style type="text/css"&gt;
+
+p.caption {
+  font-size: 0.6em;
+}
+
+.large { font-size: 200% }
+
+.medium-large { font-size: 130% }
+
+.small{ font-size: 80% }
+
+.tiny{ font-size: 40% }
+
+.center-left {
+  position:          relative;
+  top:               50%;
+  transform:         translateY(50%);
+}
+.center-right {
+  position:          relative;
+  top:               50%;
+  transform:         translateY(10%);
+}
+
+.remark-slide-content {
+  background-color: #FFFFFF;
+  border-top: 80px solid #013220;
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1.5;
+  padding: 1em 2em 1em 2em
+}
+
+.inverse {
+  background-color: #013220;
+  text-shadow: none;
+}
+
+.right-column {
+	color: #000000;
+	width: 30%;
+	height: 92%;
+	float: right;
+}
+
+.left-column {
+  width: 68%;
+  float: left;
+}
+
+&lt;/style&gt;
+
+# Context: SCOPE
+
+.pull-left[
+.small[
+- Workflow presented by Erin Baker group at ASMS
+- Focused on improving interpretation of lipidomics data 
+- Lipids are commonly grouped into generic structures in pathway databases
+- Want to incorporate chemical structure and biological context into their interpretation models
+- Structural connectivity:
+  - Agglomerative clustering of similarity by structural features (custom algorithm that weights head group differences highly)
+  - Based on SMILES strings in Lipid MAPS
+]
+]
+
+.pull-right[
+&lt;img src="img/lipid_interpretation.png" width="900px" /&gt;
+]
+
+---
+
+# Introduction
+
+- Chemical fingerprints are machine readable structural representations of molecules
+- The most primitive are just binary bit strings indicating the
+  presence or absence of 
+  - Chemical substructures 
+  - Molecular descriptors
+  - Pharmacophores
+- Captures information such as element count, type of ring system,
+atom pairing, atom environment, etc.
+- There are many different fingerprinting systems in use
+
+---
+
+# Extended-Connectivity Fingerprints Method
+
+- [Check out this webpage for a succinct summary](https://depth-first.com/articles/2019/01/11/extended-connectivity-fingerprints/)
+--
+
+- Each atom is given an integer identifier to start
+--
+	- Standard method:
+		1. Number of "heavy" neighbors
+        2. Valence - # of hydrogens
+        3. Atomic number
+        4. Atomic mass
+        5. Atomic charge
+        6. Number of attached hydrogens
+        7. Is the atom in a ring?
+--
+- Each atom builds an array of identifiers based on its neighbors
+--
+
+- A hash function reduces this array to a single identifier
+--
+
+- The algorithm iterates for a set number of times
+--
+
+- Duplicate fragments are removed, and the identifier for each
+  atom across iterations is retained in the final result
+
+---
+
+# Brief aside: Hash tables &amp; functions
+
+- Hash tables are a data structure that stores data in a key-data pattern
+- The hash function is used to 
+  - Compute keys and insert new data
+  - Aid in recovering stored data
+
+
+.center[
+&lt;img src="img/hash_function.jpg" width="900px" /&gt;
+]
+
+---
+
+# Example: Butyramide
+.center[
+&lt;img src="img/Fig7.png" width="400px" /&gt;
+]
+
+.center[
+&lt;img src="img/Fig8.png" width="600px" /&gt;
+]
+---
+
+# Functional-Class Fingerprints
+
+.pull-left[
+- Additional level of abstraction that groups functionally related groups
+- Each atom is identified by a six-bit code, where a given bit is “on”
+if the atom plays the associated role
+- Since atoms not longer have unique identifiers, this creates a
+one-to-many mapping between features and chemical substructures 
+]
+
+.pull-right[
+&lt;img src="img/Fig10.png" width="600px" /&gt;
+]
+
+---
+
+# Concluding thoughts
+
+- They mention fingerprints based on fragment libraries
+  (e.g. LeadScope) might be superior for tying biological function to
+  structure
+- Path-based keys were designed for substructure and similarity
+  search, meaning they might not be ideal for functional analysis
+- PubChem fingerprints seem to just be a binary string encoding the presence or absence of 880 different chemical features
+- Use cases (ECFP):
+  - Estimating the structural diversity of a library
+  - Virtual drug candidate screening
+  - **Structure-Activity Relationship Modeling**
+  - Similarity searching
+  - Biological classification
+ 
+---
+class: inverse, center, middle
+# Current research
+
+---
+
+# Thesis Aims Background
+--
+
+- Pathway annotations are not available for most metabolites identified in an experiment
+--
+
+- There's variability in the number and types of metabolites that can be identified in similar experimental conditions
+--
+
+- Lipid annotations are sparse and difficult to consolidate
+--
+
+  - Pathway coverage is poor
+--
+
+  - Alternate schemes are not harmonized
+--
+
+- ORA statistics falsely assume that pathways are independent of each other
+
+---
+
+# Aim 1 
+
+### Expand and improve usability of lipid annotations within RaMP from multiple sources
+--
+
+.small[
+**Subaim 1a:  Consolidate lipid annotations in RaMP from lipid databases**
+]
+--
+
+.small[
+- LION/Web, SwissLipids, Lipid Maps, LipidPedia, InChIKey
+]
+--
+
+.small[
+**Subaim 1b: Improve usability of known lipid annotations by implementing conventional ORA software
+for expanded lipidomic knowledge base.**
+]
+--
+
+.small[
+- Structure, Chemical class, Disease, MeSH term, Biological Function,
+Reaction(?), Subcellular location, Biochemical/physical properties 
+]
+--
+
+.small[
+**Subaim1c: Develop methodology for the visualization of coverage of pathways in user-supplied data.**
+]
+--
+
+.small[
+- Generate a network visual for demonstrating high level functional clusters in user analytes
+]
+
+---
+# Aim 2 
+
+### Develop a novel network-based pathway and annotation enrichment method that integrates multiple sources of metabolite/lipid annotations
+--
+
+.small[
+**Subaim 2a:  Build a consensus similarity network model from multiple annotation types using similarity network fusion algorithms**
+]
+--
+
+.small[
+**Subaim 2b: Develop methodology for detecting enriched pathways and annotations in the consensus similarity network**
+]
+
+--
+
+.small[
+**Subaim2c: Develop MetaboSPAN: R package/Shiny app for Metabolite Structure, Pathway, and Anno-
+tation Network enrichment analysis**
+]
+
+
+---
+# MetaboSPAN
+
+&lt;img src="img/network_schematic1.png" width="1000px" /&gt;
+
+---
+
+# MetaboSPAN
+
+&lt;img src="img/network_schematic2.png" width="1000px" /&gt;
+
+---
+
+# MetaboSPAN
+
+&lt;img src="img/network_schematic3.png" width="1000px" /&gt;
+
+---
+
+# MetaboSPAN
+
+&lt;img src="img/network_schematic4.png" width="1000px" /&gt;
+
+---
+
+# MetaboSPAN
+
+&lt;img src="img/network_schematic5.png" width="1000px" /&gt;
+
+---
+
+# MetaboSPAN
+
+&lt;img src="img/network_schematic6.png" width="1000px" /&gt;
+
+---
+
+# MetaboSPAN
+
+&lt;img src="img/network_schematic7.png" width="1000px" /&gt;
+
+---
+
+# MetaboSPAN
+
+&lt;img src="img/network_schematic8.png" width="1000px" /&gt;
+
+---
+
+# MetaboSPAN
+
+&lt;img src="img/network_schematic9.png" width="1000px" /&gt;
+
+---
+
+# MetaboSPAN
+
+&lt;img src="img/network_schematic10.png" width="1000px" /&gt;
+
+---
+
+# MetaboSPAN
+
+&lt;img src="img/network_schematic11.png" width="1000px" /&gt;
+
+---
+
+# HexCers are upregulated by MDM2 in DDLPS
+.pull-left[
+![](index_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+![](index_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
+]
+
+---
+# MDM2 high vs low comparison
+
+&lt;img src="img/Network_figure_2.png" width="1000px" /&gt;
+
+---
+
+# Reviewer questions to address
+
+.small[
+**Logistical Issues**
+1. Is the incorporation of additional annotations beneficial?
+2. How do we encode metabolite similarity into edges?
+3. How to combine network models (SNF algorithms, sum edge weights, multi-layer network)
+4. How to evaluate network topology (Random walks, heat diffusion)
+5. How to evaluate annotation enrichment (Fisher's vs. FSEA test)
+(These can all be tested quantitatively via simulation experiments)
+]
+
+--
+
+.small[
+**Methodological Issues**
+1. Does the method have higher sensitivity than existing methods in certain contexts?
+2. **Does the method have high enough specificity?**
+3. What are the potential use cases of the method? 
+]
+
+---
+
+# Potential publication figures
+
+.small[
+**Sensitivity**
+  - Liposarcoma 
+	- New method captured biological insight which
+    was validated with *in vitro* experimentation that conventional
+    method did not
+  - Breast Cancer
+	- I've identified two independent breast tumor/ANT metabolomic
+datasets on metabolomics workbench and want to demonstrate similar
+altered pathways between the two 
+ - Simulation
+  - Finds true positives at higher noise levels than conventional methods]
+
+--
+
+.small[
+**Specificity**
+  - Does not detect altered pathways in randomized data
+  - Does not return larger pathways or pathways that are
+overrepresented in network model more than conventional methods ]
+
+---
+
+# "Simulation" Studies
+
+- The main strategy will be to use real metabolomic/lipidomic data
+  sets with perturbed pathways that are well known and characterized
+  (e.g. glycolysis/FA synthesis/beta oxidation in breast cancer)
+- "Noise" can be introduced by scrambling sample labels or using some
+  gaussian noise function
+- Considerations:
+  - There has to be enough "true positives" to detect variations between method results
+  - There has to be some "true negatives" which might be difficult to define here
+  - The true positives would have to span a variety of pathway sizes/metabolite classes
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"countIncrementalSlides": false,
+"seal": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
