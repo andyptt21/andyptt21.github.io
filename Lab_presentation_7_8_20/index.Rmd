@@ -202,20 +202,23 @@ knitr::include_graphics("img/Fig10.png")
 ---
 
 # Concluding thoughts
-
+.small[
 - They mention fingerprints based on fragment libraries
   (e.g. LeadScope) might be superior for tying biological function to
   structure
 - Path-based keys were designed for substructure and similarity
   search, meaning they might not be ideal for functional analysis
 - PubChem fingerprints seem to just be a binary string encoding the presence or absence of 880 different chemical features
+- They mention that higher resolution (more iterations) is desirable
+  when modeling structure from function
 - Use cases (ECFP):
   - Estimating the structural diversity of a library
   - Virtual drug candidate screening
   - **Structure-Activity Relationship Modeling**
   - Similarity searching
   - Biological classification
- 
+]
+
 ---
 class: inverse, center, middle
 # Current research
