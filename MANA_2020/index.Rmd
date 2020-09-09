@@ -560,11 +560,11 @@ knitr::include_graphics("img/Network_figure_2.png")
 
 .pull-left[
 .small[
-**Mathe Lab**
-- Ewy Mathe
+**Mathé Lab**
+- Dr. Ewy Mathé
 - Tara Eicher
 - Kevin Ying
-- Garrett Kinnebrew
+- Dr. Garrett Kinnebrew
 - Kyle Spencer
 
 **Collaborators/Advisors**
