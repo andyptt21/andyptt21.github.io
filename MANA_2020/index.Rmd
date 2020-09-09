@@ -213,24 +213,18 @@ metabolite and transcript data individually or concurrently
 
 # Case study: Metabolomics of liposarcoma
 
-```{r,echo=FALSE,out.width="1000px"}
-knitr::include_graphics("img/metabolite_methods.png")
-```
-
----
-
-# Case study: Metabolomics of liposarcoma
-
-```{r,echo=FALSE,out.width="1000px"}
+.center[
+```{r,echo=FALSE,out.width="900px"}
 knitr::include_graphics("img/lipid_methods.png")
 ```
-
+.small[[Paper link](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7463633/)]
+]
 ---
 
 # MDM2 high tumor cells show markers of inflammation
 
-.pull-left[
-```{r,echo=FALSE,fig.height=9,fig.width=10}
+.center[
+```{r,echo=FALSE,fig.height=7,fig.width=11}
 
 p<- resMDM2HiLoLMME %>%
     ##mutate(class=sapply(class, function(x) ifelse(x %in% c("Lipid","Peptide"),return(x),return("Not Significant")))) %>%
@@ -273,12 +267,6 @@ p<- resMDM2HiLoLMME %>%
 p
 
 ```
-]
-
-.pull-right[
-- Increase in saturated fatty acid levels could indicate activation of lipogenesis
-- Saturated fatty acids activate inflammation through TLR4/nf $\kappa$ B dependent signaling
-- Ac-Ser-Asp-Lys-Pro-OH prevents differentation of bone marrow stem cells into macrophages and inhibits their activation and sectretion of TNF- $\alpha$
 ]
 
 ---
