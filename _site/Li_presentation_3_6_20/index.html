@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>index.utf8.md</title>
+    <meta charset="utf-8" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: inverse, middle
+background-image: url(title_background.svg)
+background-size: cover
+
+&lt;font color = "white"&gt;
+## Overview of Major Metabolic Pathway Databases
+.pull-left[
+### Andrew Patt
+### National Center for Advancing Translational Science/Ohio State University
+Biomedical Sciences Graduate Program
+
+]
+
+.pull-right[
+.center[
+&lt;img src="img/RaMP_logo_blue_fancy.png" width="500px" /&gt;
+]
+]
+
+
+---
+
+&lt;style type="text/css"&gt;
+
+p.caption {
+  font-size: 0.6em;
+}
+
+.large { font-size: 200% }
+
+.medium-large { font-size: 130% }
+
+.small{ font-size: 80% }
+
+.tiny{ font-size: 40% }
+
+.center-left {
+  position:          relative;
+  top:               50%;
+  transform:         translateY(50%);
+}
+.center-right {
+  position:          relative;
+  top:               50%;
+  transform:         translateY(10%);
+}
+
+.remark-slide-content {
+  background-color: #FFFFFF;
+  border-top: 80px solid #14148f;
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1.5;
+  padding: 1em 2em 1em 2em
+}
+
+.inverse {
+  background-color: #14148f;
+  text-shadow: none;
+}
+
+.left-column {
+	color: #000000;
+	width: 30%;
+	height: 92%;
+	float: left;
+}
+
+.right-column {
+  width: 68%;
+  float: right;
+}
+
+&lt;/style&gt;
+
+
+# Helpful links
+
+- Presentation: https://andyptt21.github.io/Li_presentation_3_6_20/
+
+- RaMP shiny app: https://ramp-db.bmi.osumc.edu/
+
+- RaMP R package git: https://github.com/Mathelab/RaMP-DB
+
+- RaMP construction git: https://github.com/Mathelab/RaMP-BackEnd
+
+- RaMP publication: https://www.mdpi.com/2218-1989/8/1/16
+
+- RaMP protocol textbook chapter: https://link.springer.com/protocol/10.1007%2F978-1-4939-9027-6_23
+
+---
+
+# Kyoto Encyclopedia of Genes and Genomes: Overview
+.pull-left[
+- 18,682 unique human metabolites, 7,335 human genes/enzymes
+  - 538 pathway maps
+  - 202 functional hierarchies  
+- 11,200 drugs
+  - 2,265 drug groups  
+- 11,381 reactions
+  - 3,165 reaction classes  
+- API access 
+]
+.pull-right[
+&lt;img src="img/kegg_overview.png" width="1000px" /&gt;
+]
+
+---
+
+# KEGG pathway annotations
+.left-column[
+.small[
+- Human Disease/Drug map of the [Sphingolipid Metabolism pathway](https://www.genome.jp/kegg-bin/show_pathway?org_name=hsadd&amp;mapno=00600&amp;mapscale=&amp;show_description=hide)
+
+- Green is gene product (usually enzyme)
+
+- Pink means gene with known disease associations 
+
+- Blue means it is a drug target
+
+- White means there is no human ortholog
+
+- [Edge interpretation guide](https://www.genome.jp/kegg/document/help_pathway.html)
+
+]
+]
+.right-column[
+&lt;img src="img/hsadd00600.png" width="650px" /&gt;
+]
+
+---
+
+# KEGG pathway hierarchy
+.pull-left[
+- Pathway maps are the most specific tier of a 3 tiered organization system called the BRITE hierarchy
+
+- Manually curated
+
+- Provides further opportunity for enrichment analysis
+
+- Hierarchical classification system also exists for drugs in database
+]
+
+.pull-right[
+&lt;img src="img/brite.png" width="883" /&gt;
+]
+
+---
+
+# Human Metabolome Database
+.left-column[
+- 114,192 human metabolites
+
+- 5,702 proteins
+
+- SMPDB contains pathway diagrams for ~25,000 metabolic and disease pathways
+
+- [Browser](http://smpdb.ca/view/SMP0000034)
+
+]
+
+.right-column[
+&lt;img src="img/PW000148.png" width="11333" /&gt;
+]
+
+---
+
+# Drugbank
+
+- 11,360 drugs
+
+- 3,093 drug-metabolite interactions
+
+- 1,302 drug-protein interactions
+
+- 127,383 drug-transcript interactions
+
+- "Each interaction identifies whether the drug increases or decreases
+  the expression of the metabolite, protein or gene and each entry is
+  linked to one or more literature references"
+
+- Classyfire classification of drugs for cheminformatics
+---
+
+# Reactome
+.left-column[
+- 2,325 human pathways
+- 12,770 reactions
+- 10,870 proteins
+- 1,863 metabolites
+- 225 drugs (seem to be treated as metabolite entities)
+- Reactions-centric
+- Pathway hierarchy
+- [Browser](https://reactome.org/PathwayBrowser/#/R-HSA-428157&amp;SEL=R-HSA-428221)
+]
+
+.right-column[
+&lt;img src="img/Reactome.png" width="600px" /&gt;
+]
+
+---
+
+# WikiPathways
+.left-column[
+- 11,532 human protein-coding genes, 3133 human metabolites
+- 1,129 human pathways
+- Community annotated pathways
+- No pathway hierarchy
+- No drug information
+- Some disease pathways
+]
+
+.right-column[
+&lt;img src="img/Wikipathways.png" width="600px" /&gt;
+]
+
+---
+
+# RaMP
+.pull-left[
+.small[
+- Integrates pathway info from KEGG, Wikipathways, Reactome and HMDB
+
+- RShiny app for querying pathway info, analytes in a pathway,
+  HMDB reaction partners, ontology (disease/biofluid) info
+  
+- Fisher's ORA with pathway redundancy clustering
+
+- Underlying mySQL relational database
+
+- **No drug related information**
+]
+]
+
+.pull-right[
+&lt;img src="img/RaMP_fig1.png" width="875" /&gt;
+]
+
+---
+
+# Installing RaMP
+
+1) Install mySQL
+
+2) Download and unzip dump file found [here](https://github.com/Mathelab/RaMP-DB/tree/master/inst/extdata)
+
+3) Create empty database in mySQl 
+
+
+```bash
+&gt; create database ramp;
+&gt; exit;
+```
+
+4) Populate with sql file
+
+
+```bash
+&gt; mysql -u "username" -p ramp &lt; ~/Downloads/ramp180302.sql
+```
+
+---
+
+# RaMP Organization
+
+## 8 tables in database:
+.small[
+1. **analyte** lists all internal RaMP IDs and their compound/gene status
+
+2. **analytehasontology** lists HMDB ontologies associated with RaMP IDs
+
+3. **analytehaspathway** lists pathways associated with RaMP IDs and their database of origin
+
+4. **analytesynonym** lists common name identifiers associated with RaMP IDs and database of origin
+
+5. **catalyzed** lists metabolites and genes that catalyze reactions upon them
+
+6. **ontology** translates the RaMP ontology IDs from analytehasontology to common names
+
+7. **pathway** translates the RaMP pathway IDs from analytehaspathway to common names and assigns categories (Cellular process, Metabolism, Disease, etc.)
+
+8. **source** translates RaMP analyte IDs to common names and external DB identifiers
+]
+---
+
+# Other notable pathway databases
+
+- PathBank
+
+- Pathway Commons
+
+- PharmGKB
+
+- Super Natural II
+
+
+---
+
+# Helpful links
+
+- Presentation: https://andyptt21.github.io/Li_presentation_3_6_20/
+
+- RaMP shiny app: https://ramp-db.bmi.osumc.edu/
+
+- RaMP R package git: https://github.com/Mathelab/RaMP-DB
+
+- RaMP construction git: https://github.com/Mathelab/RaMP-BackEnd
+
+- RaMP publication: https://www.mdpi.com/2218-1989/8/1/16
+
+- RaMP protocol textbook chapter: https://link.springer.com/protocol/10.1007%2F978-1-4939-9027-6_23
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"countIncrementalSlides": false,
+"seal": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

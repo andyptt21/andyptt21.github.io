@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>index.utf8</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.1/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: inverse, middle
+background-image: url(title_background.svg)
+background-size: cover
+
+&lt;font color = "white"&gt;
+## ASMS 2020 Reboot Review
+.pull-left[
+### Andrew Patt
+### National Center for Advancing Translational Science/Ohio State University
+Biomedical Sciences Graduate Program
+
+]
+
+.pull-right[
+.center[
+&lt;img src="img/appicon_1024x_reboot-04.png" width="300px" /&gt;
+]
+]
+
+
+---
+
+&lt;style type="text/css"&gt;
+
+p.caption {
+  font-size: 0.6em;
+}
+
+.large { font-size: 200% }
+
+.medium-large { font-size: 130% }
+
+.small{ font-size: 80% }
+
+.tiny{ font-size: 40% }
+
+.center-left {
+  position:          relative;
+  top:               50%;
+  transform:         translateY(50%);
+}
+.center-right {
+  position:          relative;
+  top:               50%;
+  transform:         translateY(10%);
+}
+
+.remark-slide-content {
+  background-color: #FFFFFF;
+  border-top: 80px solid #8f1414;
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1.5;
+  padding: 1em 2em 1em 2em
+}
+
+.inverse {
+  background-color: #8f1414;
+  text-shadow: none;
+}
+
+.right-column {
+	color: #000000;
+	width: 30%;
+	height: 92%;
+	float: right;
+}
+
+.left-column {
+  width: 68%;
+  float: left;
+}
+
+&lt;/style&gt;
+# Fiehn et al.
+
+.center[
+&lt;img src="img/valine_betaine.png" width="1000px" /&gt;
+]
+
+---
+# Fiehn et al.
+## Combining biological and chemical information in compound annotation for untargeted metabolomics
+
+- Typically we identify a compound using 3 or more fragment ions (m/z
+  and relative intensities)
+- Even with ms/ms and accurate mass, misidentifications can happen
+- The Fiehn group developed MoNA (Mass Bank of North America) to address this is the past, which
+  adds information like expected retention time
+- Developed the SPLASH code, which is like InChis for Spectra
+- However, many of these databases contain a huge number of
+  metabolites that can lead to false positives
+- Using biological context helps narrow down the search
+
+.center[
+&lt;img src="img/MoNA.png" width="400px" /&gt;
+]
+
+---
+
+# Fiehn et al.
+
+.center[
+&lt;img src="img/compoundID.png" width="700px" /&gt;
+]
+
+---
+# Fiehn et al.
+## Combining biological and chemical information in compound annotation for untargeted metabolomics
+- They created the [blood exposome
+  database](http://bloodexposome.org), which used text mining to
+  identify 40,000 compounds you can reasonably expect to find in human
+  blood
+  
+.center[
+&lt;img src="img/blood_exposome_database.png" width="300px" /&gt;
+]
+--
+
+- The confidence of an identification is still not very granular - can
+  we integrate biological/chemical information into the confidence
+  metrics of identification software? Ideally would incorporate:
+  - Similarity to experimental and predicted spectra
+  - Likelihood given known biology (context &amp; experimental)
+
+---
+# Fiehn et al.
+## Reducing False Positive Identifications
+- *Retip:* machine learning software for retention time prediction to exclude likely false positives 
+  - 5 machine learning models predict retention time from known values - great for detecting false positives caused by isomer detection
+--
+
+- MS-DIAL has a new release this year that includes predicted retention time calculations
+  - MS-DIAL is also now compatible with AWS for large computations
+  - Interfaces with Metabolome Atlas to reduce search space by organ
+--
+
+- Using random forests to remove technical noise from MS data (SERDA, Fan et al Analytical Chemistry)
+  - Assumes technical noise has a Gaussian distribution and successfully removes most of it
+--
+
+- Combining Hydrogen/Deuterium exchange with MS/MS spectra to identify new compounds
+--
+
+- Expanded LipidBLAST libraries by developing CoA-BLAST for acyl-CoA intermediates
+--
+
+- Poster: Which MS/MS similarity to use?
+  - The traditional dot product distance metric didn't even make the top 10 in an ROC analysis!
+--
+
+- Using quantum chemistry to predict spectra aids in identification but it currently computationally prohibitive for the number of metabolites you can find in a typical study
+
+
+---
+
+# Koelmel et al.
+## A Comparison of Intelligent Data-Acquisition Methods for Exposomics and Lipidomics Applications
+.pull-left[
+.small[
+- High resolution tandem MS provides a generalized snapshot of all the metabolites in a sample
+- Current ion acquisition techniques often ignore low-abundance ions
+- In 2017 this group developed the iterative exclusion method (left)
+- Can double or more the number of identified lipids you get in an experiment compared to DDA
+]
+]
+
+.pull-right[
+&lt;img src="img/iterative_exclusion.png" width="450px" /&gt;&lt;img src="img/iterative_exclusion2.png" width="450px" /&gt;
+]
+
+---
+
+# Koelmel et al.
+## A Comparison of Intelligent Data-Acquisition Methods for Exposomics and Lipidomics Applications
+
+.small[
+- DDA is not the only way to pick ions; you can fragment all ions in a sample for example
+- Total ion fragmentation is a deconvolution nightmare so it actually ends up worse than DDA 
+- Iterative exclusion is best, however the workflow is incredibly tedious!
+- One improvement is to do a bunch of MS1 runs to identify ions to exclude, then do one big MS2 run
+- Iterative inclusion is another option:
+  - Use XCMS to identify nice MS1 peaks
+  - Perform blank filtration
+  - Perform MS1 annotation of those peaks (this prevents you from
+fragmenting any ions you wouldn't be able to annotate anyways) 
+  - Pick your fragmentation ions based off this
+  - Optionally perform iterations 
+]
+
+---
+
+# Koelmel et al.
+## A Comparison of Intelligent Data-Acquisition Methods for Exposomics and Lipidomics Applications
+
+.center[
+&lt;img src="img/iterative_exclusion_schematic.png" width="900px" /&gt;
+]
+
+---
+
+# Odenkirk et al.
+## Structural-based Connectivity and Omic Phenotype Evaluations (SCOPE) Workflow for Lipid Data Interpretation
+
+.pull-left[
+.small[
+- Focused on improving interpretation of lipidomics data (what a concept!)
+- Lipids are commonly grouped into generic structures in pathway databases
+- Want to incorporate chemical structure and biological context into their interpretation models
+- Structural connectivity:
+  - Agglomerative clustering of similarity by structural features (custom algorithm that weights head group differences highly)
+  - Based on SMILES strings in Lipid MAPS
+]
+]
+
+.pull-right[
+&lt;img src="img/lipid_interpretation.png" width="900px" /&gt;
+]
+
+---
+
+# Odenkirk et al.
+## Result of clustering 288 lipids
+
+.center[
+&lt;img src="img/lipid_clustering.png" width="700px" /&gt;
+]
+
+---
+
+# Odenkirk et al.
+## Incorporating Clinical Metadata
+
+.pull-left[
+.small[
+- Uses both sample and metabolite metadata
+- Uses ToxPie software to generate pie chart visualizations
+- Sample metadata:
+  - Slices represent lipid abundance
+  - Cluster profiles and observe enrichment in clinical data
+]
+]
+
+.pull-right[
+&lt;img src="img/ToxPi.png" width="900px" /&gt;
+]
+
+---
+# GWAS of human lipidome and links to CVD risk
+.pull-left[
+.small[
+## Methods
+- Lipidomic profiling on plasma of 4,492 genotyped individuals (LC-MS/MS)
+- Targeted panel of 596 lipid species (33 classes) to look for associations
+- Linear mixed effect models correcting for age, sex, age:sex, 10 genomic PCs and an empirical genetic relatedness matrix
+- Assessed lipid associations with CVD using logistic regression adjusted for age and sex
+- Used an FDR adjusted pval cutoff of 5e-8
+]
+]
+
+.pull-right[
+&lt;img src="img/lipid_cvd_circos.png" width="1000px" /&gt;
+]
+
+---
+
+# GWAS of human lipidome and links to CVD risk 
+.pull-left[
+.small[
+## Results
+- Identified 70,000 genome-wide significant associations, including at
+least one SNP for 451 lipids (76% of panel) 
+- Identified 300 lipid-associated loci
+- Some important loci regulate a large number of lipid species
+- Identified lipids associated wih polygenic risk known to be associated with CVD
+] ]
+
+.pull-right[
+&lt;img src="img/lipid_cvd_gwas_results.png" width="1000px" /&gt;
+]
+
+---
+
+# scMetabolomics Studies of  drug-resistant Cells
+.pull-left[
+## Methods
+- Working with colorectal cancer cell lines
+- Irinotecan is an effective chemotherapy drug but fails when cells acquire resistance by growing more "stem-like"
+- Metformin selectively kills CSCs, so the authors wanted to assess the efficacy of combination treatment
+- Used single-probe MS on irinotecan resistant CRC cells
+]
+
+.pull-right[
+&lt;img src="img/scMet.png" width="1000px" /&gt;
+]
+
+---
+
+# scMetabolomics Studies of drug-resistant Cells
+.pull-left[
+## Results
+- Levels of fatty acids, HexCers and other lipids were lowered in
+  metformin and combination treated cells
+- FASN activity assays confirmed this observation
+- Viability studies demonstrated synergistic effect of treatment in
+drug-resistant cells 
+]
+
+.pull-right[
+&lt;img src="img/scMet_results1.png" width="1000px" /&gt;&lt;img src="img/scMet_results2.png" width="1000px" /&gt;
+]
+
+---
+
+# scMetabolomics Studies of drug-resistant Cells
+## Schematic
+.center[
+&lt;img src="img/scMet_results3.png" width="650px" /&gt;
+]
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"countIncrementalSlides": false,
+"seal": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

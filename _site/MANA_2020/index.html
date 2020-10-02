@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>index.utf8</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.1/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+
+class: primary
+
+
+
+&lt;style type="text/css"&gt;
+
+p.caption {
+  font-size: 0.6em;
+}
+
+.large { font-size: 200% }
+
+.medium-large { font-size: 130% }
+
+.small{ font-size: 80% }
+
+.tiny{ font-size: 40% }
+
+.center-left {
+  position:          relative;
+  top:               50%;
+  transform:         translateY(50%);
+}
+.center-right {
+  position:          relative;
+  top:               50%;
+  transform:         translateY(10%);
+}
+
+.remark-slide-content {
+  background-color: #FFFFFF;
+  border-top: 80px solid #2b0a5e;
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1.5;
+  padding: .5em 1em .5em 1em
+}
+
+.inverse {
+  background-color: #2b0a5e;
+  text-shadow: none;
+}
+
+.right-column {
+	color: #000000;
+	width: 30%;
+	height: 92%;
+	float: right;
+}
+
+.left-column {
+  width: 68%;
+  float: left;
+}
+
+.remark-slide-number {
+	display: none;
+}
+
+.remark-slide-content:after {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+	left: 20px;
+    height: 60px;
+    width: 400px;
+	font-size: 12px;
+    background-repeat: no-repeat;
+    background-size: contain;
+	background-image: url("img/The-Ohio-State-University-Wexner-Medical-Center.png")
+}
+
+&lt;/style&gt; 
+
+&lt;h2 style=font-size:45px&gt; Improving pathway analysis of
+lipidomic and metabolomic data through comprehensive functional
+annotation and network approaches &lt;/style&gt;
+
+.pull-left[
+&lt;h6 style=font-size:20px&gt;
+&lt;br&gt;
+Andrew Patt, Doctoral Candidate
+&lt;br&gt;
+&lt;br&gt;
+National Center for Advancing Translational Science/The Ohio State University
+&lt;/style&gt;
+]
+
+.pull-right[
+.center[
+&lt;img src="img/network_example.png" width="250px" /&gt;
+]
+]
+
+
+---
+
+# Relational database of Metabolic Pathways (RaMP)
+.pull-left[
+.small[
+- Multiomic pathway mySQL database integrating
+information from **KEGG**, **HMDB**, **WikiPathways** and **Reactome** 
+
+- Currently contains pathway information for &gt; 13,000 metabolites and &gt;14,000 
+  transcripts, totalling 51,526 pathways and 536,245 associations
+
+- Associated R package allows for easy querying of database, as well as pathway analysis of
+metabolite and transcript data individually or concurrently 
+&lt;/br&gt;
+&lt;/br&gt;
+]
+
+.tiny[
+[Zhang B, Hu S, Baskin E, Patt A, Siddiqui JK, Mathé EA. RaMP: A Comprehensive Relational Database of Metabolomics Pathways for Pathway Enrichment Analysis of Genes and Metabolites. Metabolites. 2018;8(1):16. Published 2018 Feb 22. doi:10.3390/metabo8010016](https://pubmed.ncbi.nlm.nih.gov/29470400/)
+]]
+
+.pull-right[
+&lt;/br&gt;
+&lt;img src="img/RaMP_scheme.jpg" width="500px" /&gt;
+
+.tiny[
+&lt;/br&gt;
+&lt;/br&gt;
+[Patt A, Siddiqui J, Zhang B, Mathé E. Integration of Metabolomics and Transcriptomics to Identify Gene-Metabolite Relationships Specific to Phenotype. Methods Mol Biol. 2019;1928:441-468. doi:10.1007/978-1-4939-9027-6_23](https://pubmed.ncbi.nlm.nih.gov/30725469/)
+]]
+
+---
+
+# Planned RaMP expansions
+
+.pull-left[
+- **Metabolic pathways:**
+  - HumanCyc (255+ pathways)
+  - Pathbank (78,488 pathways)
+]
+
+--
+
+.pull-right[
+- **Chemical Structures:**
+  - InChIKeys
+  - LyChIKeys
+]
+
+--
+.tiny[
+&lt;/br&gt;
+]
+
+| DB          | # lipids | Chemical class | Subcellular location | Structure | Reactions | Function |
+|-------------|----------|----------------|----------------------|-----------|-----------|----------|
+| LION/Web    | &gt; 50,000 | No             | Yes                  | No        | No        | Yes         |
+| SwissLipids | 777,657  | Yes            | Yes                  | Yes       | Yes       | No         |
+| Lipid Maps  | 43,636   | Yes            | No                   | Yes       | No        | No         |
+| LipidPedia  | 4,487    | No             | Yes                  | No        | Yes       |  Yes        |
+
+
+---
+
+# Metabolite Similarity Networks
+
+.pull-left[
+.small[
+- Through RaMP, we are collecting data that describes relationships between metabolites:
+  - Shared pathway activity
+  - Mutual participation in reactions
+  - Chemical structural similarity
+  - Associations with disease, etc...
+
+- Using this information, we can build knowledge networks describing the information landscape of the database
+] ]
+
+.pull-right[
+
+&lt;img src="img/small_network_example.png" width="600px" /&gt;
+]
+
+---
+
+# Challenges in metabolite/lipid pathway analysis
+.pull-left[
+.small[
+- Lack of pathway annotations
+
+	- Incorporating biological and chemical annotations offer better coverage
+
+- Conventional pathway overrepresentation analysis does not account for redundancy of pathway annotations
+	
+	- Pathway annotations are not independent, which is an assumption of the Fisher's/Hypergeometric tests
+
+]
+]
+
+.pull-right[
+&lt;img src="img/pathway_coverage_2.png" width="800px" /&gt;
+]
+
+---
+
+# Metabolite Structure, Pathway and Annotation Networks
+.center[
+&lt;img src="img/network_schematic1.png" width="900px" /&gt;
+]
+---
+
+# Metabolite Structure, Pathway and Annotation Networks
+.center[
+&lt;img src="img/network_schematic2.png" width="900px" /&gt;
+]
+---
+
+# Metabolite Structure, Pathway and Annotation Networks
+.center[
+&lt;img src="img/network_schematic3.png" width="900px" /&gt;
+]
+---
+
+# Metabolite Structure, Pathway and Annotation Networks
+.center[
+&lt;img src="img/network_schematic4.png" width="900px" /&gt;
+]
+---
+
+# Topological analysis/Enrichment analysis
+
+.pull-left[
+.small[
+1. Run random walks with restarts algorithm using metabolites of interest as seed node set
+
+2. Run random walks with restarts using random node set many times
+
+3. Calculate percentile of true score  in random score distribution by node
+
+4. Filter network down to highly similar nodes to seed set
+
+5. Identify clusters of related metabolites in final model and perform
+   enrichment analysis
+]
+]
+
+.pull-right[
+&lt;img src="img/network_topology2.png" width="900px" /&gt;
+
+]
+
+---
+
+# Example study: Metabolomics of liposarcoma
+
+.pull-left[
+.small[
+- Three treatment-responsive (MDM2-low) liposarcoma cell lines were
+  compared to three unresponsive (MDM2 high) cell lines using the
+  Metabolon platform
+
+- Statistical analysis identified 18 metabolites different between the
+  groups, 10 of which mapped to pathways in the KEGG database
+
+- Major differences were observed in lipids including ceramides and fatty acids
+
+]
+
+&lt;/br&gt;
+
+.tiny[
+[Patt A, Demoret B, Stets C, et al. MDM2-Dependent Rewiring of Metabolomic and Lipidomic Profiles in Dedifferentiated Liposarcoma Models. Cancers (Basel). 2020;12(8):E2157. Published 2020 Aug 4. doi:10.3390/cancers12082157](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7463633/)
+]
+]
+
+.pull-right[
+![](index_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# Network Method Preliminary Results in Liposarcoma
+.center[
+&lt;img src="img/Network_figure_2.png" width="900px" /&gt;
+]
+---
+
+# Advantages/Disadvantages of Method
+
+.pull-left[
+**PROS** 
+- Avoids issues arising from pathway interdependence by accounting
+  for overlap in network modeling
+  
+- Improved coverage of annotations by incorporating sources other than pathways
+]
+
+.pull-right[
+**CONS**
+- Enriching by module may enrich spurious relationships
+
+- More computationally intensive
+]
+
+---
+
+# Future Extensions
+
+- Optimizations:
+
+	- Incorporate KS test for improved statistical validity
+
+	- Identify best network topology analysis method
+
+	- Identify best network fusion approach
+
+- Demonstrate improved reproducibility
+
+- Build networks using lipid annotations
+
+---
+
+# Acknowledgements
+
+.pull-left[
+.small[
+**Mathé Lab**
+- Dr. Ewy Mathé, OSU/NCATS
+- Tara Eicher, OSU/NCATS
+- Kevin Ying, OSU
+- Dr. Garrett Kinnebrew, OSU
+- Kyle Spencer, OSU/NCATS
+
+**Collaborators/Advisors**
+- Dr. James Chen, OSU
+- Dr. Kevin Coombes, OSU
+- Dr. Zachary Abrams, OSU
+- Dr. Lang Li, OSU
+
+]]
+
+.pull-right[
+.small[
+**Collaborators/Advisors**
+- Dr. Rachel Kopec, OSU
+- Dr. Tim Garrett, Florida State University
+- Dr. Jeremy Koelmel Florida State University
+- John Braisted, NCATS
+- NCATS informatics core
+
+**Funding from**
+- The OSU Clinical and Translational Research Informatics Training
+Program (4T15LM011270-05)
+- Systems and Integrative Biology training program (T32GM068412) ]]
+
+---
+
+# Questions?
+
+.pull-left[
+&lt;iframe src='https://gfycat.com/ifr/LongLateAcouchi' frameborder='0' scrolling='no' allowfullscreen width='480' height='390'&gt;&lt;/iframe&gt;&lt;p&gt;&lt;a href="https://gfycat.com/discover/question-gifs"&gt;from Question GIFs&lt;/a&gt; &lt;a href="https://gfycat.com/longlateacouchi-question-mark-confused-what-huh"&gt;via Gfycat&lt;/a&gt;&lt;/p&gt;
+]
+
+.pull-right[
+- Slides link: https://andyptt21.github.io/MANA_2020
+
+- RaMP link: https://rampdb.ncats.io/
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"countIncrementalSlides": false,
+"seal": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+<style>
+.logo {
+  background-image: url(img/ncats-logo.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  bottom: -85px;
+  right: 1em;
+  width: 150px;
+  height: 128px;
+  z-index: 0;
+}
+</style>
+
+<script>
+document
+  .querySelectorAll(
+    '.remark-slide-content' +
+    ':not(.title-slide)' +
+    // add additional classes to exclude here, e.g.
+    // ':not(.inverse)' +
+    ':not(.hide-logo)'
+  )
+  .forEach(el => {
+    el.innerHTML += '<div class="logo"></div>';
+  });
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

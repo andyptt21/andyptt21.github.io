@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>index.utf8.md</title>
+    <meta charset="utf-8" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: inverse, middle
+background-image: url(title_background.svg)
+background-size: cover
+
+&lt;font color = "white"&gt;
+## Novel approaches for analysis and integration of metabolomic data
+.pull-left[
+### Andrew Patt
+### Ohio State University
+Department of Biomedical Informatics/Biomedical Sciences Graduate Program
+
+]
+
+.pull-right[
+.center[
+&lt;img src="img/Human_metabolome_project.png" width="300px" /&gt;
+]
+]
+
+
+---
+
+&lt;style type="text/css"&gt;
+
+p.caption {
+  font-size: 0.6em;
+}
+
+.large { font-size: 200% }
+
+.medium-large { font-size: 130% }
+
+.small{ font-size: 80% }
+
+.tiny{ font-size: 40% }
+
+.center-left {
+  position:          relative;
+  top:               50%;
+  transform:         translateY(50%);
+}
+.center-right {
+  position:          relative;
+  top:               50%;
+  transform:         translateY(10%);
+}
+
+.remark-slide-content {
+  background-color: #FFFFFF;
+  border-top: 80px solid #8f1414;
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1.5;
+  padding: 1em 2em 1em 2em
+}
+
+.inverse {
+  background-color: #8f1414;
+  text-shadow: none;
+}
+
+.left-column {
+	color: #000000;
+	width: 40%;
+	height: 92%;
+	float: left;
+}
+
+.right-column {
+  width: 58%;
+  float: right;
+  padding-top: 1em;
+}
+
+&lt;/style&gt;
+
+# Presentation Roadmap
+
+--
+
+### Metabolomics Introduction
+
+--
+&lt;/br&gt;
+&lt;/br&gt;
+### Project 1, Metabolomics of Liposarcoma
+
+--
+&lt;/br&gt;
+&lt;/br&gt;
+### Project 2, Improved Methodology for Interpreting Metabolomic Data
+
+---
+
+# Metabolomics for biomedical research
+
+.pull-left[
+- Study of small biomolecules using mass spectrometry or NMR
+
+- Structurally and functionally diverse
+
+- Impacted by diet, lifestyle, toxins, pharmaceutics, microbiome, etc.
+
+- Downstream stage in flow of biological information
+]
+
+.pull-right[
+&lt;img src="img/Metabolomics_schema.png" width="600px" /&gt;
+]
+
+---
+
+# Metabolomics of Cancer
+
+- Metabolites are the regulators and intermediates of many cellular processes relevant to cancer
+--
+
+- **Warburg Effect**: increased reliance on anaerobic respiration
+--
+
+- **Lipogenic Phenotype**: increased endogenous *de novo* production of lipids, decrease in exogenous uptake
+--
+
+- **p53 as a metabolism regulator**: p53 response elements exist in promoters of glycolytic enzymes. It can also inhibit expression of glucose transporters.
+--
+
+- **MYC as a metabolism regulator**: induces glycolysis and glutaminolysis. Induces a hypoxic phenotype in normal oxygen environments
+--
+
+- **Mutant IDH Gliomas:**: Mutant IDHs convert alpha Ketoglutarate to
+  2-Hydroxyglutarate, which impacts the TCA cycle and induces
+  epigenetic changes that promote tumor progression
+
+---
+
+class: inverse, bottom
+
+# Project 1: Metabolomics of Liposarcoma
+
+---
+
+# Dedifferentiated Liposarcoma Background
+
+.pull-left[
+- 20% of all soft tissue sarcoma diagnoses
+- Prognosis depends on copy number of the MDM2 oncogene
+- Some drugs (Dactinomycin, Doxorubicin) are used to treat
+  liposarcoma, but they have unpredictable efficacy and toxicity.
+- Prognosis varies based on MDM2 amplification in tumor
+]
+
+.pull-right[
+&lt;img src="img/DDLPS_prognosis.png" width="400px" /&gt;
+
+.tiny[
+Bill KLJ, Seligson ND, Hays JL, et al. Degree of Amplification Affects Clinical Outcomes in Dedifferentiated Liposarcoma. Oncologist. 2019;24(7):989-996.
+]
+]
+
+
+---
+
+# MDM2 inhibits DNA repair and apopotosis
+
+.pull-left[
+- Autoregulatory loop with p53
+- Physically binds to p53 and catalyzes its ubiquitylation, keeping it at low levels in healthy cells
+- p53 initiates DNA repair or apoptosis if DNA repair is impossible or if telomeres have shortened too much
+- Frequently inhibited in mutant p53 cancers
+]
+
+.pull-right[
+&lt;img src="img/MDM2_schematic.png" width="350px" /&gt;
+
+.tiny[
+http://mcr.aacrjournals.org/content/molcanres/1/14/1001/F1.large.jpg?width=800&amp;height=600&amp;carousel=1
+]
+]
+
+---
+
+# MDM2 high cells resist atorvastatin treatment
+
+&lt;img src="img/Atorvastatin_response.png" width="1000px" /&gt;
+
+---
+
+# Objectives
+
+--
+
+### 1. General survey of differences between MDM2 high and low tumor cells to explain worse prognosis
+
+--
+
+### 2. Understand resistance of MDM2 high cells to atorvastatin treatment
+
+--
+
+### 3. Assess the hypothesis that MDM2 inhibition could induce atorvastatin sensitivity in MDM2 high cells 
+
+---
+
+# Methods
+
+&lt;img src="img/metabolite_methods.png" width="1000px" /&gt;
+
+---
+
+# Methods
+
+&lt;img src="img/lipid_methods.png" width="1000px" /&gt;
+
+---
+
+# Lipid differences between MDM2 high and low cells
+
+![](index_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+
+---
+
+# MDM2 high tumor cells show markers of inflammation
+
+![](index_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+
+---
+
+# HexCers are upregulated by MDM2 in metab panel
+
+![](index_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+
+---
+
+# HexCers are upregulated by MDM2 in lipidomic panel
+
+![](index_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+
+---
+
+# HexCers are upregulated by MDM2 in lipidomic panel
+
+![](index_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
+
+---
+
+# Ceramide glycosylation levels predict MDM2 status
+
+![](index_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+
+---
+
+# Pathways altered between MDM2 high and low cells
+
+&lt;/br&gt;
+&lt;/br&gt;
+&lt;img src="img/Metabolon_pathways.png" width="1000px" /&gt;
+
+
+---
+
+# Atorvastatin did not impact MDM2 high lipidome
+
+![](index_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
+
+---
+
+# Atorvastatin changed sphingolipids in MDM2 low cells
+
+![](index_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
+
+---
+
+# Atorvastatin changed sphingolipids in MDM2 low cells
+
+![](index_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
+
+---
+
+# MDM2 inhibition confers an MDM2 high phenotype
+
+&lt;img src="img/metabolites_of_interest_post_mdm2_inhibitor.png" width="1000px" /&gt;
+
+---
+
+# Project 1 (tentative) Conclusions
+
+### 1. MDM2 was implicated in resistance to apoptosis, shifts in energy metabolism, and driving a pro-inflammatory phenotype
+### 2. Atorvastatin worked through changes in the sphingolipid pathway which were counteracted by MDM2 activity
+### 3. MDM2 inhibitor transiently raises MDM2 expression and confers an MDM2 high phenotype
+
+---
+
+# Future work
+
+### 1. Extend findings to human transcriptome data
+### 2. Test a variety of MDM2 inhibitors
+### 3. Experimentally validate findings
+
+---
+
+class: inverse, bottom
+
+# Project 2: Network method for downstream analysis of metabolomic data
+
+---
+
+# Challenges in metabolite/lipid analysis
+
+1. Lack of pathway annotations
+
+---
+
+# Challenges in metabolite/lipid analysis
+
+1. Lack of pathway annotations
+
+.center[
+&lt;img src="img/pathway_coverage.png" width="800px" /&gt;
+]
+
+---
+
+# Challenges in metabolite/lipid analysis
+
+1. Lack of pathway annotations
+
+	- Incorporating biological and chemical annotations offer better coverage
+
+--
+
+2. Metabolite panels don't cover the entire metabolome
+
+	- Leads to reproducibility issues
+
+--
+
+3. Conventional pathway overrepresentation analysis does not account for redundancies of pathway annotations
+	
+	- Pathway annotations are not independent, which is an assumption of the Fisher's/Hypergeometric tests
+---
+
+# Addressing Issue 1: Expanding RaMP
+
+- RaMP is our group's multiomic pathway database integrating
+information from KEGG, HMDB, WikiPathways and Reactome 
+
+--
+
+- Integrate lipid annotations drawn from following open-source resources:
+--
+
+  - LION/Web: &gt;250,000 annotations for &gt;50,000 lipids, including lipid class, subcellular location, biological function, and biochemical/physical properties.
+--
+
+  - SwissLipids: Location, reaction, structure and chemical class annotations for 777,657 lipids (real and theoretical)
+--
+
+  - Lipid Maps: Structure and chemical class annotations for 43,636 lipids
+--
+  
+  - LipidPedia: Disease, MeSH term, function, reactions for 4,487 lipids.
+--
+
+- Implement enrichment analysis software for lipids/metabolites
+
+---
+
+# Addressing Issues 2 and 3: Novel Network Method
+
+&lt;img src="img/network_schematic1.png" width="1000px" /&gt;
+
+---
+
+# Addressing Issues 2 and 3: Novel Network Method
+
+&lt;img src="img/network_schematic2.png" width="1000px" /&gt;
+
+---
+
+# Addressing Issues 2 and 3: Novel Network Method
+
+&lt;img src="img/network_schematic3.png" width="1000px" /&gt;
+
+---
+
+# Addressing Issues 2 and 3: Novel Network Method
+
+&lt;img src="img/network_schematic4.png" width="1000px" /&gt;
+
+---
+
+# Addressing Issues 2 and 3: Novel Network Method
+
+&lt;img src="img/network_schematic5.png" width="1000px" /&gt;
+
+---
+
+# Addressing Issues 2 and 3: Novel Network Method
+
+&lt;img src="img/network_schematic6.png" width="1000px" /&gt;
+
+---
+
+# Addressing Issues 2 and 3: Novel Network Method
+
+&lt;img src="img/network_schematic7.png" width="1000px" /&gt;
+
+---
+
+# Preliminary Experiment: Liposarcoma metabolomics
+
+--
+.small[
+- **INPUT**: 10/18 metabolites different between MDM2 high and low
+that mapped to KEGG pathways 
+]
+--
+.small[
+- Used as seeds in network of 1,449 KEGG metabolites that shared at
+  least one pathway with seed set
+]
+--
+.small[
+- Pathway similarity network using Jaccard index of pathway participation
+]
+--
+.small[
+- Chemical similarity network using binarized Tanimoto similiarity of Pubchem fingerprint
+]
+--
+.small[
+- Merged networks by summing edge weights
+]
+--
+.small[
+- Random walk with restarts to quantify proximity
+]
+--
+.small[
+- Empirical significance distribution with 10,000 random seed sets to identify significantly proximal metabolites to seeds, filter to 97th percentile
+]
+--
+.small[
+- Louvain Clustering to find modules
+]
+--
+.small[
+- Fisher's test to find enriched pathways
+]
+--
+.small[
+- **OUTPUT**: Significantly enriched pathways
+]
+
+---
+
+# Network Method Preliminary Result
+
+&lt;img src="img/Network_figure_2.png" width="1000px" /&gt;
+---
+
+# Project 2 Conclusions/Future Directions
+
+--
+
+- Novel method provided results more in line with observed biology in
+system than conventional method, providing partial validation 
+
+--
+
+- Future work:
+  - Best network topology analysis method
+  - Best network fusion approach
+  - How much information is appropriate to include?
+  - Validate in more data sets as well as simulations
+
+---
+
+# Acknowledgements
+
+.pull-left[
+.small[
+**Mathe Lab**
+- Ewy Mathe
+- Tara Eicher
+- Kevin Ying
+- Garrett Kinnebrew
+- Kyle Spencer
+- Kiran Boyinepally
+- Cynthia Ramazani
+
+**Collaborators/Advisors**
+- Dr. James Chen
+- Dr. Kevin Coombes
+- Dr. Zachary Abrams
+- Dr. Lang Li
+
+]]
+
+.pull-right[
+.small[
+**Collaborators/Advisors**
+- Dr. Rachel Kopec
+- Dr. Tim Garrett
+- Dr. Jeremy Koelmel
+- Dr. Andrew Patterson
+- Dr. Philip Smith
+
+**Funding from**
+- The OSU Clinical and Translational Research Informatics Training
+Program (4T15LM011270-05)
+- Systems and Integrative Biology training program (T32GM068412) ]]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"countIncrementalSlides": false,
+"seal": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,236 @@
+---
+output:
+  xaringan::moon_reader:
+    css: [default, metropolis, metropolis-fonts]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+      seal: false
+      ratio: '16:9'
+---
+
+class: inverse, middle
+background-image: url(title_background.svg)
+background-size: cover
+
+<font color = "white">
+## Thesis Specific Aims
+.pull-left[
+### Andrew Patt
+### National Center for Advancing Translational Science/Ohio State University
+Biomedical Sciences Graduate Program
+
+]
+
+.pull-right[
+.center[
+```{r,echo=FALSE,out.width="300px"}
+knitr::include_graphics("img/Human_metabolome_project.png")
+```
+]
+]
+
+
+---
+
+<style type="text/css">
+
+p.caption {
+  font-size: 0.6em;
+}
+
+.large { font-size: 200% }
+
+.medium-large { font-size: 130% }
+
+.small{ font-size: 80% }
+
+.tiny{ font-size: 55% }
+
+.center-left {
+  position:          relative;
+  top:               50%;
+  transform:         translateY(50%);
+}
+.center-right {
+  position:          relative;
+  top:               50%;
+  transform:         translateY(10%);
+}
+
+.remark-slide-content {
+  background-color: #FFFFFF;
+  border-top: 80px solid #8f1414;
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1.5;
+  padding: 1em 2em 1em 2em
+}
+
+.inverse {
+  background-color: #8f1414;
+  text-shadow: none;
+}
+
+.right-column {
+	color: #000000;
+	width: 30%;
+	height: 92%;
+	float: right;
+}
+
+.left-column {
+  width: 68%;
+  float: left;
+}
+
+</style>
+
+# Background
+--
+
+- Pathway annotations are not available for most metabolites identified in an experiment
+--
+
+- There's variability in the number and types of metabolites that can be identified in similar experimental conditions
+--
+
+- Lipid annotations are sparse and difficult to consolidate
+--
+
+  - Pathway coverage is poor
+--
+
+  - Alternate schemes are not harmonized
+--
+
+- ORA statistics falsely assume that pathways are independent of each other
+
+---
+
+# Aim 1 
+
+### Expand and improve usability of lipid annotations within RaMP from multiple sources
+--
+
+.small[
+**Subaim 1a:  Consolidate lipid annotations in RaMP from lipid databases**
+]
+--
+
+.small[
+- LION/Web, SwissLipids, Lipid Maps, LipidPedia, InChIKey
+]
+--
+
+.small[
+**Subaim 1b: Improve usability of known lipid annotations by implementing conventional ORA software
+for expanded lipidomic knowledge base.**
+]
+--
+
+.small[
+- Structure, Chemical class, Disease, MeSH term, Biological Function,
+Reaction(?), Subcellular location, Biochemical/physical properties 
+]
+--
+
+.small[
+**Subaim1c: Develop methodology for the visualization of coverage of pathways in user-supplied data.**
+]
+--
+
+.small[
+- Generate a network visual for demonstrating high level functional clusters in user analytes
+]
+
+---
+# Aim 2 
+
+### Develop a novel network-based pathway and annotation enrichment method that integrates multiple sources of metabolite/lipid annotations
+--
+
+.small[
+**Subaim 2a:  Build a consensus similarity network model from multiple annotation types using sim-
+ilarity network fusion algorithms**
+]
+--
+
+.tiny[
+- Need to determine how to quantify and weight similarities between analytes on many ontological levels
+- Alternative approaches include simpler (sum edge weights, union of edges) or more complex (Grassmann manifold) strategies
+]
+--
+
+.small[
+**Subaim 2b: Develop methodology for detecting enriched pathways and annotations in the consen-
+sus similarity network**
+]
+--
+
+.tiny[
+- Currently using random walks with restarts to identify crosstalkers with seed set (list of DE analytes)
+- This is used to build a new subnetwork that can be tested for enrichment of annotations
+- Heat diffusion is a potential alternative
+]
+--
+
+.small[
+**Subaim2c: Develop MetaboSPAN: R package/Shiny app for Metabolite Structure, Pathway, and Anno-
+tation Network enrichment analysis**
+]
+
+---
+# Thesis Chapters
+
+.tiny[
+**Part I: Metabolomics and Lipidomics: Applications in biomedical sciences (Introduction)**
+
+**Part II: Metabolomics of liposarcoma**
+   
+   1) Liposarcoma review
+   
+   2) Liposarcoma treatment response and Ceramides
+   
+   3) Conclusions
+
+**Part III: Computational approaches for functional analysis and integration of metabolomic and lipidomic data**
+
+   1) Introduction
+   - Overview of standard metabolomic workflows (Issues include missing annotations, identifications, and lack of standard annotations)
+	  
+   - Pathway analysis (Databases, methods, tools & challenges)
+	  
+   - Integration (Methods, tools & challenges)
+	  
+2) RaMP chapter (addressing issues in multiomic data analysis) and
+      improved lipid pathway annotations
+	  
+3) MetaboSPAN
+   
+4) Potential COVID work integrating drug target/metabolite data
+   
+5) Conclusions
+
+**Part IV: Conclusions (Broadly state my contributions to the field of metabolomics)**
+]
+---
+# Timeline
+
+.tiny[
+| Relative time | Actual time | Milestone |
+|-------------------|-----------------|--------------|
+| Year 0 | August 2016 | Started program  |
+| Year 1.5 | December 2017 | RaMP publication (2nd author)  |
+| Year 2.5 | October 2018 | Candidacy exam |
+| Year 2.5 | January 2019 | RaMP textbook chapter (1st author)  |
+| Year 3 | June 2019 | Proteogenomic integration review (Co-1st author)  |
+| Year 3.5    | April 2020    | Multiomic integration review  (2nd author) |
+| Year 3.5  | May 2020    | **Liposarcoma metabolomics (Co-1st author)**   |
+| Year 4 | July 2020  | **MetaboSPAN (1st author)**  |
+| Year 4.5  | December 2020 | Defend and submit thesis |
+| Year 4.5   | Spring 2021  | **Renovated RaMP (1st author)**  |
+| ???    | ???    | Identifying potential COVID therapies |
+| ???    | ???    | LipidMatch Flow (6th author) |
+]
