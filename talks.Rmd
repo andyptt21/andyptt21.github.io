@@ -1,0 +1,29 @@
+# Publications
+
+**Patt, A.**; Demoret, B.; Stets, C.; Bill, K.-L.; Smith, P.; Vijay, A.; Patterson, A.; Hays, J.; Hoang, M.; Chen, J.L.; Mathé, E.A. MDM2-Dependent Rewiring of Metabolomic and Lipidomic Profiles in Dedifferentiated Liposarcoma Models. Cancers 2020, 12, 2157. 
+
+An OpenData portal to share COVID-19 drug repurposing data in real time. Kyle R. Brimacombe, Tongan Zhao, Richard T. Eastman, Xin Hu, Ke Wang, Mark Backus, Bolormaa Baljinnyam, Catherine Z. Chen, Lu Chen, Tara Eicher, Marc Ferrer, Ying Fu, Kirill Gorshkov, Hui Guo, Quinlin M. Hanson, Zina Itkin, Stephen C. Kales, Carleen Klumpp-Thomas, Emily M. Lee, Sam Michael, Tim Mierzwa, **Andrew Patt**, Manisha Pradhan, Alex Renn, Paul Shinn, Jonathan H. Shrimp, Amit Viraktamath, Kelli M. Wilson, Miao Xu, Alexey V. Zakharov, Wei Zhu, Wei Zheng, Anton Simeonov, Ewy A. Mathé, Donald C. Lo, Matthew D. Hall, Min Shen. bioRxiv 2020.06.04.135046; doi: https://doi.org/10.1101/2020.06.04.135046 
+
+Eicher T, Kinnebrew G, **Patt A**, Spencer K, Ying K, Ma Q, Machiraju R, Mathé AEA. Metabolomics and Multi-Omics Integration: A Survey of Computational Methods and Resources. Metabolites. 2020 May 15;10(5):202. doi: 10.3390/metabo10050202. PMID: 32429287; PMCID: PMC7281435.
+
+Eicher T, **Patt A**, Kautto E, Machiraju R, Mathé E, Zhang Y. Challenges in proteogenomics: a comparison of analysis methods with the case study of the DREAM proteogenomics sub-challenge. BMC Bioinformatics. 2019;20(Suppl 24):669. Published 2019 Dec 20. doi:10.1186/s12859-019-3253-z
+
+**Patt A**, Siddiqui J, Zhang B, Mathé E. Integration of Metabolomics and Transcriptomics to Identify Gene-Metabolite Relationships Specific to Phenotype. Methods Mol Biol. 2019;1928:441-468. doi: 10.1007/978-1-4939-9027-6_23. PMID: 30725469.
+
+Zhang B, Hu S, Baskin E, **Patt A**, Siddiqui JK, Mathé EA. RaMP: A Comprehensive Relational Database of Metabolomics Pathways for Pathway Enrichment Analysis of Genes and Metabolites. Metabolites. 2018 Feb 22;8(1):16. doi: 10.3390/metabo8010016. PMID: 29470400; PMCID: PMC5876005.
+
+# Selected Presentations
+
+2020 Metabolomics Association of North America, Ann Arbor MI (virtual). Improving pathway analysis of lipidomic and metabolomic data through comprehensive functional annotation and network approaches. *15 minute talk*, [see slides here](https://andyptt21.github.io/MANA_2020/#1)
+
+2019 International Conference on Intelligent Biology and Medicine, Columbus OH. Challenges in proteogenomics: a comparison of analysis methods with the case study of the DREAM Proteogenomics Sub-Challenge. *20 minute talk*
+
+2019 American Society for Mass Spectrometry, Atlanta, GA. MDM2 Copy Number Aberrations Alter Ceramide Glycosylation in Liposarcoma Tumors, Impacting Drug Response. *Poster*
+
+2018 American Society for Mass Spectrometry, San Diego, CA. MDM2 alterations reprogram the metabolic functioning of liposarcoma cell lines. *Poster*
+
+2017 National Library of Medicine Informatics Training Conference, La Jolla, CA. MDM2 alterations reprogram the metabolic functioning of liposarcoma cell lines. *Poster*
+
+2016 NIAMS Scientific Planning Retreat, Bethesda, MD. Deep Resequencing of Juvenile Arthritis Patients Identifies Rare Variant Associations. *Poster*
+
+2014 UB Summer Research Symposium, Buffalo, NY. Sex Differences in MCT1 Tissue Expression. *Poster*
