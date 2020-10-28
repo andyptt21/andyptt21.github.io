@@ -1,0 +1,13 @@
+- November 2020: I gave a poster presentation at the Metabolomics society annual meeting, "Improving pathway analysis of lipidomic and metabolomic data through comprehensive functional annotation and network approaches"
+- September 2020: I gave a 15-minute talk at the Metabolomics Association of North America, "Improving pathway analysis of lipidomic and metabolomic data through comprehensive functional annotation and network approaches"
+- August 2020: My first-author publication, "MDM2-Dependent Rewiring of Metabolomic and Lipidomic Profiles in Dedifferentiated Liposarcoma Models", was published in MDPI Cancers!
+- June 2020: I presented a poster at the American Society for Mass Spectrometry, "MDM2 copy number aberrations alter ceramide glycosylation in liposarcoma tumors, impacting drug response"
+- May 2020: The preprint for a middle-author manuscript I contributed to, "An OpenData portal to share COVID-19 drug repurposing data in real time", is available on bioRxiv
+- April 2020: I presented a poster at the OSUWMC trainee research day, "MDM2 copy number aberrations alter ceramide glycosylation in liposarcoma tumors, impacting drug response"
+- February 2020: My second-author paper, "Metabolomics and Multi-Omics Integration: A Survey of Computational Methods and Resources" was published in Metabolites!
+- December 2019: My co-first author publication,"Challenges in proteogenomics: a comparison of analysis methods with the case study of the DREAM Proteogenomics Sub-Challenge", was published in BMC Bioinformatics!
+- October 2019: I presented a poster at the Ohio Mass Spectrometry and Metabolomics Symposium, "MDM2 copy number aberrations alter ceramide glycosylation in liposarcoma tumors, impacting drug response"
+- June 2019: I gave a 20 minute talk at the International Conference on Intelligent Biology and Medicine, "Challenges in proteogenomics: a comparison of analysis methods with the case study of the DREAM Proteogenomics Sub-Challenge" 
+- June 2019: I presented a poster at the American Society for Mass Spectrometry Annual Meeting, "MDM2 Alterations Reprogram the Metabolic Functioning of Liposarcoma Cell Lines"
+- May 2019: I presented a poster at the Ohio Cancer Care Center Annual Meeting, "MDM2 Alterations Reprogram the Metabolic Functioning of Liposarcoma Cell Lines"
+- October 2018: I passed my candidacy exam!

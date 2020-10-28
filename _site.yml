@@ -5,10 +5,8 @@ navbar:
   left:
     - text: "Publications/Presentations"
       href: talks.html
-    - text: "Research Interests"
-      href: research.html
-    - text: "Personal"
-      href: hobbies.html
+    - text: "News"
+      href: news.html
   right:
     - icon: fa-envelope fa-lg
       href: contact.html
