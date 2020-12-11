@@ -31,7 +31,7 @@ p.caption {
 
 .small{ font-size: 70% }
 
-.tiny{ font-size: 40% }
+.tiny{ font-size: 60% }
 
 .center-left {
   position:          relative;
@@ -85,6 +85,10 @@ p.caption {
     background-repeat: no-repeat;
     background-size: contain;
 	background-image: url("img/The-Ohio-State-University-Wexner-Medical-Center.png")
+}
+
+.aligncenter {
+  text-align: center;
 }
 
 &lt;/style&gt; 
@@ -272,7 +276,6 @@ class: inverse, center, middle
 # Metabolite Similarity Networks
 
 .pull-left[
-.small[
 - Through RaMP, we are collecting data that describes relationships between metabolites:
   - Shared pathway activity
   - Mutual participation in reactions
@@ -280,7 +283,7 @@ class: inverse, center, middle
   - Associations with disease, etc...
 
 - Using this information, we can build knowledge networks describing the information landscape of the database
-] ]
+] 
 
 .pull-right[
 
@@ -293,15 +296,12 @@ class: inverse, center, middle
 .pull-left[
 .small[
 - Lack of pathway annotations
-
 	- Incorporating biological and chemical annotations offer better coverage
 
-- Conventional pathway overrepresentation analysis does not account for redundancy of pathway annotations
-	
+- Conventional pathway overrepresentation analysis does not account for redundancy of pathway annotations	
 	- Pathway annotations are not independent, which is an assumption of the Fisher's/Hypergeometric tests
 
-]
-]
+]]
 
 .pull-right[
 &lt;img src="img/pathway_coverage_2.png" width="800px" /&gt;
@@ -358,40 +358,26 @@ class: inverse, center, middle
 ---
 
 # Remaining MetaboSPAN road map
-<div id="htmlwidget-5cca3dfb71fe1f309b2a" style="width:1400px;height:504px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-5cca3dfb71fe1f309b2a">{"x":{"diagram":"digraph nicegraph {\ncompound=true;\ngraph [nodesep = 1, ranksep = .5,\n         color = black,rankdir=LR]\n\n# define the global styles of the nodes. We can override these in box if we wish\nnode [fontname = Helvetica, fontcolor = darkslategray, style=filled,\n        shape = rectangle, fixedsize=true, width=2,height=1,\n        color = darkslategray,fontsize=14]\n\n1 [label = \"Basic workflow\n implemented \n(Liposarcoma\n paper)\", fillcolor = green]\n2 [label = \"Write core \npackage \nfunctions\", fillcolor = green]\n3 [label =  \"Address \npathway \n dependency\", fillcolor = green]\n4 [label = \"Improve \nrun time\", fillcolor = yellow]\n5 [label = \"Construct \nRaMP 2.0 \nknowledge \ngraph\", fillcolor = yellow]\n6 [label = \"Perform \nvalidation \nexperiments\", fillcolor = red]\n7 [label = \"Write \nthesis part IV/\nMetaboSPAN \npaper\", fillcolor = red]\nb1 [color = \"white\", label=\"\"]\n\n# edge definitions with the node IDs\nsubgraph cluster1 {\n    label = \"Completed\";\n    style=dashed;\n\t\tcolor= \"#625a5a\";\nfontname = \"helvetica-bold\";\nedge [style=\"invisible\",dir=\"none\"]\n1->2->3\n}\n\nsubgraph cluster2 {\n    label = \"In Progress\";\n    style=dashed;\n\t\tcolor= \"#625a5a\";\nfontname = \"helvetica-bold\";\n4->5 \n5->6 6->5 [color = \"red\"] 6->7}\n\n3->b1 [color=\"white\",style=\"invisible\",dir=\"none\"]\n7->b1 [color=\"white\",style=\"invisible\",dir=\"none\"]\n2->6 [ltail=cluster1,lhead=cluster2];\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-525e4bda86650e0f6bda" style="width:1400px;height:504px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-525e4bda86650e0f6bda">{"x":{"diagram":"digraph nicegraph {\ncompound=true;\ngraph [nodesep = 1, ranksep = .5,\n         color = black,rankdir=LR]\n\n# define the global styles of the nodes. We can override these in box if we wish\nnode [fontname = Helvetica, fontcolor = darkslategray, style=filled,\n        shape = rectangle, fixedsize=true, width=2,height=1,\n        color = darkslategray,fontsize=14]\n\n1 [label = \"Basic workflow\n implemented \n(Liposarcoma\n paper)\", fillcolor = green]\n2 [label = \"Write core \npackage \nfunctions\", fillcolor = green]\n3 [label =  \"Address \npathway \n dependency\", fillcolor = green]\n4 [label = \"Improve \nrun time\", fillcolor = yellow]\n5 [label = \"Construct \nRaMP 2.0 \nknowledge \ngraph\", fillcolor = yellow]\n6 [label = \"Perform \nvalidation \nexperiments\", fillcolor = red]\n7 [label = \"Write \nthesis part IV/\nMetaboSPAN \npaper\", fillcolor = red]\nb1 [color = \"white\", label=\"\"]\n\n# edge definitions with the node IDs\nsubgraph cluster1 {\n    label = \"Completed\";\n    style=dashed;\n\t\tcolor= \"#625a5a\";\nfontname = \"helvetica-bold\";\nedge [style=\"invisible\",dir=\"none\"]\n1->2->3\n}\n\nsubgraph cluster2 {\n    label = \"In Progress\";\n    style=dashed;\n\t\tcolor= \"#625a5a\";\nfontname = \"helvetica-bold\";\n4->5 \n5->6 6->5 [color = \"red\"] 6->7}\n\n3->b1 [color=\"white\",style=\"invisible\",dir=\"none\"]\n7->b1 [color=\"white\",style=\"invisible\",dir=\"none\"]\n2->6 [ltail=cluster1,lhead=cluster2];\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 ---
 
 # Core MetaboSPAN functions
-.small[
-- `find_crosstalkers()`
-  - Run random walks with restarts algorithm on RaMP knowledge graph
-    with seed set of interest. Scores are currently compared with an
-    empirical distribution made from random seed sets.
-  - **INPUT**
-	  - Metabolites of interest (DB identifiers or common names)
-	  - Number of iterations for empirical distribution (to be removed)
-	  - Percentile random walk score cutoff for significance
-	  - Iterations for random walk (to be implemented)
-   - **OUTPUT**
-	   - Expanded list of metabolites of interest
-	   - Diagnostic histogram (to be removed)
-- `visualize_crosstalkers_network()`
-  - View network visual of metabolites of interest, color coded by module
-  - **INPUT**
-	  - Metabolites of interest
-   - **OUTPUT**
-	 - Network visual
-- `WY_pathway_adjustment()`
-  - See next slide
+.tiny[
+| Function          | Description | Input | Output |
+|-------------|----------|----------------|----------------------|
+| `find_crosstalkers()`    | Run random walks with restarts algorithm on RaMP knowledge graph with seed set of interest. Scores are currently compared with an empirical distribution made from random seed sets. |   Metabolites of interest (DB identifiers or common names), Number of iterations for empirical distribution (to be removed), Percentile random walk score cutoff for significance, Iterations for random walk (to be implemented)            |  Expanded list of metabolites of interest, Diagnostic histogram (to be removed)                 |
+| `visualize_crosstalkers_network()` | View network visual of metabolites of interest, color coded by module  | Metabolites of interest   | Network visual displaying clusters of related metabolites  |
+| `cluster_metabolites()` | Returns the cluster membership of metabolites in the above network   | Metabolites of interest     | Metabolites similarity cluster membership                   |
+| `WY_pathway_adjustment()`  | Fisher's p value adjustment strategy for accounting for interdependence of pathways (see next slide)    | Metabolites of interest, metabolite panel background, number of iterations             | Adjusted p vals for pathways associated with metabolites of interest  |
 ]
 ---
+
 # Westfall-Young Fisher's p val adjustment
 
 - Westfall and Young (1993) developed a method for p value
   permutation-based adjustment strategy that modeled interdependence
   in gene expression
-
 
 ```r
 ## Calculate true p values &amp; sort
@@ -493,10 +479,9 @@ adjusted_p_vals&lt;-apply(p_val_matrix,by_row,get_percentile(true_column,fake_co
 ---
 
 # Questions?
-
-.pull-left[
-&lt;iframe src='https://gfycat.com/ifr/LongLateAcouchi' frameborder='0' scrolling='no' allowfullscreen width='480' height='390'&gt;&lt;/iframe&gt;&lt;p&gt;&lt;a href="https://gfycat.com/discover/question-gifs"&gt;from Question GIFs&lt;/a&gt; &lt;a href="https://gfycat.com/longlateacouchi-question-mark-confused-what-huh"&gt;via Gfycat&lt;/a&gt;&lt;/p&gt;
-]
+&lt;div class="aligncenter"&gt;
+&lt;iframe src="https://gifer.com/embed/3bm4" width=800 height=500.000 frameBorder="0" allowFullScreen&gt;
+&lt;/div&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
