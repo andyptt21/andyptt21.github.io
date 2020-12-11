@@ -118,6 +118,7 @@ p.caption {
 - Looking to transition to industry eventually, examining postdoc options
 
 ---
+
 # Current Accomplishments
 
 .small[
