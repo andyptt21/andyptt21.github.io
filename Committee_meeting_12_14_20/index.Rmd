@@ -178,7 +178,7 @@ knitr::include_graphics("img/covid_network_example.png")
 
 **Part IV: Computational approaches for functional analysis and integration of metabolomic and lipidomic data**
 
-**Part IV: Conclusions (Broadly state my contributions to the field of metabolomics)**
+**Part V: Conclusions (Broadly state my contributions to the field of metabolomics)**
 
 
 ---
@@ -377,7 +377,9 @@ knitr::include_graphics("img/network_schematic4.png")
 
 4. Filter network down to highly similar nodes to seed set
 
-5. Identify clusters of related metabolites in final model and perform
+5. Repeat expansion for entire metabolite panel 
+
+6. Identify clusters of related metabolites in final model and perform
    enrichment analysis
 ]
 ]
@@ -498,13 +500,15 @@ adjusted_p_vals<-apply(p_val_matrix,by_row,get_percentile(true_column,fake_colum
 .small[
 1. Run random walks with restarts algorithm using metabolites of interest as seed node set
 
-2. ~~Run random walks with restarts using random node set many times~~
+    ~~2. Run random walks with restarts using random node set many times~~
 
-3. ~~Calculate percentile of true score  in random score distribution by node~~
+    ~~3.  Calculate percentile of true score  in random score distribution by node~~
 
-4. Filter network down to highly similar nodes to seed set, **penalizing those with high centrality**
+2. Filter network down to highly similar nodes to seed set, **penalizing those with high centrality**
 
-5. Identify clusters of related metabolites in final model and perform
+3. Repeat expansion for entire metabolite panel  
+
+4. Identify clusters of related metabolites in final model and perform
    enrichment analysis
 ]
 ]
