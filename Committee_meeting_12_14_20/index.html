@@ -369,8 +369,8 @@ class: inverse, center, middle
 ---
 
 # MetaboSPAN road map
-<div id="htmlwidget-31ff3f60746aab09eaac" style="width:1400px;height:504px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-31ff3f60746aab09eaac">{"x":{"diagram":"digraph nicegraph {\ncompound=true;\ngraph [nodesep = 1, ranksep = .5,\n         color = black,rankdir=LR]\n\n# define the global styles of the nodes. We can override these in box if we wish\nnode [fontname = Helvetica, fontcolor = darkslategray, style=filled,\n        shape = rectangle, fixedsize=true, width=2,height=1,\n        color = darkslategray,fontsize=14]\n\n1 [label = \"Basic workflow\n implemented \n(Liposarcoma\n paper)\", fillcolor = green]\n2 [label = \"Write core \npackage \nfunctions\", fillcolor = green]\n3 [label =  \"Address \npathway \n dependency\", fillcolor = green]\n4 [label = \"Improve \nrun time\", fillcolor = yellow]\n5 [label = \"Construct \nRaMP 2.0 \nknowledge \ngraph\", fillcolor = yellow]\n6 [label = \"Perform \nvalidation \nexperiments\", fillcolor = red]\n7 [label = \"Write \nthesis part IV/\nMetaboSPAN \npaper\", fillcolor = red]\nb1 [color = \"white\", label=\"\"]\n\n# edge definitions with the node IDs\nsubgraph cluster1 {\n    label = \"Completed\";\n    style=dashed;\n\t\tcolor= \"#625a5a\";\nfontname = \"helvetica-bold\";\nedge [style=\"invisible\",dir=\"none\"]\n1->2->3\n}\n\nsubgraph cluster2 {\n    label = \"In Progress\";\n    style=dashed;\n\t\tcolor= \"#625a5a\";\nfontname = \"helvetica-bold\";\n4->5 \n5->6 6->5 [color = \"red\"] 6->7}\n\n3->b1 [color=\"white\",style=\"invisible\",dir=\"none\"]\n7->b1 [color=\"white\",style=\"invisible\",dir=\"none\"]\n2->6 [ltail=cluster1,lhead=cluster2];\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-020211dba5654c17036d" style="width:1400px;height:504px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-020211dba5654c17036d">{"x":{"diagram":"digraph nicegraph {\ncompound=true;\ngraph [nodesep = 1, ranksep = .5,\n         color = black,rankdir=LR]\n\n# define the global styles of the nodes. We can override these in box if we wish\nnode [fontname = Helvetica, fontcolor = darkslategray, style=filled,\n        shape = rectangle, fixedsize=true, width=2,height=1,\n        color = darkslategray,fontsize=14]\n\n1 [label = \"Basic workflow\n implemented \n(Liposarcoma\n paper)\", fillcolor = green]\n2 [label = \"Write core \npackage \nfunctions\", fillcolor = green]\n3 [label =  \"Address \npathway \n dependency\", fillcolor = green]\n4 [label = \"Improve \nrun time\", fillcolor = yellow]\n5 [label = \"Construct \nRaMP 2.0 \nknowledge \ngraph\", fillcolor = yellow]\n6 [label = \"Perform \nvalidation \nexperiments\", fillcolor = red]\n7 [label = \"Write \nthesis part IV/\nMetaboSPAN \npaper\", fillcolor = red]\nb1 [color = \"white\", label=\"\"]\n\n# edge definitions with the node IDs\nsubgraph cluster1 {\n    label = \"Completed\";\n    style=dashed;\n\t\tcolor= \"#625a5a\";\nfontname = \"helvetica-bold\";\nedge [style=\"invisible\",dir=\"none\"]\n1->2->3\n}\n\nsubgraph cluster2 {\n    label = \"In Progress\";\n    style=dashed;\n\t\tcolor= \"#625a5a\";\nfontname = \"helvetica-bold\";\n4->5 \n5->6 6->5 [color = \"red\"] 6->7}\n\n3->b1 [color=\"white\",style=\"invisible\",dir=\"none\"]\n7->b1 [color=\"white\",style=\"invisible\",dir=\"none\"]\n2->6 [ltail=cluster1,lhead=cluster2];\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -446,6 +446,20 @@ adjusted_p_vals&lt;-apply(p_val_matrix,by_row,get_percentile(true_column,fake_co
 .pull-right[
 &lt;img src="img/network_topology2.png" width="900px" /&gt;
 
+]
+
+---
+
+# Predicting cutoffs using network centrality measures
+
+.pull-left[
+#### Centrality measures predicting right-tail RW cutoff values
+&lt;img src="img/prediction_performance.png" width="500px" /&gt;
+]
+
+.pull-right[
+#### Correlation of betweenness and rw cutoff of 0.95
+&lt;img src="img/betweenness_rw.png" width="400px" /&gt;
 ]
 
 ---

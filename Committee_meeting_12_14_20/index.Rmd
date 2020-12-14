@@ -522,6 +522,24 @@ knitr::include_graphics("img/network_topology2.png")
 
 ---
 
+# Predicting cutoffs using network centrality measures
+
+.pull-left[
+#### Centrality measures predicting right-tail RW cutoff values
+```{r,echo=FALSE,out.width="500px"}
+knitr::include_graphics("img/prediction_performance.png")
+```
+]
+
+.pull-right[
+#### Correlation of betweenness and rw cutoff of 0.95
+```{r,echo=FALSE,out.width="400px"}
+knitr::include_graphics("img/betweenness_rw.png")
+```
+]
+
+---
+
 # Optimizing run time
 
 - Original run-time: ~35 minutes
