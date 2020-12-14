@@ -211,6 +211,7 @@ National Center for Advancing Translational Science/The Ohio State University
   - 3.2.1 Lack of pathway annotations
   - 3.2.2 Pathway redundancy
   - 3.2.3 Difficulty harmonizing identifiers
+  - 3.2.4 Mapping metabolite names to database identifiers
   - &lt;span style="color: red;"&gt;3.2.4 Challenges in Multi-Omic integration&lt;/span&gt;
 - &lt;span style="color: blue;"&gt;3.3 RaMP: A Comprehensive Relational Database of Metabolomics Pathways&lt;/span&gt;
   - &lt;span style="color: blue;"&gt;3.3.1 RaMP contents&lt;/span&gt;
@@ -251,6 +252,22 @@ class: inverse, center, middle
 
 ---
 
+# Challenges in metabolite/lipid pathway analysis
+.pull-left[
+.small[
+- Lack of pathway annotations
+	- Incorporating biological and chemical annotations offer better coverage
+
+- Conventional pathway overrepresentation analysis does not account for redundancy of pathway annotations	
+	- Pathway annotations are not independent, which is an assumption of the Fisher's/Hypergeometric tests
+
+]]
+
+.pull-right[
+&lt;img src="img/pathway_coverage_2.png" width="800px" /&gt;
+]
+
+---
 # Ongoing RaMP expansions
 
 .pull-left[
@@ -301,23 +318,6 @@ class: inverse, center, middle
 
 ---
 
-# Challenges in metabolite/lipid pathway analysis
-.pull-left[
-.small[
-- Lack of pathway annotations
-	- Incorporating biological and chemical annotations offer better coverage
-
-- Conventional pathway overrepresentation analysis does not account for redundancy of pathway annotations	
-	- Pathway annotations are not independent, which is an assumption of the Fisher's/Hypergeometric tests
-
-]]
-
-.pull-right[
-&lt;img src="img/pathway_coverage_2.png" width="800px" /&gt;
-]
-
----
-
 # Metabolite Structure, Pathway and Annotation Networks
 .center[
 &lt;img src="img/network_schematic1.png" width="900px" /&gt;
@@ -363,6 +363,12 @@ class: inverse, center, middle
 &lt;img src="img/network_topology2.png" width="900px" /&gt;
 
 ]
+
+---
+
+# MetaboSPAN road map
+<div id="htmlwidget-1bc1d0fe1cd1aea561e4" style="width:1400px;height:504px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1bc1d0fe1cd1aea561e4">{"x":{"diagram":"digraph nicegraph {\ncompound=true;\ngraph [nodesep = 1, ranksep = .5,\n         color = black,rankdir=LR]\n\n# define the global styles of the nodes. We can override these in box if we wish\nnode [fontname = Helvetica, fontcolor = darkslategray, style=filled,\n        shape = rectangle, fixedsize=true, width=2,height=1,\n        color = darkslategray,fontsize=14]\n\n1 [label = \"Basic workflow\n implemented \n(Liposarcoma\n paper)\", fillcolor = green]\n2 [label = \"Write core \npackage \nfunctions\", fillcolor = green]\n3 [label =  \"Address \npathway \n dependency\", fillcolor = green]\n4 [label = \"Improve \nrun time\", fillcolor = yellow]\n5 [label = \"Construct \nRaMP 2.0 \nknowledge \ngraph\", fillcolor = yellow]\n6 [label = \"Perform \nvalidation \nexperiments\", fillcolor = red]\n7 [label = \"Write \nthesis part IV/\nMetaboSPAN \npaper\", fillcolor = red]\nb1 [color = \"white\", label=\"\"]\n\n# edge definitions with the node IDs\nsubgraph cluster1 {\n    label = \"Completed\";\n    style=dashed;\n\t\tcolor= \"#625a5a\";\nfontname = \"helvetica-bold\";\nedge [style=\"invisible\",dir=\"none\"]\n1->2->3\n}\n\nsubgraph cluster2 {\n    label = \"In Progress\";\n    style=dashed;\n\t\tcolor= \"#625a5a\";\nfontname = \"helvetica-bold\";\n4->5 \n5->6 6->5 [color = \"red\"] 6->7}\n\n3->b1 [color=\"white\",style=\"invisible\",dir=\"none\"]\n7->b1 [color=\"white\",style=\"invisible\",dir=\"none\"]\n2->6 [ltail=cluster1,lhead=cluster2];\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -471,10 +477,6 @@ adjusted_p_vals&lt;-apply(p_val_matrix,by_row,get_percentile(true_column,fake_co
   - Various combinations will be assessed in the validation framework
 - Eventually we will build a lipidomics knowledge graph (potentially post-thesis)
 
----
-# Remaining MetaboSPAN road map
-<div id="htmlwidget-687fe48b656b5937e919" style="width:1400px;height:504px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-687fe48b656b5937e919">{"x":{"diagram":"digraph nicegraph {\ncompound=true;\ngraph [nodesep = 1, ranksep = .5,\n         color = black,rankdir=LR]\n\n# define the global styles of the nodes. We can override these in box if we wish\nnode [fontname = Helvetica, fontcolor = darkslategray, style=filled,\n        shape = rectangle, fixedsize=true, width=2,height=1,\n        color = darkslategray,fontsize=14]\n\n1 [label = \"Basic workflow\n implemented \n(Liposarcoma\n paper)\", fillcolor = green]\n2 [label = \"Write core \npackage \nfunctions\", fillcolor = green]\n3 [label =  \"Address \npathway \n dependency\", fillcolor = green]\n4 [label = \"Improve \nrun time\", fillcolor = yellow]\n5 [label = \"Construct \nRaMP 2.0 \nknowledge \ngraph\", fillcolor = yellow]\n6 [label = \"Perform \nvalidation \nexperiments\", fillcolor = red]\n7 [label = \"Write \nthesis part IV/\nMetaboSPAN \npaper\", fillcolor = red]\nb1 [color = \"white\", label=\"\"]\n\n# edge definitions with the node IDs\nsubgraph cluster1 {\n    label = \"Completed\";\n    style=dashed;\n\t\tcolor= \"#625a5a\";\nfontname = \"helvetica-bold\";\nedge [style=\"invisible\",dir=\"none\"]\n1->2->3\n}\n\nsubgraph cluster2 {\n    label = \"In Progress\";\n    style=dashed;\n\t\tcolor= \"#625a5a\";\nfontname = \"helvetica-bold\";\n4->5 \n5->6 6->5 [color = \"red\"] 6->7}\n\n3->b1 [color=\"white\",style=\"invisible\",dir=\"none\"]\n7->b1 [color=\"white\",style=\"invisible\",dir=\"none\"]\n2->6 [ltail=cluster1,lhead=cluster2];\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 ---
 
 # Validation experiments
