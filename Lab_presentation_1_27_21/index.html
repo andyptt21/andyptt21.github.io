@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>index.utf8</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.4/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
+    <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+    <script src="libs/viz-1.8.2/viz.js"></script>
+    <link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+    <script src="libs/grViz-binding-1.0.6.1/grViz.js"></script>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: primary
+
+&lt;style type="text/css"&gt;
+
+p.caption {
+  font-size: 0.6em;
+}
+
+.large { font-size: 200% }
+
+.medium-large { font-size: 130% }
+
+.small{ font-size: 70% }
+
+.tiny{ font-size: 60% }
+
+code.r{
+  font-size: 20px;
+}
+
+.center-left {
+  position:          relative;
+  top:               50%;
+  transform:         translateY(50%);
+}
+.center-right {
+  position:          relative;
+  top:               50%;
+  transform:         translateY(10%);
+}
+
+.remark-slide-content {
+  background-color: #FFFFFF;
+  border-top: 80px solid #2b0a5e;
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1.5;
+  padding: .5em 1em .5em 1em
+}
+
+.inverse {
+  background-color: #2b0a5e;
+  text-shadow: none;
+}
+
+.right-column {
+	color: #000000;
+	width: 30%;
+	height: 92%;
+	float: right;
+}
+
+.left-column {
+  width: 68%;
+  float: left;
+}
+
+.remark-slide-number {
+	display: none;
+}
+
+.remark-slide-content:after {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+	left: 20px;
+    height: 60px;
+    width: 400px;
+	font-size: 12px;
+    background-repeat: no-repeat;
+    background-size: contain;
+	background-image: url("img/The-Ohio-State-University-Wexner-Medical-Center.png")
+}
+
+.aligncenter {
+  text-align: center;
+}
+
+&lt;/style&gt; 
+
+.pull-left[
+&lt;h2 style=font-size:35px&gt; Novel personalized pathway-basedmetabolomics models reveal key metabolicpathways for breast cancer diagnosis &lt;/style&gt;
+
+&lt;h6 style=font-size:20px&gt;
+Andrew Patt, Doctoral Candidate
+&lt;br&gt;
+&lt;br&gt;
+National Center for Advancing Translational Science/The Ohio State University
+&lt;/style&gt;
+]
+
+.pull-right[
+.center[
+&lt;img src="img/covid_network_example.png" width="475px" /&gt;
+]
+]
+
+
+---
+
+# Introduction
+
+- Highly accurate diagnostic test for breast cancer is lacking
+
+- Need a high-sensitivity, noninvasive, cheap test
+
+- Previous studies have identified metabolite biomarkers for breast cancer
+
+- Metabolite biomarkers can be difficult to replicate
+
+- This study tests the hypothesis that personalized high-level signatures (pathways) are more reproducible
+---
+
+# Study Design
+
+.pull-left[
+.small[
+- GC-TOFMS and LC-TOFMS profiling of blood samples from breast cancer
+  patients and healthy controls
+  
+- Two metabolomic datasets:
+  - 132 breast cancer &amp; 76 control plasma samples
+  - 103 breast cancer &amp; 31 control serum samples
+  
+- Validated in TCGA RNA-seq Breast cancer data (1082 tumor, 98 tumor
+  adjacent controls)  
+  
+- Plasma is segregated into 80/20 cases/control split for all-stage
+diagnosis model 
+
+] ]
+
+.pull-right[
+
+&lt;img src="img/table1.png" width="600px" /&gt;
+]
+
+---
+
+# Pathifier
+
+- Generates a pathway dysregulation score for each sample in each
+  pathway using metabolite abundances
+  
+- Measures perturbation based on a principle curve constructed from
+  normal samples
+
+- Principle curves are a one-dimensional non-parametric summary of a
+  multi-dimensional dataset
+
+- Pathifier accomodates custom pathway definitions
+
+- In this study, pathways from HMDB, SMPDB, KEGG, IPA, FLink, Recon 2 and
+  PubChem were analyzed
+  
+---
+  
+# Analytical workflow
+  
+&lt;img src="img/Fig1.png" width="1200px" /&gt;
+
+---
+
+# All-stage diagnosis model
+
+.pull-left[
+- Logistic regression using features selected by correlation feature
+  selection (WEKA) in the plasma training set
+  
+- Excellent testing metrics across the board, even in different
+  datasets
+  
+- Separate experiment found that age was not a large confounding
+  variable for these models
+]
+
+.pull-right[
+.center[
+&lt;img src="img/Fig2.png" width="250px" /&gt;
+]]
+
+---
+
+# Early-stage diagnosis model
+
+.pull-left[
+- Stages I and II only
+
+- Slightly reduced but still excellent performance
+
+- Similarly altered pathways besides Alanine, aspartate and glutamate
+metabolism 
+]
+
+.pull-right[
+.center[
+&lt;img src="img/Fig3.png" width="250px" /&gt;
+]]
+
+---
+
+# Comparing Pathway- and Metabolite-based models
+
+.center[
+&lt;img src="img/Fig5.png" width="750px" /&gt;
+]
+
+---
+
+# Conclusions
+
+- Pathway findings were transferable to other data sets, moreso than
+  individual metabolites
+  
+- Significant contributors reflected previously described biology
+
+- Describes biology on an individual sample level
+
+- This approach can be used to compare results across -omes
+
+---
+
+# Addressing deficits in metabolite pathway analysis
+
+- Metabolic pathway-level findings are more reproducible than
+  individual metabolite perturbations
+  
+- Untargeted metabolomics provides inconsistent pathway-level coverage
+  of the metabolome
+  
+- I hypothesize that identifying clusters of metabolites related by
+  pathway participation and chemical function in data will improve
+  recall of these high-level signatures
+  
+- To accomplish this, I integrate metabolite-level findings into a
+  knowledge graph describing pathways and chemical similarity in RaMP
+  
+- The objective is to identify pathway clusters enriched in a list of
+  perturbed metabolites
+
+---
+
+# Constructing the RaMP Knowledge Graph
+.center[
+&lt;img src="img/network_schematic1.png" width="900px" /&gt;
+]
+---
+
+# Constructing the RaMP Knowledge Graph
+.center[
+&lt;img src="img/network_schematic2.png" width="900px" /&gt;
+]
+---
+
+# Constructing the RaMP Knowledge Graph
+.center[
+&lt;img src="img/network_schematic3.png" width="900px" /&gt;
+]
+---
+
+# Constructing the RaMP Knowledge Graph
+.center[
+&lt;img src="img/network_schematic4.png" width="900px" /&gt;
+]
+---
+
+
+# Core MetaboSPAN functions
+.tiny[
+| Function          | Description | Input | Output |
+|-------------|----------|----------------|----------------------|
+| `extract_RaMP_metabolites()`    | Run random walks with restarts algorithm on RaMP knowledge graph with seed set of interest. Scores are currently compared with an empirical distribution made from random seed sets. |   Metabolites of interest (DB identifiers or common names), Number of iterations for empirical distribution (to be removed), Percentile random walk score cutoff for significance, Iterations for random walk (to be implemented)            |  Expanded list of metabolites of interest, Diagnostic histogram (to be removed)                 |
+| `visualize_crosstalkers_network()` | View network visual of metabolites of interest, color coded by module  | Metabolites of interest   | Network visual displaying clusters of related metabolites  |
+| `cluster_metabolites()` | Returns the cluster membership of metabolites in the above network   | Metabolites of interest     | Metabolites similarity cluster membership                   |
+| `WY_pathway_adjustment()`  | Fisher's p value adjustment strategy for accounting for interdependence of pathways (see next slide)    | Metabolites of interest, metabolite panel background, number of iterations             | Adjusted p vals for pathways associated with metabolites of interest  |
+]
+---
+
+# Example Network Visual
+
+&lt;img src="img/covid_network_example.png" width="550px" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+# Westfall-Young Fisher's p val adjustment
+
+- Westfall and Young (1993) developed a method for p value
+  permutation-based adjustment strategy that modeled interdependence
+  in gene expression
+
+```r
+## Calculate true p values &amp; sort
+p_val_matrix[,1]&lt;-sort(fishers_with_custom_background(metabs_of_interest,metab_panel))
+
+## Calculate fake p values by sampling from background
+for(i in 1:iterations){
+    fake_metabs_of_interest&lt;-sample(metab_panel,size=length(metabs_of_interest))
+    fake_p_vals&lt;-fishers_with_custom_background(fake_metabs_of_interest,metab_panel)
+    pval_matrix&lt;-cbind(pval_matrix,sort(fake_p_vals))
+}
+
+## Find percentile of true value among rank family
+adjusted_p_vals&lt;-apply(p_val_matrix,by_row,get_percentile(true_column,fake_columns))
+```
+
+
+
+---
+
+
+# MetaboSPAN road map
+<div id="htmlwidget-4f82890e7fcaf85a6b0e" style="width:1400px;height:504px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4f82890e7fcaf85a6b0e">{"x":{"diagram":"digraph nicegraph {\ncompound=true;\ngraph [nodesep = 1, ranksep = .5,\n         color = black,rankdir=LR,fontsize=54]\n\n# define the global styles of the nodes. We can override these in box if we wish\nnode [fontname = Helvetica, fontcolor = darkslategray, style=filled,\n        shape = rectangle, fixedsize=true, width=8,height=4,\n        color = darkslategray,fontsize=48]\n\nedge [penwidth=7]\n\n1 [label = \"Basic workflow\n implemented \n(Liposarcoma\n paper)\", fillcolor = green]\n2 [label = \"Write core \npackage \nfunctions\", fillcolor = green]\n3 [label =  \"Address \npathway \n dependency\", fillcolor = green]\n5 [label = \"Improve \nrun time\", fillcolor = yellow]\n4 [label = \"Construct \nRaMP 2.0 \nknowledge \ngraph\", fillcolor = green]\n6 [label = \"Perform \nvalidation \nexperiments\", fillcolor = yellow]\n7 [label = \"Write \nthesis part IV/\nMetaboSPAN \npaper\", fillcolor = red]\nb1 [color = \"white\", label=\"\"]\n\n# edge definitions with the node IDs\nsubgraph cluster1 {\n    label = \"Completed\";\n    style=dashed;\n\t\tcolor= \"#625a5a\";\nfontname = \"helvetica-bold\";\nedge [style=\"invisible\",dir=\"none\"]\n1->2->3->4\n}\n\nsubgraph cluster2 {\n    label = \"In Progress\";\n    style=dashed;\n\t\tcolor= \"#625a5a\";\nfontname = \"helvetica-bold\";\n5->7 6->7}\n\n3->b1 [color=\"white\",style=\"invisible\",dir=\"none\"]\n7->b1 [color=\"white\",style=\"invisible\",dir=\"none\"]\n2->6 [ltail=cluster1,lhead=cluster2];\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+---
+
+# Validations in breast cancer: data
+.small[
+### Ambs Data
+**Description:** Characterized the metabolomic profile of human breast
+tumors and uncovered intrinsic metabolite signatures in these tumors
+using an untargeted discovery approach and validation of key
+metabolites
+
+**Samples:** 67 Breast tumors and 65 adjacent normal tissue
+
+**Chromatography/Spectrometry:** LC-MS/MS
+
+### Garmire Data
+**Description:** Use GC/MS and LC/MS technique to profile breast
+cancer samples and normal control samples
+
+**Sample types:** 132 Human breast cancer and 76 normal control plasma, 103 breast cancer and 31 control serum metabolomics profiling
+
+**Chromatography/Spectrometry:** GC/MS and RPLC/MS, Positive mode only
+
+**Clinical info** Healthy vs. disease, disease stage
+]
+
+---
+
+# Breast cancer validation plan
+.tiny[
+1. Identify all pathways that are covered by metabolites in individual
+   breast cancer datasets pre and post expansion. This will establish
+   viable overlapping pathway results.
+2. Select random sets of interest from dataset backgrounds. Perform
+   MetaboSPAN analysis and demonstrate low overlap in results between
+   data sets. This will establish that MetaboSPAN is not enriching for
+   the same, promiscuous pathways in every analysis.
+3. Perform MetaboSPAN on training/testing splits in the same data as
+   well as different datasets and show overlap between significant
+   results is higher than when using other methods. Methods to be
+   benchmarked:
+   1. MetaboSPAN + W-Y
+   2. MetaboSPAN + Holm
+   3. MetaboSPAN + FDR
+   4. Fisher's (all Metaboanalyst databases individually as well as RaMP) + W-Y
+   5. Fisher's + Holm
+   6. Fisher's + FDR
+   7. K-S + W-Y
+   8. K-S + Holm
+   9. K-S + FDR
+   10. Topological + W-Y
+   11. Topological + Holm
+   12. Topological + FDR
+4. Demonstrate that shared pathways between datasets are coherent
+   given what's know about breast cancer in the literature
+]
+
+---
+
+# COVID Data
+.small[
+#### PMC7197563
+**Description:** Assayed lipidome and metabolome in a time-series
+analysis, and performed statistical analysis to identify biomarkers of
+disease severity.
+
+**Samples:** Blood samples taken from 9 fatal outcome COVID-19 patients, survivors recovered from 11 severe COVID-19
+cases &amp; 14 mild COVID-19 cases, and 10 healthy controls
+- TImepoint 1 in mild and severe is collected during "disease peak"
+- Timepoint 2 in mild and severe is last collection before 
+
+**Chromatography/Spectrometry:** LC-MS/MS
+
+#### PMC7254001
+**Description:** Measured metabolomic and proteomic profiles of
+COVID-19 vs healthy controls and severe vs non-severe COVID-19
+patients, and built a machine learning model to predict disease
+severity.
+
+**Samples** 46 COVID-19 patients, 53 control patients
+
+**Chromatography/Spectrometry:** LC-MS/MS
+
+]
+
+---
+
+# COVID Data continued
+
+.small[
+#### PMC7311890 
+**Description:** Examined plasma and exosome of COVID-19 patients
+
+**Samples:** 26 healthy controls, 18 mild cases, 19 moderate cases, 13 severe cases
+
+**Chromatography/Spectrometry:** LC-MS
+]
+
+---
+
+# Simulation: Robustness to noise
+.small[
+1. Starting data is a real data set (background &amp; list of interest)
+
+2. Perform MetaboSPAN analysis, treating significant pathways as "true
+   positives" for remaining steps
+   
+3. Iteratively randomly replace metabolites in list of interest with
+   metabolites from background. Perform metaboSPAN analysis and record
+   the false positive rate as noise increases.
+	   1. Metabolites selected from background may not be totally
+          random. They may be selected based on properties such as
+          belonging to promicscous or non-promiscuous pathways, or
+          larger or smaller pathways. These experiments would be
+          segregated accordingly so we don't compare panels of random
+          metabolites that shouldn't be compared.
+		  
+4. Benchmark robustness to noise against methods and p value
+   adjustments described in prior slides
+   
+5. This will establish that MetaboSPAN is less sensitive to random
+   noise in the list of interest than other methods
+]
+---
+
+# Simulation: Robustness to pathway properties
+.small[
+1. Starting data is a real metabolite panel (no list of interest)
+
+2. Lists of interest are composed with true positives in mind
+   1. Lists entirely composed of metabolites in large pathways
+   2. Lists entirely composed of metabolites in small pathways
+   3. Lists entirely composed of metabolites in promiscuous pathways
+   4. Lists entirely composed of metabolites in non-promiscous pathways
+   5. Small lists of interest (&lt;10)
+   6. Large lists of interest (&gt;50)
+   
+3. Benchmark against other approaches described above
+
+4. This will demonstrate that MetaboSPAN detects true positives at a
+   similar or better rates as other methods in the various different
+   plausible pathway analysis scenarios users are likely to encounter
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"countIncrementalSlides": false,
+"seal": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+<style>
+.logo {
+  background-image: url(img/ncats-logo.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  bottom: -85px;
+  right: 1em;
+  width: 150px;
+  height: 128px;
+  z-index: 0;
+}
+</style>
+
+<script>
+document
+  .querySelectorAll(
+    '.remark-slide-content' +
+    ':not(.title-slide)' +
+    // add additional classes to exclude here, e.g.
+    // ':not(.inverse)' +
+    ':not(.hide-logo)'
+  )
+  .forEach(el => {
+    el.innerHTML += '<div class="logo"></div>';
+  });
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
