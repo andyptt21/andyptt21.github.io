@@ -128,8 +128,16 @@ knitr::include_graphics("img/covid_network_example.png")
 
 # Study Design
 
-.pull-left[
-.small[
+.left-column[
+```{r,echo=FALSE,out.width="800px"}
+knitr::include_graphics("img/table1.png")
+```
+
+]
+
+.right-column[
+
+.tiny[
 - GC-TOFMS and LC-TOFMS profiling of blood samples from breast cancer
   patients and healthy controls
   
@@ -143,13 +151,7 @@ knitr::include_graphics("img/covid_network_example.png")
 - Plasma is segregated into 80/20 cases/control split for all-stage
 diagnosis model 
 
-] ]
-
-.pull-right[
-
-```{r,echo=FALSE,out.width="600px"}
-knitr::include_graphics("img/table1.png")
-```
+] 
 ]
 
 ---
@@ -236,10 +238,16 @@ knitr::include_graphics("img/Fig5.png")
 
 - Pathway findings were transferable to other data sets, moreso than
   individual metabolites
-  
+
+--
+
 - Significant contributors reflected previously described biology
 
+--
+
 - Describes biology on an individual sample level
+
+--
 
 - This approach can be used to compare results across -omes
 
@@ -249,17 +257,25 @@ knitr::include_graphics("img/Fig5.png")
 
 - Metabolic pathway-level findings are more reproducible than
   individual metabolite perturbations
-  
+
+--
+
 - Untargeted metabolomics provides inconsistent pathway-level coverage
   of the metabolome
-  
+
+--
+
 - I hypothesize that identifying clusters of metabolites related by
   pathway participation and chemical function in data will improve
   recall of these high-level signatures
-  
+
+--
+
 - To accomplish this, I integrate metabolite-level findings into a
   knowledge graph describing pathways and chemical similarity in RaMP
-  
+
+--
+
 - The objective is to identify pathway clusters enriched in a list of
   perturbed metabolites
 
@@ -298,15 +314,28 @@ knitr::include_graphics("img/network_schematic4.png")
 ---
 
 
-# Core MetaboSPAN functions
-.tiny[
-| Function          | Description | Input | Output |
-|-------------|----------|----------------|----------------------|
-| `extract_RaMP_metabolites()`    | Run random walks with restarts algorithm on RaMP knowledge graph with seed set of interest. Scores are currently compared with an empirical distribution made from random seed sets. |   Metabolites of interest (DB identifiers or common names), Number of iterations for empirical distribution (to be removed), Percentile random walk score cutoff for significance, Iterations for random walk (to be implemented)            |  Expanded list of metabolites of interest, Diagnostic histogram (to be removed)                 |
-| `visualize_crosstalkers_network()` | View network visual of metabolites of interest, color coded by module  | Metabolites of interest   | Network visual displaying clusters of related metabolites  |
-| `cluster_metabolites()` | Returns the cluster membership of metabolites in the above network   | Metabolites of interest     | Metabolites similarity cluster membership                   |
-| `WY_pathway_adjustment()`  | Fisher's p value adjustment strategy for accounting for interdependence of pathways (see next slide)    | Metabolites of interest, metabolite panel background, number of iterations             | Adjusted p vals for pathways associated with metabolites of interest  |
-]
+# Detecting altered pathways
+
+--
+
+- A list of metabolites of interest is located in the RaMP knowledge graph
+
+--
+
+- A network topology analysis algorithm is used to find nodes that are
+  centrally located with respect to the set of interest in the
+  knowledge graph
+  
+--
+
+- Empirical centrality scores using random seed sets are used to
+  control for network centrality
+  
+--
+
+- Highly scored nodes (determined by a user-defined cutoff) are
+  incorporated into Fisher's pathway analysis
+
 ---
 
 # Example Network Visual
@@ -318,27 +347,28 @@ knitr::include_graphics("img/covid_network_example.png")
 
 ---
 
-# Westfall-Young Fisher's p val adjustment
+# Circularity of pathway enrichment
+
+- Reviewers of the initial grant proposal were concerned that
+  enriching upon a model built on pathway overlap would lead to
+  spurious enrichments
+
+--
+
+- To counter this effect, we also extract highly central nodes
+  relative to the background set, and incorporate into the background
+  for Fisher's testing
+  
+--
+
+- A notable drawback of the Fisher's test is that it treats pathways
+  as independent, when they are highly overlapping entities
+
+--
 
 - Westfall and Young (1993) developed a method for p value
   permutation-based adjustment strategy that modeled interdependence
   in gene expression
-```{r,eval=FALSE}
-## Calculate true p values & sort
-p_val_matrix[,1]<-sort(fishers_with_custom_background(metabs_of_interest,metab_panel))
-
-## Calculate fake p values by sampling from background
-for(i in 1:iterations){
-    fake_metabs_of_interest<-sample(metab_panel,size=length(metabs_of_interest))
-    fake_p_vals<-fishers_with_custom_background(fake_metabs_of_interest,metab_panel)
-    pval_matrix<-cbind(pval_matrix,sort(fake_p_vals))
-}
-
-## Find percentile of true value among rank family
-adjusted_p_vals<-apply(p_val_matrix,by_row,get_percentile(true_column,fake_columns))
-```
-
-
 
 ---
 
@@ -420,30 +450,21 @@ cancer samples and normal control samples
 ---
 
 # Breast cancer validation plan
-.tiny[
+.small[
 1. Identify all pathways that are covered by metabolites in individual
    breast cancer datasets pre and post expansion. This will establish
    viable overlapping pathway results.
+   
 2. Select random sets of interest from dataset backgrounds. Perform
    MetaboSPAN analysis and demonstrate low overlap in results between
    data sets. This will establish that MetaboSPAN is not enriching for
    the same, promiscuous pathways in every analysis.
+   
 3. Perform MetaboSPAN on training/testing splits in the same data as
    well as different datasets and show overlap between significant
    results is higher than when using other methods. Methods to be
    benchmarked:
-   1. MetaboSPAN + W-Y
-   2. MetaboSPAN + Holm
-   3. MetaboSPAN + FDR
-   4. Fisher's (all Metaboanalyst databases individually as well as RaMP) + W-Y
-   5. Fisher's + Holm
-   6. Fisher's + FDR
-   7. K-S + W-Y
-   8. K-S + Holm
-   9. K-S + FDR
-   10. Topological + W-Y
-   11. Topological + Holm
-   12. Topological + FDR
+
 4. Demonstrate that shared pathways between datasets are coherent
    given what's know about breast cancer in the literature
 ]
@@ -497,7 +518,7 @@ severity.
 
 2. Perform MetaboSPAN analysis, treating significant pathways as "true
    positives" for remaining steps
-   
+  
 3. Iteratively randomly replace metabolites in list of interest with
    metabolites from background. Perform metaboSPAN analysis and record
    the false positive rate as noise increases.
@@ -507,10 +528,10 @@ severity.
           larger or smaller pathways. These experiments would be
           segregated accordingly so we don't compare panels of random
           metabolites that shouldn't be compared.
-		  
+
 4. Benchmark robustness to noise against methods and p value
    adjustments described in prior slides
-   
+
 5. This will establish that MetaboSPAN is less sensitive to random
    noise in the list of interest than other methods
 ]
@@ -527,7 +548,7 @@ severity.
    4. Lists entirely composed of metabolites in non-promiscous pathways
    5. Small lists of interest (<10)
    6. Large lists of interest (>50)
-   
+
 3. Benchmark against other approaches described above
 
 4. This will demonstrate that MetaboSPAN detects true positives at a
