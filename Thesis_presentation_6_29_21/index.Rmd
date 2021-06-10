@@ -1,0 +1,942 @@
+---
+output:
+  xaringan::moon_reader:
+    css: [default, metropolis, metropolis-fonts]
+    lib_dir: libs
+    includes:
+      after_body: insert-logo.html
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+      seal: false
+      ratio: '16:9'
+---
+class: primary
+
+<style type="text/css">
+
+p.caption {
+  font-size: 0.6em;
+}
+
+.large { font-size: 200% }
+
+.medium-large { font-size: 130% }
+
+.small{ font-size: 80% }
+
+.cv{ font-size: 60% }
+
+.tiny{ font-size: 40% }
+
+.center-left {
+  position:          relative;
+  top:               50%;
+  transform:         translateY(50%);
+}
+.center-right {
+  position:          relative;
+  top:               50%;
+  transform:         translateY(10%);
+}
+
+.remark-slide-content {
+  background-color: #FFFFFF;
+  border-top: 80px solid #662e6b;
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1.5;
+  padding: .5em 3em .5em 3em
+}
+
+.inverse {
+  background-color: #662e6b;
+  text-shadow: none;
+}
+
+.right-column {
+	color: #000000;
+	width: 30%;
+	height: 92%;
+	float: right;
+}
+
+.left-column {
+  width: 68%;
+  float: left;
+}
+
+.remark-slide-number {
+	display: none;
+}
+
+.remark-slide-content:after {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+	left: 20px;
+    height: 60px;
+    width: 400px;
+	font-size: 12px;
+    background-repeat: no-repeat;
+    background-size: contain;
+	background-image: url("img/The-Ohio-State-University-Wexner-Medical-Center.png")
+}
+
+mark {
+  background-color: teal;
+  color: white;
+}
+
+</style> 
+
+.pull-left[
+<h2 style=font-size:35px> Integrative and Network-Based Approaches for Functional Interpretation of Metabolomic Data</style>
+<h6 style=font-size:20px>
+<br>
+Andrew Patt, Doctoral Candidate
+<br>
+<br>
+National Center for Advancing Translational Science/The Ohio State University
+</style>
+]
+
+.pull-right[
+```{r,echo=FALSE,out.width="500px"}
+knitr::include_graphics("img/Thesis_schematic.png")
+```
+]
+
+```{r, echo=FALSE, message=FALSE}
+
+library(ggplot2)
+library(ggrepel)
+library(RColorBrewer)
+library(tidyverse)
+resMDM2HiLoLMME<-readRDS("img/metabolite_volcano_plot.Rds")
+myPalette<-c("#e6194b","#8B008B","#808080","#f58231","gray80","#008080","#46f0f0","#3cb44b","#e6194b")
+names(myPalette)<-c("Amino Acid","Cofactors and Vitamins","Nucleotide","Lipid","Not Significant","Peptide","Hexosylated Ceramide")
+
+```
+
+```{r xaringan-panelset, echo=FALSE,message=FALSE}
+xaringanExtra::use_panelset()
+```
+
+---
+
+# C.V.
+
+.cv[
+**B.Sc. Biochemistry, Biomathematics minor (SUNY Geneseo, 2015)**
+
+#### Published
+
+- RaMP: A Comprehensive Relational Database of Metabolomics Pathways
+  for Pathway Enrichment Analysis of Genes and Metabolites. 2018,
+  Metabolites (*Second author*)
+- Integration of Metabolomics and Transcriptomics to Identify
+  Gene-Metabolite Relationships Specific to Phenotype. 2019, Methods
+  Mol Biol (*First author*)
+- Challenges in proteogenomics: a comparison of analysis methods with
+  the case study of the DREAM proteogenomics sub-challenge. 2019, BMC
+  Bioinformatics (*Co-first author*)
+- Metabolomics and Multi-Omics Integration: A Survey of Computational
+  Methods and Resources. 2020, Metabolites (*Second author*)
+- MDM2-Dependent Rewiring of Metabolomic and Lipidomic Profiles in
+  Dedifferentiated Liposarcoma Models. 2020, MDPI Cancers (*Co-first author*)
+
+#### Preprint/ In review
+- An OpenData portal to share COVID-19 drug repurposing data in real
+  time. 2020, bioRxiv (*Middle author*)
+- Lipidomics and Redox Lipidomics Indicate Early-Stage Alcohol-Induced
+  Liver Damage. 2021, Hepatology (*In review, Middle author*)
+
+#### Future
+- MetaboSPAN: Network-Based Approach for Functional Interpretation
+  of Metabolomic Data
+- RaMP 2.0: update to the RaMP pathway database
+]
+
+
+---
+
+# C.V.
+
+.cv[
+**B.Sc. Biochemistry, Biomathematics minor (SUNY Geneseo, 2015)**
+
+#### Published
+
+- <mark><b>RaMP: A Comprehensive Relational Database of Metabolomics Pathways
+  for Pathway Enrichment Analysis of Genes and Metabolites. 2018,
+  Metabolites (<i>Second author</i>)</b></mark>
+- <mark><b>Integration of Metabolomics and Transcriptomics to Identify
+  Gene-Metabolite Relationships Specific to Phenotype. 2019, Methods
+  Mol Biol (<i>First author</i>)</b></mark>
+- Challenges in proteogenomics: a comparison of analysis methods with
+  the case study of the DREAM proteogenomics sub-challenge. 2019, BMC
+  Bioinformatics (*Co-first author*)
+- <mark><b>Metabolomics and Multi-Omics Integration: A Survey of Computational
+  Methods and Resources. 2020, Metabolites (<i>Second author</i>)</b></mark>
+- <mark><b>MDM2-Dependent Rewiring of Metabolomic and Lipidomic Profiles in
+  Dedifferentiated Liposarcoma Models. 2020, MDPI Cancers (<i>Co-first author</i>)</b></mark>
+
+#### Preprint/ In review
+- An OpenData portal to share COVID-19 drug repurposing data in real
+  time. 2020, bioRxiv (*Middle author*)
+- Lipidomics and Redox Lipidomics Indicate Early-Stage Alcohol-Induced
+  Liver Damage. 2021, Hepatology (*In review, Middle author*)
+
+#### Future
+- <mark><b>MetaboSPAN: Network-Based Approach for Functional Interpretation
+  of Metabolomic Data</b></mark>
+- <mark><b>RaMP 2.0: update to the RaMP pathway database</b></mark>
+]
+
+---
+# Metabolomics for biomedical research
+
+```{r,echo=FALSE,out.width="1200px"}
+knitr::include_graphics("img/Metabolomics_overview.png")
+```
+
+---
+
+# Biological pathways
+
+- Pathways are a collection of transcripts, proteins, and/or
+  metabolites (analytes) with a related biological function
+- Example: **Glycolysis** is a chain of 10 enzyme-catalyzed reactions
+  where glucose is converted to pyruvate
+.center[
+```{r,echo=FALSE,out.width="500px"}
+knitr::include_graphics("img/Glycolysis.jpeg")
+```
+</br>
+.tiny[https://www.thoughtco.com/steps-of-glycolysis-373394]
+]
+
+---
+
+# Biological pathway databases
+| Name            | # metabolites | Other features                                    |
+|----------------|--------------|--------------------------------------------------|
+| HMDB/SMPDB      | >114,000      | Reactions, chemical class, spectra, ontologies    |
+| KEGG            | >18,000       | Reactions, Pathway hierarchy (BRITE)              |
+| Reactome        | 1,856         | Interactive "Google Maps" pathway explorer        |
+| Wikipathways    | 3,133         | Community-driven                                  |
+| MetaCyc         | 16,313        | Highly curated                                    |
+| PathBank        | 78,488        | Highly recent, contains many novel lipid pathways |
+
+---
+
+# Relational database of Metabolic Pathways (RaMP)
+.pull-left[
+- Multiomic pathway mySQL database integrating
+information from **KEGG**, **HMDB**, **WikiPathways** and **Reactome** 
+- Currently contains pathway information for > 13,000 metabolites and >14,000 
+  transcripts, totalling 51,526 pathways and 536,245 associations
+- Additional information includes chemical structures, chemical
+classes, reactions, and ontologies
+]
+
+.pull-right[
+</br>
+</br>
+```{r,echo=FALSE,out.width="600px"}
+knitr::include_graphics("img/RaMP_contents.png")
+```
+]
+---
+
+# Using RaMP 2.0
+
+.center[
+```{r,echo=FALSE,out.width="900px"}
+knitr::include_graphics("img/RaMP_interface.png")
+```
+]
+
+---
+
+# Pathway redundancy
+
+.pull-left[
+```{r,echo=FALSE,out.width="450px", fig.cap="Overlap in metabolites making up pathways in RaMP. Color represents Jaccard index. Purple is high overlap, teal is low."}
+knitr::include_graphics("img/RaMP_pathway_overlap2.svg")
+```
+]
+
+.pull-right[
+- Pathways often share sub-processes, resulting in functional redundancy
+- This causes collinearity in pathway analysis results, making interpretation difficult
+- Heatmap shows high overlap in pathway constituent metabolites,
+particularly within the same databases ]
+
+---
+
+# Pathway overlap clustering
+
+.center[
+```{r,echo=FALSE,out.width="1100px"}
+knitr::include_graphics("img/Pathway_clustering.svg")
+```
+]
+
+---
+
+# Other issues with pathway analysis
+
+.pull-left[
+
+```{r,echo=FALSE,fig.width=11,fig.height=11, message=FALSE, warning=FALSE}
+mapping_rates<-readRDS("img/mapping_rates.Rds")
+mapping_rates %>%
+    ggplot(aes(x=class_name,y=n,fill=annotated))+
+    geom_text(aes(y = lab_ypos, x=class_name, label = paste0(round(per,1),"%"),
+                  group=annotated,color = annotated),size=5) +
+    geom_bar(position="dodge", stat="identity") +
+    theme_classic(base_size=18)+
+    labs(y="log10(Metabolite Count)",x="")+
+    theme(axis.text.x=element_text(angle=45,hjust=1),
+          plot.margin=unit(c(1,1,1.5,1.5),"cm"))+
+    scale_y_continuous(trans='log10')+
+    scale_fill_manual(values=c("aquamarine4","purple"))+
+    scale_color_manual(values=c("aquamarine4","purple"))+
+    ggtitle("Mapping rates for metabolites by class in RaMP")
+```
+]
+
+.pull-right[
+- Lack of pathway annotations for metabolites (see left)
+  + .small[Testing for enrichment of other annotations with better coverage can increase the number of metabolites we can incorporate into analysis]
+- Uncertainty in metabolite identification
+  + .small[If we treat our panel as a sample rather than a comprehensive snapshot of the metabolome, we can improve reproducibility
+]
+]
+
+---
+
+# MetaboSPAN
+
+.center[
+```{r,echo=FALSE,out.width="900px"}
+knitr::include_graphics("img/MetaboSPAN_Schematic.png")
+```
+]
+
+---
+
+# Validating MetaboSPAN
+
+.center[
+```{r,echo=FALSE,out.width="900px"}
+knitr::include_graphics("img/Validation_schematic.png")
+```
+]
+
+---
+
+# Pathway analysis methods
+.small[
+| Class                        | Pros  | Cons | Representative      |
+|------------------------------|---|---------|---------------------|
+| Over-representation analysis | Simple to implement, easy to interpret  |Depends on choice of background, ignores pathway overlap         | Fisher's exact test |
+| Functional class scoring     | Self-contained hypothesis (no background)  | Hypothesis interpretation difficult, more challenging to implement | Globaltest          |
+| Topological analysis         | Leverages graph theory and known pathway topology to improve analysis  | Graph-level annotations are not always available, challenging to implement        | NetGSA              |
+| FELLA                        | Can enrich for reactions and pathways  | Only runnable on KEGG annotations   | FELLA               |
+]
+
+---
+
+# Significant pathways in 500 random data sets
+.panelset[
+.panel[.panel-name[All methods]
+.center[
+```{r,echo=FALSE,out.width="1000px"}
+knitr::include_graphics("img/Null_model1.png")
+```
+]
+]
+
+.panel[.panel-name[Different MetaboSPAN cutoffs]
+.center[
+```{r,echo=FALSE,out.width="800px"}
+knitr::include_graphics("img/Null_model2.png")
+```
+]
+]
+]
+
+---
+
+# Recovery of altered pathways
+
+.panelset[
+.panel[.panel-name[Figure]
+.center[
+```{r,echo=FALSE,out.width="750px"}
+knitr::include_graphics("img/Known_positivefigure.png")
+```
+]
+]
+.panel[.panel-name[Table]
+.left-column[
+```{r,echo=FALSE,out.width="750px"}
+knitr::include_graphics("img/Known_positive_table.png")
+```
+]
+.right-column[
+- Fisher's with full database background and FELLA were the best at recovering "true positives"
+- Fisher's with a custom background had the best false positive rate
+]
+]
+]
+---
+
+# Robustness to sample size
+
+.panelset[
+.panel[.panel-name[Figure]
+.center[
+```{r,echo=FALSE,out.width="1000px"}
+knitr::include_graphics("img/Sample_partition_figure.png")
+```
+]
+]
+.panel[.panel-name[Table]
+.left-column[
+</br>
+```{r,echo=FALSE,out.width="750px"}
+knitr::include_graphics("img/Sample_partition_table.png")
+```
+]
+.right-column[
+- Fisher's with full database background and FELLA were the best at recovering "true positives"
+- Fisher's with a custom background had the best false positive rate
+]
+]
+]
+
+---
+
+# Similar findings in separate cohorts
+
+.left-column[
+</br>
+```{r,echo=FALSE,out.width="1000px"}
+knitr::include_graphics("img/Separate_cohorts table.png")
+```
+]
+
+.right-column[
+- Significant pathways by each method were found in two datasets
+  generated from same cohort
+- MetaboSPAN improved the concordance of Fisher's results in both
+background cases ]
+
+---
+
+# Pathway anaysis recommendations
+
+1. When considering an algorithm, check how many significant pathways it finds in random data
+2. When using Fishers, be aware of the tradeoffs and assumptions that come with each background selection
+3. MetaboSPAN can improve the reproducibility and sensitivity of Fisher's results, with a cost to specificity
+4. Consider using an ensemble approach to identify the most trustworthy altered pathways
+
+---
+
+# Dedifferentiated Liposarcoma 
+
+.pull-left[
+```{r,echo=FALSE,out.width="350px"}
+knitr::include_graphics("img/DDLPS_prognosis.png")
+```
+
+.tiny[
+Bill KLJ, Seligson ND, Hays JL, et al. Degree of Amplification Affects Clinical Outcomes in Dedifferentiated Liposarcoma. Oncologist. 2019;24(7):989-996.
+]
+]
+
+.pull-right[
+- 20% of all soft tissue sarcoma diagnoses
+
+- Some drugs (Dactinomycin, Doxorubicin) are used to treat
+  liposarcoma, but they have unpredictable efficacy and toxicity.
+  
+- Prognosis depends on copy number of the MDM2 oncogene
+]
+
+---
+
+# Targeting the p53-cholesterol synthesis axis
+
+.pull-left[
+
+```{r,echo=FALSE,out.width="800px"}
+knitr::include_graphics("img/Atorvastatin_response.svg")
+```
+
+]
+
+.pull-right[
+- MDM2 modulates p53 expression as an antagonist
+- Statins (mevalonate pathway inhibitors) have been associated with
+  reduced mortality in mutant p53 cancers
+- p53 downregulates transcriptional regulator of mevalonate pathway
+- p53-null cell lines have been shown to withstand sterol deprived
+  conditions better than WT
+
+]
+
+---
+
+# Methods
+
+.center[
+```{r,echo=FALSE,out.width="1000px"}
+knitr::include_graphics("img/metabolite_methods.png")
+```
+]
+
+---
+
+# Methods
+
+.center[
+```{r,echo=FALSE,out.width="1000px"}
+knitr::include_graphics("img/lipid_methods.png")
+```
+]
+
+---
+
+# Impact of statin on DDLPS cell lipidome
+
+.panelset[
+.panel[.panel-name[MDM2 lower cells]
+
+.pull-left[
+```{r,fig.width=11,fig.height=8, echo=FALSE}
+
+TreVsUntreLMME_lo<-readRDS("img/Lipid_Lo_Tre_volcano_plot.Rds")
+fc_thresh=0.75
+p_thresh <- 0.05
+lipidomic_key<-readRDS("img/lipidomic_key.Rds")
+T_test_results<-TreVsUntreLMME_lo
+    
+## Make insignificant points smaller and more transparent
+T_test_results$significant = abs(T_test_results$log2fc) > fc_thresh &
+    -log10(T_test_results$mypadj) > -log10(p_thresh)
+T_test_results$size <- ifelse(T_test_results$significant,4,2)
+
+## Color code by lipid class
+T_test_results$class<-lipidomic_key$LM.Main.Class[match(T_test_results$name,lipidomic_key$name)]
+palette_names<-as.vector(sort(unique(T_test_results$class)))
+T_test_results$class<-sapply(1:nrow(T_test_results),function(x){
+    ifelse(T_test_results$significant[x],
+           return(as.vector(T_test_results$class)[x]),return("Not Significant"))
+})
+
+T_test_results = T_test_results %>%
+    mutate(class =
+               apply(T_test_results, 1, function(x){
+                   if(x["class"]!="Not Significant"){
+                       if(grepl("HexCer",x["name"])){
+                           "Hexosylated Ceramide"
+                       }else if(grepl("Cer",x["name"])){
+                           "Ceramide"
+                       }else{
+                           "Other"
+                       }
+                   }else{
+                       "Other"
+                   }
+               }) %>%
+           as.factor())
+
+palette<-c("red","blue","grey80")
+names(palette)<-c("Ceramide","Hexosylated Ceramide","Other")
+
+g = ggplot(data=T_test_results, aes(x=log2fc, y=-log10(mypadj), colour=class)) +
+    geom_point(##alpha=0.7,
+        aes(size=size)) +
+    scale_color_manual(values = palette,
+                       ##na.value="grey80",
+                       ##labels=legend_labels,
+                       name="LipidMaps Main Class") +
+    theme_bw(base_size=20) +
+    ##scale_color_brewer(palette="Paired",na.value="grey80") +
+    ggtitle("Treated vs Untreated, MDM2 Low") +
+    theme(plot.title = element_text(hjust = 0.5)) +
+    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+    ylab("-log10 p-value") +
+    geom_hline(yintercept = -log10(p_thresh),lty = 2) +
+    geom_vline(xintercept = fc_thresh, lty = 2) +
+    geom_vline(xintercept = -fc_thresh, lty = 2) +
+    scale_size(range=c(2,4)) +
+    guides(size=FALSE,
+           colour = guide_legend(override.aes = list(size=10))) ## +
+    ## geom_label_repel(data = T_test_results %>% filter(grepl("Cer",name) &
+    ##                                                   class!="Not Significant"),
+    ##                  aes(label=name),
+    ##                  show.legend = FALSE,
+    ##                  force=10,
+    ##                  xlim=c(NA,1),
+    ##                  arrow = arrow(length = unit(0.03,"npc"),type = "closed"),
+    ##                  size=6)
+g
+
+```
+]
+
+.pull-right[
+
+- MDM2 low tumors have better prognosis
+- MDM2 low cells responded to atorvastatin treatment
+- 11 ceramides and 3 hexosylated ceramides were upregulated by atorvastatin treatment in MDM2 low cells
+
+]
+]
+
+.panel[.panel-name[MDM2 higher cells]
+
+.pull-left[
+```{r,fig.width=11,fig.height=8, echo=FALSE}
+MDM2HivsLoLMME<-readRDS("img/Lipid_volcano_plot.Rds")
+fc_thresh=0.75
+p_thresh <- 0.05
+lipidomic_key<-readRDS("img/lipidomic_key.Rds")
+volcano_plotter <- function(df,title){
+    T_test_results<-df
+    
+    ## Make insignificant points smaller and more transparent
+    T_test_results$significant = abs(T_test_results$log2fc) > fc_thresh &
+        -log10(T_test_results$mypadj) > -log10(p_thresh)
+    T_test_results$size <- ifelse(T_test_results$significant,4,2)
+    
+    ## Color code by lipid class
+    T_test_results$class<-lipidomic_key$LM.Main.Class[match(T_test_results$name,lipidomic_key$name)]
+    palette_names<-as.vector(sort(unique(T_test_results$class)))
+    T_test_results$class<-sapply(1:nrow(T_test_results),function(x){
+        ifelse(T_test_results$significant[x],
+                    return(as.vector(T_test_results$class)[x]),return("Not Significant"))
+    })
+      
+	 legend_labels<-sort(unique(sapply(T_test_results$class, function(x){
+             if(!is.na(x)){
+		 return(paste0(x," (n=",length(which(T_test_results$class==x)),")"))
+             }else{
+		 return(x)
+             }
+	 })))
+      
+	 ##legend_labels<-legend_labels[-which(is.na(legend_labels))]
+      
+	 palette<-c(brewer.pal(9,"Set1"),"sienna","springgreen4","seagreen","#40E0D0","violet","grey80")
+	 names(palette)<-c(palette_names,"Not Significant")
+	 palette<-palette[unique(T_test_results$class)]
+                                           #palette<-palette[-which(is.na(palette))]
+      
+        g = ggplot(data=T_test_results, aes(x=log2fc, y=-log10(mypadj), colour=class)) +
+            geom_point(##alpha=0.7,
+                       aes(size=size)) +
+            scale_color_manual(values = palette,
+                                        #na.value="grey80",
+                               labels=legend_labels,
+                               name="LipidMaps Main Class") +
+            theme_bw(base_size=20) +
+                                        #scale_color_brewer(palette="Paired",na.value="grey80") +
+            ggtitle(title) +
+            theme(plot.title = element_text(hjust = 0.5)) +
+            theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+            ylab("-log10 p-value") +
+            geom_hline(yintercept = -log10(p_thresh),lty = 2) +
+            geom_vline(xintercept = fc_thresh, lty = 2) +
+            geom_vline(xintercept = -fc_thresh, lty = 2) +
+            scale_size(range=c(2,4)) +
+            guides(size=FALSE,
+                   colour = guide_legend(override.aes = list(size=10)))
+    
+    T_test_results_sig<-T_test_results[T_test_results$significant,]
+    text_size<-round(min(20,350/nrow(T_test_results_sig)),digits=0)
+    
+    return(g)
+}
+
+TreVsUntreLMME_hi<-readRDS("img/Lipid_Hi_Tre_volcano_plot.Rds")
+
+volcano_plotter(TreVsUntreLMME_hi,"Treated vs Untreated, MDM2 High")
+```
+]
+
+.pull-right[
+- MDM2 high tumors have worse prognosis
+- MDM2 high cell lines did not respond to atorvastatin treatment
+- Analyzing the lipidome of MDM2 high cells pre and post atorvastatin
+treatment revealed only 4 lipids perturbed by treatment ]
+
+]
+
+]
+
+---
+
+# Sphingolipid metabolism as a therapeutic target
+
+.center[
+```{r,echo=FALSE,out.width="900px"}
+knitr::include_graphics("img/sphingolipid_therapy.png")
+```
+]
+
+---
+
+# MDM2 status impact on ceramide levels
+
+.panelset[
+.panel[.panel-name[Metabolite panel]
+.center[
+```{r,echo=FALSE,fig.height=6,fig.width=10}
+
+##ggplotly(p)
+
+myPalette2<-c("gray80","red")
+names(myPalette2)<-c("Not Significant","Hexosylated Ceramide")
+
+p <- resMDM2HiLoLMME %>%
+    mutate(class=ifelse(name == "glycosyl-N-palmitoyl-sphingosine"  |
+                        name == "glycosyl-N-stearoyl-sphingosine"
+                       ,
+                        "Hexosylated Ceramide",
+                        "Not Significant")) %>%
+    ggplot(aes(x=log2fc, y=-log10(LMMEadj), colour=class)) +
+    geom_hline(yintercept = -log10(0.05),lty = 2) +
+    geom_vline(xintercept = 0.75, lty = 2) +
+    geom_vline(xintercept = -0.75, lty = 2) +
+    geom_point(aes(size=size)) +
+    geom_label_repel(data =
+                         resMDM2HiLoLMME %>%
+                         mutate(class=ifelse(name == "glycosyl-N-palmitoyl-sphingosine"  |
+                                             name == "glycosyl-N-stearoyl-sphingosine",
+                                             "Hexosylated Ceramide",
+                                             "Not Significant")) %>%
+                         mutate(name=sapply(name, function(x) if(x == "glycosyl-N-palmitoyl-sphingosine"){
+                                         "HexCer-NS(d18:1/16:0)"
+                                     }else if(x == "glycosyl-N-stearoyl-sphingosine"){
+                                         "HexCer-NS(d18:1/18:0)"
+                                     }else{
+                                         x})) %>%
+                         ## mutate(name=ifelse(name == "glycosyl-N-stearoyl-sphingosine",
+                         ##                    "HexCer-NS(d18:1/18:0)",
+                         ##                    name)) %>%
+                         filter(class=="Hexosylated Ceramide")
+                    ,
+                     aes(label=name),
+                     show.legend = FALSE,
+                     force=10,
+                     xlim=c(NA,0),
+                     ylim=c(NA,2.25),
+                     arrow = arrow(length = unit(0.03,"npc"),type = "closed"),
+                     size=10) +
+    theme_bw(base_size=24) +
+    scale_color_manual(values = myPalette2) +
+    ## ggtitle("Metabolomic Panel") +
+    theme(plot.title = element_text(hjust = 0.5)) +
+    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+    ylab("-log10 p-value") +
+    xlab("log2(MDM2Hi)-log2(MDM2Lo)") +
+    scale_alpha(range=c(0.2,0.7)) +
+    scale_size(range=c(4,6)) +
+    guides(size=FALSE,alpha=FALSE,label=FALSE,
+           ##colour = guide_legend(override.aes = list(size=10))) +
+           colour = FALSE) +
+    xlim(-4,5) +
+    ylim(0,3)
+##ggplotly(p)
+p
+
+```
+
+]
+]
+
+
+.panel[.panel-name[Lipid panel]
+.pull-left[
+```{r,echo=FALSE,fig.width=10,fig.height=8,message=FALSE,warning=FALSE}
+
+library(gplots)
+
+library(RColorBrewer)
+
+T_test_results<-MDM2HivsLoLMME
+    
+## Make insignificant points smaller and more transparent
+T_test_results$significant = abs(T_test_results$log2fc) > fc_thresh &
+    -log10(T_test_results$mypadj) > -log10(p_thresh)
+T_test_results$size <- ifelse(T_test_results$significant,4,2)
+
+## Color code by lipid class
+T_test_results$class<-lipidomic_key$LM.Main.Class[match(T_test_results$name,lipidomic_key$name)]
+palette_names<-as.vector(sort(unique(T_test_results$class)))
+T_test_results$class<-sapply(1:nrow(T_test_results),function(x){
+    ifelse(T_test_results$significant[x],
+                    return(as.vector(T_test_results$class)[x]),return("Not Significant"))
+})
+
+legend_labels<-sort(unique(sapply(T_test_results$class, function(x){
+    if(!is.na(x)){
+        return(paste0(x," (n=",length(which(T_test_results$class==x)),")"))
+    }else{
+        return(x)
+    }
+})))
+
+##legend_labels<-legend_labels[-which(is.na(legend_labels))]
+
+palette<-c("gray80","red")
+
+names(palette)<-c("Not Significant","Hexosylated Ceramide")
+
+g =
+    T_test_results %>%
+    mutate(class = ifelse(grepl("HexCer",name),
+                          "Hexosylated Ceramide",
+                          "Not Significant")) %>%
+    ggplot(aes(x=log2fc, y=-log10(mypadj), colour=class)) +
+    geom_point(##alpha=0.7,
+        aes(size=size)) +
+    scale_color_manual(values = palette,
+                                        #na.value="grey80",
+                       ##labels=legend_labels,
+                       name="class") +
+    theme_bw(base_size=24) +
+                                        #scale_color_brewer(palette="Paired",na.value="grey80") +
+    ## ggtitle("Lipidomic Panel") +
+    theme(plot.title = element_text(hjust = 0.5)) +
+    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+    ylab("-log10 p-value") +
+    xlab("log2(MDM2Hi)-log2(MDM2Lo)") +
+    geom_hline(yintercept = -log10(p_thresh),lty = 2) +
+    geom_vline(xintercept = fc_thresh, lty = 2) +
+    geom_vline(xintercept = -fc_thresh, lty = 2) +
+    scale_size(range=c(4,6)) +
+    guides(size=FALSE,
+           ## colour = guide_legend(override.aes = list(size=10))) +
+           colour = FALSE) +
+    geom_label_repel(data = T_test_results %>%
+                         mutate(class = ifelse(grepl("HexCer",name),
+                                               "Hexosylated Ceramide",
+                                               "Not Significant")) %>% filter(grepl("HexCer",name)),
+                     aes(label=name),
+                     nudge_y=0.5,
+                     show.legend = FALSE,
+                     force=10,
+                     xlim=c(NA,1),
+                     arrow = arrow(length = unit(0.03,"npc"),type = "closed"),
+                     size=8) +
+    xlim(-4,5) +
+    ylim(0,3)
+g
+
+
+```
+]
+
+.pull-right[
+</br>
+```{r,echo=FALSE,fig.height=8,fig.width=12}
+##knitr::include_graphics("img/Glycosylated_ceramides.png")
+
+load("img/heatmap.Rda")
+
+mycol = colorRampPalette(c("blue", "white","red"))(100)
+
+heatmap.2(y, Colv=as.dendrogram(hc), col=mycol, scale="row", density.info="none",
+          trace="none",dendrogram = "col",
+          ##lhei=c(1.5,5,1),
+          ##lwid=c(1.5, 3),
+          ColSideColors = col_colors,
+          tracecol = "black",
+          labCol=as.vector(t(mycell)),
+          margins=c(10,20.0),
+          cexRow = 2,
+          cexCol = 2
+          )
+
+```
+
+]
+]
+]
+
+---
+
+# MetaboSPAN Results in Liposarcoma
+
+```{r,echo=FALSE,out.width="1000px"}
+knitr::include_graphics("img/Network_figure_2.png")
+```
+
+---
+
+# In Conclusion
+
+### 1. We characterized the metabolome/lipidome of a DDLPS model and identified sphingolipid metabolism as a potential therapeutic target
+
+### 2. We developed RaMP, a comprehensive metabolomics functional annotations resource that harmonizes information from many large sources, and provides a convenient user interface, R package and mySQL database for ease of use
+
+### 3. We developed and validated MetaboSPAN, a novel network-based pathway analysis algorithm that can compensate for uncertainty in identification and incomplete metabolome coverage
+
+---
+
+# Acknowledgements
+
+.pull-left[
+.small[
+**Mathé Lab**
+- Dr. Ewy Mathé, OSU/NCATS
+- Tara Eicher, OSU/NCATS
+- Kevin Ying, OSU
+- Kyle Spencer, OSU/NCATS
+- Dr. Garrett Kinnebrew, OSU
+
+
+**Collaborators/Advisors**
+- Dr. James Chen, OSU
+- Dr. Kevin Coombes, OSU
+- Dr. Zachary Abrams, OSU
+- Dr. Lang Li, OSU
+- Dr. Rachel Kopec, OSU
+
+]]
+
+.pull-right[
+.small[
+**Collaborators/Advisors**
+- Dr. Tim Garrett, Florida State University
+- Dr. Jeremy Koelmel Florida State University
+- John Braisted, NCATS
+- Jorge Neyra, NCATS
+- NCATS informatics core
+
+**Funding from**
+- The OSU Clinical and Translational Research Informatics Training
+Program (4T15LM011270-05)
+- Systems and Integrative Biology training program (T32GM068412) ]]
+
+---
+
+# Questions?
+
+.pull-left[
+<iframe src='https://gfycat.com/ifr/LongLateAcouchi' frameborder='0' scrolling='no' allowfullscreen width='480' height='390'></iframe><p><a href="https://gfycat.com/discover/question-gifs">from Question GIFs</a> <a href="https://gfycat.com/longlateacouchi-question-mark-confused-what-huh">via Gfycat</a></p>
+]
+
+.pull-right[
+- Slides link: https://andyptt21.github.io/Thesis_presentation_6_29_21
+
+- RaMP link: https://rampdb.ncats.io/
+]
