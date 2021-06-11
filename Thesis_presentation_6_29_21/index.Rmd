@@ -376,7 +376,7 @@ knitr::include_graphics("img/Null_model2.png")
 
 ---
 
-# Recovery of altered pathways
+# Recovery of known altered pathways (500 sets)
 
 .panelset[
 .panel[.panel-name[Figure]
@@ -398,9 +398,10 @@ knitr::include_graphics("img/Known_positive_table.png")
 ]
 ]
 ]
+
 ---
 
-# Robustness to sample size
+# Robustness to sample size across 500 partitions
 
 .panelset[
 .panel[.panel-name[Figure]
@@ -418,8 +419,8 @@ knitr::include_graphics("img/Sample_partition_table.png")
 ```
 ]
 .right-column[
-- Fisher's with full database background and FELLA were the best at recovering "true positives"
-- Fisher's with a custom background had the best false positive rate
+- Sorted all algorithms by ability to recall pathways from full data in partitions
+- In some cases MetaboSPAN was able to improve recall
 ]
 ]
 ]

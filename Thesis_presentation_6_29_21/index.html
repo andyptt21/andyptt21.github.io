@@ -332,7 +332,7 @@ particularly within the same databases ]
 
 ---
 
-# Recovery of altered pathways
+# Recovery of known altered pathways (500 sets)
 
 .panelset[
 .panel[.panel-name[Figure]
@@ -350,9 +350,10 @@ particularly within the same databases ]
 ]
 ]
 ]
+
 ---
 
-# Robustness to sample size
+# Robustness to sample size across 500 partitions
 
 .panelset[
 .panel[.panel-name[Figure]
@@ -366,8 +367,8 @@ particularly within the same databases ]
 &lt;img src="img/Sample_partition_table.png" width="750px" /&gt;
 ]
 .right-column[
-- Fisher's with full database background and FELLA were the best at recovering "true positives"
-- Fisher's with a custom background had the best false positive rate
+- Sorted all algorithms by ability to recall pathways from full data in partitions
+- In some cases MetaboSPAN was able to improve recall
 ]
 ]
 ]
