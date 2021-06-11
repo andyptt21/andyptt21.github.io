@@ -203,23 +203,26 @@ knitr::include_graphics("img/Metabolomics_overview.png")
 
 ---
 
-# Biological pathways
+# Biological pathway databases
 
-- Pathways are a collection of transcripts, proteins, and/or
-  metabolites (analytes) with a related biological function
+.pull-left[
 - Example: **Glycolysis** is a chain of 10 enzyme-catalyzed reactions
-  where glucose is converted to pyruvate
+  where glucose is converted to pyruvate (https://www.thoughtco.com/steps-of-glycolysis-373394)
+  ]
+  
+.pull-right[
 .center[
-```{r,echo=FALSE,out.width="500px"}
+```{r,echo=FALSE,out.width="300px"}
 knitr::include_graphics("img/Glycolysis.jpeg")
 ```
-</br>
-.tiny[https://www.thoughtco.com/steps-of-glycolysis-373394]
+]]
+
+.pull-left[
+- Stored in databases as lists of related analytes, or networks where nodes are metabolites and edges are reactions
 ]
 
----
-
-# Biological pathway databases
+.pull-right[
+.tiny[
 | Name            | # metabolites | Other features                                    |
 |----------------|--------------|--------------------------------------------------|
 | HMDB/SMPDB      | >114,000      | Reactions, chemical class, spectra, ontologies    |
@@ -228,6 +231,8 @@ knitr::include_graphics("img/Glycolysis.jpeg")
 | Wikipathways    | 3,133         | Community-driven                                  |
 | MetaCyc         | 16,313        | Highly curated                                    |
 | PathBank        | 78,488        | Highly recent, contains many novel lipid pathways |
+]
+]
 
 ---
 
