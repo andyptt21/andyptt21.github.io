@@ -522,7 +522,7 @@ and lower false positives in custom case
 
 ---
 
-# Real data: Similar findings in separate cohorts
+# Real data: Similar findings in separate datasets
 
 .left-column[
 .small[
@@ -998,7 +998,7 @@ knitr::include_graphics("img/fig1C.png")
 
 ### 2. We developed RaMP, a comprehensive metabolomics functional annotations resource that harmonizes information from many large sources, and provides a convenient user interface, R package and MySQL database for ease of use
 
-### 3. We developed and validated MetaboSPAN, a novel network-based pathway analysis algorithm that can compensate for uncertainty in identification and incomplete metabolome coverage
+### 3. We developed and validated MetaboSPAN, a novel network-based pathway analysis algorithm that can compensate for uncertainty in metabolite identification
 
 ---
 
