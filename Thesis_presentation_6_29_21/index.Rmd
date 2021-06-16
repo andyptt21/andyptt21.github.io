@@ -278,12 +278,12 @@ knitr::include_graphics("img/Glycolysis.jpeg")
 
 # Relational database of Metabolic Pathways (RaMP)
 .pull-left[
-- Multiomic pathway MySQL database integrating
+- Metadatabase integrating
 information from **KEGG**, **HMDB**, **WikiPathways** and **Reactome** 
-- Currently contains pathway information for > 13,000 metabolites and >14,000 
-  transcripts, totalling 51,526 pathways and 536,245 associations
+- Currently contains 51,526 pathways and 536,245 associations to analytes
 - Additional information includes chemical structures, chemical
 classes, reactions, and ontologies
+- Useable as web interface, R package and MySQL database
 ]
 
 .pull-right[
@@ -293,25 +293,28 @@ knitr::include_graphics("img/RaMP_contents.png")
 ]
 ---
 
-# Using RaMP 2.0
+# Using RaMP
 
 .left-column[
 .center[
-```{r,echo=FALSE,out.width="500px"}
-knitr::include_graphics("img/Ramp2_1.PNG")
+```{r,echo=FALSE,out.width="700px"}
+knitr::include_graphics("img/RaMP2_screenshots.svg")
 ```
 
-```{r,echo=FALSE,out.width="500px"}
-knitr::include_graphics("img/Ramp2_3.png")
-```
 ]
 ]
 
 .right-column[
 - Example data to help users format input
 - Tabs for each step of pathway analysis
+.cv[
+	- Data input
+- Map to pathways
+- Pathway enrichment
+- Significance filtration
+- Overlap clustering
+	]
 - Pane showing underlying R functions
-- Informative plots showing pathway overlap clustering results
 ]
 
 ---
@@ -400,7 +403,7 @@ knitr::include_graphics("img/Validation_schematic.png")
 | Class                        | Pros  | Cons | Representative      |
 |------------------------------|---|---------|---------------------|
 | Over-representation analysis | Simple to implement, easy to interpret  |Depends on choice of background, ignores pathway overlap         | Fisher's exact test |
-| Functional class scoring     | Self-contained hypothesis (no background)  | Hypothesis interpretation difficult, more challenging to implement | Globaltest          |
+| Functional class scoring     | Self-contained hypothesis (no background)  | Hypothesis interpretation difficult, more challenging to implement | MSEA         |
 | Topological analysis         | Leverages graph theory and known pathway topology to improve analysis  | Graph-level annotations are not always available, challenging to implement        | NetGSA              |
 | FELLA                        | Can enrich for reactions and pathways  | Only applicable to KEGG annotations   | FELLA               |
 ]
@@ -475,25 +478,14 @@ knitr::include_graphics("img/Known_positive_exp1.svg")
 
 .right-column[
 .small[
-- Tested nine different formulas for known positive pathways lists in terms of coverage and size
+- Tested nine different scenarios for known positive pathways lists in
+  terms of coverage and size, as well as raw pval and Holm adjustment
 
-- Examined results using raw and Holm-adjusted p value
-
-- In three scenarios post Holm adjustment, MetaboSPAN improved median recall rate
+- In three scenarios post Holm adjustment, MetaboSPAN improved median recall rate (left)
 
 - In three scenarios using raw pval, MetaboSPAN decreased median false positive rate
 
 ]]
-
----
-
-<div class="my-logo-KP"></div> 
-
-# Recovery of known altered pathways
-
-```{r,echo=FALSE,out.width="900px"}
-knitr::include_graphics("img/Known_positivefigure.png")
-```
 
 ---
 
@@ -534,7 +526,7 @@ and lower false positives in custom case
 
 .left-column[
 .small[
-| Background | Test           | Cohort 1 | Cohort 2 | **Overlap** |
+| Background | Test           | Dataset 1 | Dataset 2 | **Overlap** |
 |------------|----------------|----------|----------|---------|
 | KEGG       | MetaboSPAN 20% | 10       | 31       | **.6**  |
 | KEGG       | MetaboSPAN 15% | 13       | 27       | **.54** |
@@ -553,10 +545,11 @@ and lower false positives in custom case
 
 .right-column[
 .small[
-- Significant pathways by each method were found in two datasets
-  generated from same cohort
-  
+- Two publicly available datasets generated from the same cohort on different platforms were obtained
+
 - Only one metabolite was found in common between both datasets
+
+- Significant pathways by each method were found in each set
 
 - MetaboSPAN improved the concordance of Fisher's results in both
 background cases ]
@@ -566,7 +559,7 @@ background cases ]
 
 # Pathway anaysis conclusions
 
-### 1. MetaboSPAN can improve the reproducibility and sensitivity of Fisher's results, with a cost to specificity
+### 1. MetaboSPAN improved the performance of Fisher's in a variety of contexts
 
 ### 2. When considering an algorithm, check how many significant pathways it finds in random data
 
@@ -576,7 +569,7 @@ background cases ]
 
 ---
 
-# Dedifferentiated Liposarcoma 
+# Dedifferentiated Liposarcoma (DDLPS)
 
 .pull-left[
 ```{r,echo=FALSE,out.width="350px"}
@@ -589,26 +582,21 @@ Bill KLJ, Seligson ND, Hays JL, et al. Degree of Amplification Affects Clinical 
 ]
 
 .pull-right[
-- 20% of all soft tissue sarcoma diagnoses
-
+- Current treatments for DDLPS (Dactinomycin, Doxorubicin) have unpredictable efficacy and high toxicity
+- MDM2 is amplified in all DDLPS tumors
+- MDM2 is an antagonist of the p53 DNA repair gene
 - Prognosis depends on copy number of the MDM2 oncogene
-
-- Some drugs (Dactinomycin, Doxorubicin) are used to treat
-  liposarcoma, but they have unpredictable efficacy and toxicity.
-  
 ]
 
 ---
 
-# Targeting the p53-cholesterol synthesis axis
+# Targeting the MDM2-p53-cholesterol axis
 
 .pull-left[
-- Statins (mevalonate pathway inhibitors) have been associated with
+- Statins (cholesterol synthesis inhibitors) have been associated with
   reduced mortality in mutant p53 cancers
-- MDM2 modulates p53 expression as an antagonist
-- p53 downregulates transcriptional regulator of mevalonate pathway
-- p53-null cell lines have been shown to withstand sterol deprived
-  conditions better than wild-type
+- p53 downregulates cholesterol synthesis pathway
+- Collaborators showed MDM2 low cells are sensitive to statin while MDM2 high cells are not
 
 ]
 
@@ -625,8 +613,8 @@ knitr::include_graphics("img/Atorvastatin_response.svg")
 # Metabolomic Methods
 
 .center[
-```{r,echo=FALSE,out.width="1000px"}
-knitr::include_graphics("img/lipid_methods.png")
+```{r,echo=FALSE,out.width="1100px"}
+knitr::include_graphics("img/lipid_methods.svg")
 ```
 ]
 
@@ -806,8 +794,8 @@ treatment revealed only 4 lipids perturbed by treatment ]
 # Sphingolipid metabolism as a therapeutic target
 
 .center[
-```{r,echo=FALSE,out.width="900px"}
-knitr::include_graphics("img/sphingolipid_therapy.png")
+```{r,echo=FALSE,out.width="1100px"}
+knitr::include_graphics("img/sphingolipid_therapy.svg")
 ```
 ]
 
@@ -994,11 +982,13 @@ heatmap.2(y, Colv=as.dendrogram(hc), col=mycol, scale="row", density.info="none"
 
 ---
 
-# MetaboSPAN Results in Liposarcoma
+# Pathway analysis results in DDLPS
 
-```{r,echo=FALSE,out.width="1000px"}
-knitr::include_graphics("img/Network_figure_2.png")
+.center[
+```{r,echo=FALSE,out.width="800px"}
+knitr::include_graphics("img/fig1C.png")
 ```
+]
 
 ---
 
