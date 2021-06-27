@@ -351,19 +351,36 @@ knitr::include_graphics("img/Pathway_clustering.svg")
 
 ```{r,echo=FALSE,fig.width=11,fig.height=11, message=FALSE, warning=FALSE}
 mapping_rates<-readRDS("img/mapping_rates.Rds")
+
+lab_ypos2<-c()
+for(i in 1:nrow(mapping_rates)){
+    if(is.na(mapping_rates$lab_ypos[i])){
+        lab_ypos2<-c(lab_ypos2,NA)
+    }else{
+        temp<-mapping_rates%>%
+            filter(class_name==mapping_rates$class_name[i])
+        value<-sum(temp$n)+20000
+        lab_ypos2<-c(lab_ypos2,value)
+    }
+}
+
+mapping_rates$lab_ypos2<-lab_ypos2
+
 mapping_rates %>%
-    ggplot(aes(x=class_name,y=n,fill=annotated))+
-    geom_text(aes(y = lab_ypos, x=class_name, label = paste0(round(per,1),"%"),
-                  group=annotated,color = annotated),size=5) +
-    geom_bar(position="dodge", stat="identity") +
+    ggplot(aes(x=reorder(class_name,nmax),y=n,fill=annotated))+
+    geom_text(aes(y = lab_ypos2,
+                  label = paste0(round(per,1),"%"),
+                  group=annotated,color = annotated),size=8) +
+    geom_bar(position="stack", stat="identity") +
     theme_classic(base_size=18)+
     labs(y="Metabolite Count",x="")+
-    theme(axis.text.x=element_text(angle=45,hjust=1),
+    theme(
           plot.margin=unit(c(1,1,1.5,1.5),"cm"))+
-    scale_y_continuous(trans='log10')+
-    scale_fill_manual(values=c("aquamarine4","purple"))+
-    scale_color_manual(values=c("aquamarine4","purple"))+
-    ggtitle("Mapping rates for metabolites by class in RaMP")
+    ##scale_y_continuous(trans='log10')+
+    scale_fill_manual(values=c("aquamarine4","magenta1"))+
+    scale_color_manual(values=c("aquamarine3","purple"))+
+    ggtitle("Mapping rates for metabolites by class ") +
+    coord_flip()
 ```
 ]
 
