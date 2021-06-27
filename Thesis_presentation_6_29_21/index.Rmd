@@ -986,7 +986,7 @@ heatmap.2(y, Colv=as.dendrogram(hc), col=mycol, scale="row", density.info="none"
 
 .center[
 ```{r,echo=FALSE,out.width="800px"}
-knitr::include_graphics("img/fig1C.png")
+knitr::include_graphics("img/pathway_figure.png")
 ```
 ]
 
