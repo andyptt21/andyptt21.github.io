@@ -1,3 +1,4 @@
+- **June 2021: I successfully defended my thesis: "Integrative and Network-Based Approaches for Functional Interpretation of Metabolomic Data"!**
 - November 2020: I gave a poster presentation at the Metabolomics society annual meeting, "Improving pathway analysis of lipidomic and metabolomic data through comprehensive functional annotation and network approaches"
 - September 2020: I gave a 15-minute talk at the Metabolomics Association of North America, "Improving pathway analysis of lipidomic and metabolomic data through comprehensive functional annotation and network approaches"
 - August 2020: My first-author publication, "MDM2-Dependent Rewiring of Metabolomic and Lipidomic Profiles in Dedifferentiated Liposarcoma Models", was published in MDPI Cancers!
