@@ -11,15 +11,24 @@
 
 
 
-<title>index.utf8</title>
+<title>index.knit</title>
 
-<script src="site_libs/header-attrs-2.4/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -33,14 +42,9 @@
   div.column{display: inline-block; vertical-align: top; width: 50%;}
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   ul.task-list{list-style: none;}
-      </style>
+    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -53,32 +57,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
 
@@ -89,10 +68,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -109,40 +84,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 64px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 69px;
-  margin-top: -69px;
-}
-.section h2 {
-  padding-top: 69px;
-  margin-top: -69px;
-}
-.section h3 {
-  padding-top: 69px;
-  margin-top: -69px;
-}
-.section h4 {
-  padding-top: 69px;
-  margin-top: -69px;
-}
-.section h5 {
-  padding-top: 69px;
-  margin-top: -69px;
-}
-.section h6 {
-  padding-top: 69px;
-  margin-top: -69px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -170,7 +118,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -182,7 +130,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -193,10 +141,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -208,7 +169,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -321,7 +281,7 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -330,8 +290,8 @@ $(document).ready(function () {
 
 
 <p><img src="img/personal.png" style="width:40%; border:10px solid; margin-right: 20px" align="left"></p>
-<p>I enjoy working at the intersection of chemistry, biology, computer science and statistics to address issues with human health. This interest drove me to pursue a PhD in biomedical informatics at the Ohio State University, where I’ve become involved in untargeted metabolomics and lipidomics research. I’m also currently employed as a research associate at the National Center for Advancing Translational Sciences under Axle Informatics.</p>
-<p>In 2015 I graduated from the State University of New York at Geneseo with a B.S. in Biochemistry and a minor in Biomathematics. From 2015-2016 I was a Postbaccalaureate Fellow in the lab of <a href="https://www.niams.nih.gov/labs/ombrello-lab#tab-overview">Dr. Michael Ombrello</a> at the National Institute of Arthritis and Musculoskeletal and Skin diseases, looking for ultra-rare genetic variants associated with systemic juvenile idiopathic arthritis. I then joined the lab of <a href="https://ncats.nih.gov/staff/mathee">Dr. Ewy Mathe</a> at the Ohio State University in the Biomedical Informatics department, where I am working on my PhD in Biomedical Sciences with an emphasis on Biomedical Informatics. The main focus of my work with Dr. Mathe has been developing computational tools and resources for the integrative and network-based biological analysis of metabolomic experimental results. I expect to graduate by early 2021. Our group recently moved to the National Center for Advancing Translational Sciences, where I now work in the Division of Preclinical Innovation.</p>
+<p>I enjoy working at the intersection of chemistry, biology, computer science and statistics to address issues with human health. This interest drove me to pursue a PhD in biomedical informatics at the Ohio State University, where I became involved in untargeted metabolomics and lipidomics research. I’m currently employed as a bioinformatics scientist through Axle Informatics at the National Center for Advancing Translational Sciences. I also work part-time as a blogger for <a href="https://www.datarevenue.com/en-blog">Data Revenue GmbH</a>.</p>
+<p>In 2015 I graduated from the State University of New York at Geneseo with a B.S. in Biochemistry and a minor in Biomathematics. From 2015-2016 I was a Postbaccalaureate Fellow in the lab of <a href="https://www.niams.nih.gov/labs/ombrello-lab#tab-overview">Dr. Michael Ombrello</a> at the National Institute of Arthritis and Musculoskeletal and Skin diseases, looking for ultra-rare genetic variants associated with systemic juvenile idiopathic arthritis. I then joined the lab of <a href="https://ncats.nih.gov/staff/mathee">Dr. Ewy Mathe</a> at the Ohio State University in the Biomedical Informatics department, where I completed my doctoral thesis titled “Integrative and Network-Based Approaches for Functional Interpretation of Metabolomic Data”, defended in June 2021.In 2020 our group moved to the National Center for Advancing Translational Sciences, where I now work in the Division of Preclinical Innovation.</p>
 <p>I am an early career member of the Metabolomics Association of North America, the Metabolomics Society, and the American Society for Mass Spectrometry. I use the R programming language on an almost daily basis to analyze mass spectromety/metabolomics data, and develop new methodology for pathway analysis of metabolomics or multiomic data.</p>
 <p>Please see my full CV <a href="https://github.com/andyptt21/My-CV/blob/main/main.pdf">here</a>.</p>
 <p>See my <a href="https://scholar.google.com/citations?user=UAJ0XWwAAAAJ&amp;hl=en&amp;oi=ao">Google Scholar page</a> for more info on my publications.</p>
@@ -345,7 +305,7 @@ $(document).ready(function () {
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -363,7 +323,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>

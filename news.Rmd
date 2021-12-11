@@ -1,3 +1,8 @@
+- December 2021: [I published a blog post about automatic LC/MS parameter calculation with AutoTuner via DataRevenue.com](https://www.datarevenue.com/en-blog/autotuner-parameter-selection)
+- December 2021: A middle author publication I contributed to, "Lipidomics and Redox Lipidomics Indicate Early Stage Alcohol-Induced Liver Damage", was published in Hepatology Communications
+- November 2021: [I published a blog post about chemical class prediction with CANOPUS via DataRevenue.com](https://www.datarevenue.com/en-blog/canopus-predict-chemical-class)
+- November 2021: [I published a blog post about Feature-based and Ion Identity Molecular Networking via DataRevenue.com](https://www.datarevenue.com/en-blog/feature-based-molecular-networking-gnps)
+- September 2021: I presented a poster at MANA 2021, "MetaboSPAN: an R package for functional enrichment analysis of metabolomic and lipidomic data"
 - **June 2021: I successfully defended my thesis: "Integrative and Network-Based Approaches for Functional Interpretation of Metabolomic Data"!**
 - November 2020: I gave a poster presentation at the Metabolomics society annual meeting, "Improving pathway analysis of lipidomic and metabolomic data through comprehensive functional annotation and network approaches"
 - September 2020: I gave a 15-minute talk at the Metabolomics Association of North America, "Improving pathway analysis of lipidomic and metabolomic data through comprehensive functional annotation and network approaches"
