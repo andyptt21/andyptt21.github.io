@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>index.knit</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.11/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: inverse, middle
+background-image: url(title_background.svg)
+background-size: cover
+
+&lt;font color = "white"&gt;
+# How to write code that runs a bunch of times (with R)
+.pull-left[
+## Andy Patt
+]
+
+.pull-right[
+.center[
+&lt;img src="https://i.ytimg.com/vi/OasbYWF4_S8/maxresdefault.jpg" width="600px" /&gt;
+]
+]
+
+&lt;style type="text/css"&gt;
+
+p.caption {
+  font-size: 1.2em;
+}
+
+ul li { padding: 5px 0px; }
+
+.large { font-size: 200% }
+
+.medium-large { font-size: 130% }
+
+.small{ font-size: 75% }
+
+.cv{ font-size: 60% }
+
+.tiny{ font-size: 40% }
+
+.center-left {
+  position:          relative;
+  top:               50%;
+  transform:         translateY(50%);
+}
+.center-right {
+  position:          relative;
+  top:               50%;
+  transform:         translateY(10%);
+}
+
+.remark-slide-content {
+  background-color: #FFFFFF;
+  border-top: 80px solid #662e6b;
+  font-size: 30px;
+  font-weight: 300;
+  line-height: 1.5;
+  padding: .5em 3em .5em 3em
+}
+
+.inverse {
+  background-color: #662e6b;
+  text-shadow: none;
+}
+
+.right-column {
+	color: #000000;
+	width: 30%;
+	height: 92%;
+	float: right;
+}
+
+.left-column {
+  color: #000000;
+  width: 68%;
+  float: left;
+}
+
+.remark-slide-number {
+	display: none;
+}
+
+mark {
+  background-color: purple;
+  color: white;
+}
+&lt;/style&gt;
+
+---
+
+# Why write code that you can reuse?
+
+- Shorter scripts
+--
+
+- Easier to read
+--
+
+- Less error-prone
+--
+
+- Lends itself to generalizability
+--
+
+- More reproducible
+--
+
+- Better for the environment
+
+---
+
+# Problem
+
+- I want to steal a bunch of people's bank account credentials
+--
+
+- I have a form email but I can't waste time addressing the email to every victim
+--
+
+
+```r
+people &lt;- c("Jack", "Jill", "Joe", "Jessica")
+
+email &lt;- ", this is your bank! We lost your username and password!"
+```
+--
+
+- **There's more than one way to do almost everything in R**
+---
+
+# First Attempt: Copy and Paste
+
+
+```r
+email1 &lt;- paste0("Dear ", people[1], email)
+email2 &lt;- paste0("Dear ", people[2], email)
+email3 &lt;- paste0("Dear ", people[3], email)
+email4 &lt;- paste0("Dear ", people[3], email)
+```
+--
+
+
+```
+## [1] "Dear Jack, this is your bank! We lost your username and password!"
+```
+
+```
+## [1] "Dear Jill, this is your bank! We lost your username and password!"
+```
+
+```
+## [1] "Dear Joe, this is your bank! We lost your username and password!"
+```
+
+```
+## [1] "Dear Joe, this is your bank! We lost your username and password!"
+```
+
+--
+
+- Jessica got an email addressed to Joe! She doesn't read the email and I don't get her credentials :(
+
+---
+
+# Solution one: Vectorize!
+
+- Most functions in base R are vectorized
+
+--
+
+- A vectorized function will automatically operate on all entries of a vector
+
+--
+
+- Not only are vectorized operations easier to read and write, they generally run faster than other solutions too
+
+---
+
+# Vectorization examples
+
+
+```r
+x &lt;- 1:4
+x * 2
+```
+
+```
+## [1] 2 4 6 8
+```
+
+```r
+y &lt;- 6:9
+x + y
+```
+
+```
+## [1]  7  9 11 13
+```
+
+```r
+## Even operators are vectorized!
+x + y &lt; 10
+```
+
+```
+## [1]  TRUE  TRUE FALSE FALSE
+```
+---
+
+# Vectorizing scam emails
+
+
+```r
+email_vector&lt;-paste0("Dear ", people, email)
+email_vector
+```
+
+```
+## [1] "Dear Jack, this is your bank! We lost your username and password!"   
+## [2] "Dear Jill, this is your bank! We lost your username and password!"   
+## [3] "Dear Joe, this is your bank! We lost your username and password!"    
+## [4] "Dear Jessica, this is your bank! We lost your username and password!"
+```
+
+- Much easier to read
+- When I start ~~finding more victims~~ getting more data, this solution is much more scalable
+
+---
+
+# Solution two: for() loops
+
+- `for()` loops run a bit slower and are more complex to code than a function that can be vectorized
+
+--
+
+- However, they offer a lot more flexibility as to what you can do with them
+
+--
+
+- `for()` loops are a great concept to learn for other programming languages too
+
+---
+
+# Anatomy of a for() loop in R
+
+
+```r
+## It can be a common strategy to initialize something outside
+## the loop, then manipulate it inside the loop. This is not
+## always necessary though
+example &lt;- c(1,1)
+## 'i' is an arbitrary variable that will take on all the values
+## in the range defined. Here I'm telling it to be all integers
+## from 1 to 10.
+for(i in 3:10){
+    ## Using 'i' to add new values onto a vector representing the
+    ## Fibonacci sequence
+    example &lt;- c(example, example[i-2] + example[i-1])
+}
+example
+```
+
+```
+##  [1]  1  1  2  3  5  8 13 21 34 55
+```
+
+---
+
+# You can make nested for() loops too!
+
+
+```r
+example &lt;- matrix(0,nrow=4,ncol=12)
+for(i in 1:nrow(example)){
+    for(j in 1:ncol(example)){
+        if(i %% 2 == 0 &amp; j %% 2 == 0){
+            example[i,j] = 1
+        }
+    }
+}
+example
+```
+
+```
+##      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11] [,12]
+## [1,]    0    0    0    0    0    0    0    0    0     0     0     0
+## [2,]    0    1    0    1    0    1    0    1    0     1     0     1
+## [3,]    0    0    0    0    0    0    0    0    0     0     0     0
+## [4,]    0    1    0    1    0    1    0    1    0     1     0     1
+```
+
+---
+
+# Writing scam emails with for() loops
+
+
+```r
+email_list &lt;- c()
+
+for(i in 1:4){
+    email_temp &lt;- paste0("Dear ", people[i], email)
+    email_list &lt;- c(email_list,email_temp)
+}
+email_list
+```
+
+```
+## [1] "Dear Jack, this is your bank! We lost your username and password!"   
+## [2] "Dear Jill, this is your bank! We lost your username and password!"   
+## [3] "Dear Joe, this is your bank! We lost your username and password!"    
+## [4] "Dear Jessica, this is your bank! We lost your username and password!"
+```
+
+---
+
+# Functions: the basic unit of R code
+
+- R is a **functional** programming language, meaning code is organized into functions
+--
+
+- Any R code can be organized into a function
+--
+
+- To read the code for a function, type the name of that function in the console without parentheses
+--
+
+- Benefits of functions
+	- Makes code more **modular**, making it easier to read and fail more gracefully
+	- Generalizable for new data
+	- Cuts down on global variables
+	- Can be organized into packages
+
+---
+
+# Anatomy of a function
+
+
+```r
+## Your function can have parameters
+## You can specify a default value using '='
+example_function &lt;- function(param1, param2=TRUE){
+    ## You can add error messages to ensure your input is correct
+    if(class(param1)!="numeric" &amp; class(param1)!="integer"){
+        stop("'param1' must be numeric")
+    }
+    if(param2){
+        ## Always make sure your code terminates with a return() 
+        return(param1+1)
+    }else{
+        return(param1-1)
+    }
+}
+```
+
+---
+
+# Example function
+
+
+```r
+example_function(param1="test")
+```
+
+```
+## Error in example_function(param1 = "test"): 'param1' must be numeric
+```
+
+```r
+example_function(param1=4)
+```
+
+```
+## [1] 5
+```
+
+```r
+example_function(param1=4,param2=FALSE)
+```
+
+```
+## [1] 3
+```
+
+---
+
+# Writing scam emails with functions
+
+
+```r
+write_scam_email &lt;- function(victim, salutation = "Dr."){
+    temp_email &lt;- paste0("Dear ", salutation, " ", victim, email)
+    return(temp_email)
+}
+```
+
+
+```r
+write_scam_email(victim=people[1], salutation = "Mr.")
+```
+
+```
+## [1] "Dear Mr. Jack, this is your bank! We lost your username and password!"
+```
+
+```r
+write_scam_email(victim=people[2])
+```
+
+```
+## [1] "Dear Dr. Jill, this is your bank! We lost your username and password!"
+```
+
+---
+
+# Apply()ing functions
+
+- If you've written a nice function that needs to be used on a large number of inputs, use `apply()` functions
+--
+
+- `apply()` can always replace a `for()` loop, and embraces the functional nature of R
+--
+
+- Also reduces global variables and is trivial to parallelize
+--
+
+- Flavors:
+  - `apply()` is used on 2 dimensional data structures, can iterate over rows, columns, or both
+  - `sapply()` and `lapply()` are for 1 dimensional data, and return a vector and list, respectively
+  
+---
+
+# Anatomy of an apply() statement
+
+
+```r
+## Just wrap your function in the apply() statement
+## This is equivalent to sapply(c(1,2), example_function)
+sapply(c(1:5), function(param1, param2=TRUE){
+    if(class(param1)!="numeric" &amp; class(param1)!="integer"){
+        stop("'param1' must be numeric")
+    }
+    if(param2){
+        return(param1+1)
+    }else{
+        return(param1-1)
+    }
+})
+```
+
+```
+## [1] 2 3 4 5 6
+```
+
+---
+
+# lapply() for scam emails
+
+
+```r
+lapply(people, write_scam_email, salutation = "Dr.")
+```
+
+```
+## [[1]]
+## [1] "Dear Dr. Jack, this is your bank! We lost your username and password!"
+## 
+## [[2]]
+## [1] "Dear Dr. Jill, this is your bank! We lost your username and password!"
+## 
+## [[3]]
+## [1] "Dear Dr. Joe, this is your bank! We lost your username and password!"
+## 
+## [[4]]
+## [1] "Dear Dr. Jessica, this is your bank! We lost your username and password!"
+```
+
+---
+
+# apply()
+
+
+```
+##      [,1]     [,2]    [,3]    [,4]     [,5]    [,6]  
+## [1,] "orange" "apple" "apple" "pear"   "pear"  "pear"
+## [2,] "pear"   "apple" "apple" "orange" "apple" "pear"
+```
+
+
+```r
+apply(example, 2, function(x){
+    index &lt;- which(x=="pear")
+    x[index] &lt;- "grape"
+    return(x)
+})
+```
+
+```
+##      [,1]     [,2]    [,3]    [,4]     [,5]    [,6]   
+## [1,] "orange" "apple" "apple" "grape"  "grape" "grape"
+## [2,] "grape"  "apple" "apple" "orange" "apple" "grape"
+```
+
+---
+
+# In summary
+
+- Vectorize your operations whenever possible
+
+- `for()` loops and `apply()` functions are interchangeable and allow you to run the same code on large amounts of data
+
+- **Organize your code into functions whenever possible**
+
+- Modular code is easier to read and troubleshoot
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
