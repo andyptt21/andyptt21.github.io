@@ -19,7 +19,9 @@ background-size: cover
 &lt;font color = "white"&gt;
 # How to write code that runs a bunch of times (with R)
 .pull-left[
-## Andy Patt
+### Spring Coding Camp 2022
+### Tuesday 2/22/2022
+### Andy Patt
 ]
 
 .pull-right[
@@ -488,9 +490,9 @@ lapply(people, write_scam_email, salutation = "Dr.")
 
 
 ```
-##      [,1]     [,2]    [,3]    [,4]     [,5]    [,6]  
-## [1,] "orange" "apple" "apple" "pear"   "pear"  "pear"
-## [2,] "pear"   "apple" "apple" "orange" "apple" "pear"
+##      [,1]    [,2]     [,3]   [,4]     [,5]   [,6]    
+## [1,] "apple" "orange" "pear" "orange" "pear" "orange"
+## [2,] "pear"  "pear"   "pear" "apple"  "pear" "orange"
 ```
 
 
@@ -503,9 +505,9 @@ apply(example, 2, function(x){
 ```
 
 ```
-##      [,1]     [,2]    [,3]    [,4]     [,5]    [,6]   
-## [1,] "orange" "apple" "apple" "grape"  "grape" "grape"
-## [2,] "grape"  "apple" "apple" "orange" "apple" "grape"
+##      [,1]    [,2]     [,3]    [,4]     [,5]    [,6]    
+## [1,] "apple" "orange" "grape" "orange" "grape" "orange"
+## [2,] "grape" "grape"  "grape" "apple"  "grape" "orange"
 ```
 
 ---

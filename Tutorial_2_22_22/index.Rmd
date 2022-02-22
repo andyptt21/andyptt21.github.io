@@ -1,25 +1,40 @@
 ---
-title: Thesis Presentation
 output:
   xaringan::moon_reader:
-    seal: false
     css: [default, metropolis, metropolis-fonts]
     lib_dir: libs
-    includes:
-      after_body: insert-logo.html
     nature:
       highlightStyle: github
-      countIncrementalSlides: false
-      seal: false
       ratio: '16:9'
 ---
-class: primary
+
+class: inverse, middle
+background-image: url(title_background.svg)
+background-size: cover
+
+<font color = "white">
+# How to write code that runs a bunch of times (with R)
+.pull-left[
+### Spring Coding Camp 2022
+### Tuesday 2/22/2022
+### Andy Patt
+]
+
+.pull-right[
+.center[
+```{r,echo=FALSE,out.width="600px"}
+knitr::include_graphics("https://i.ytimg.com/vi/OasbYWF4_S8/maxresdefault.jpg")
+```
+]
+]
 
 <style type="text/css">
 
 p.caption {
-  font-size: 0.6em;
+  font-size: 1.2em;
 }
+
+ul li { padding: 5px 0px; }
 
 .large { font-size: 200% }
 
@@ -45,7 +60,7 @@ p.caption {
 .remark-slide-content {
   background-color: #FFFFFF;
   border-top: 80px solid #662e6b;
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 300;
   line-height: 1.5;
   padding: .5em 3em .5em 3em
@@ -73,22 +88,319 @@ p.caption {
 	display: none;
 }
 
-.remark-slide-content:after {
-    content: "";
-    position: absolute;
-    bottom: 0px;
-	left: 20px;
-    height: 60px;
-    width: 400px;
-	font-size: 12px;
-    background-repeat: no-repeat;
-    background-size: contain;
-	background-image: url("img/The-Ohio-State-University-Wexner-Medical-Center.png")
-}
-
 mark {
-  background-color: teal;
+  background-color: purple;
   color: white;
 }
+</style>
 
-</style> 
+---
+
+# Why write code that you can reuse?
+
+- Shorter scripts
+--
+
+- Easier to read
+--
+
+- Less error-prone
+--
+
+- Lends itself to generalizability
+--
+
+- More reproducible
+--
+
+- Better for the environment
+
+---
+
+# Problem
+
+- I want to steal a bunch of people's bank account credentials
+--
+
+- I have a form email but I can't waste time addressing the email to every victim
+--
+
+```{r}
+
+people <- c("Jack", "Jill", "Joe", "Jessica")
+
+email <- ", this is your bank! We lost your username and password!"
+```
+--
+
+- **There's more than one way to do almost everything in R**
+---
+
+# First Attempt: Copy and Paste
+
+```{r}
+email1 <- paste0("Dear ", people[1], email)
+email2 <- paste0("Dear ", people[2], email)
+email3 <- paste0("Dear ", people[3], email)
+email4 <- paste0("Dear ", people[3], email)
+
+```
+--
+
+```{r, echo =FALSE}
+print(email1)
+print(email2)
+print(email3)
+print(email4)
+```
+
+--
+
+- Jessica got an email addressed to Joe! She doesn't read the email and I don't get her credentials :(
+
+---
+
+# Solution one: Vectorize!
+
+- Most functions in base R are vectorized
+
+--
+
+- A vectorized function will automatically operate on all entries of a vector
+
+--
+
+- Not only are vectorized operations easier to read and write, they generally run faster than other solutions too
+
+---
+
+# Vectorization examples
+
+```{r}
+x <- 1:4
+x * 2
+
+y <- 6:9
+x + y
+
+## Even operators are vectorized!
+x + y < 10
+```
+---
+
+# Vectorizing scam emails
+
+```{r}
+email_vector<-paste0("Dear ", people, email)
+email_vector
+```
+
+- Much easier to read
+- When I start ~~finding more victims~~ getting more data, this solution is much more scalable
+
+---
+
+# Solution two: for() loops
+
+- `for()` loops run a bit slower and are more complex to code than a function that can be vectorized
+
+--
+
+- However, they offer a lot more flexibility as to what you can do with them
+
+--
+
+- `for()` loops are a great concept to learn for other programming languages too
+
+---
+
+# Anatomy of a for() loop in R
+
+```{r}
+
+## It can be a common strategy to initialize something outside
+## the loop, then manipulate it inside the loop. This is not
+## always necessary though
+example <- c(1,1)
+## 'i' is an arbitrary variable that will take on all the values
+## in the range defined. Here I'm telling it to be all integers
+## from 1 to 10.
+for(i in 3:10){
+    ## Using 'i' to add new values onto a vector representing the
+    ## Fibonacci sequence
+    example <- c(example, example[i-2] + example[i-1])
+}
+example
+```
+
+---
+
+# You can make nested for() loops too!
+
+```{r}
+example <- matrix(0,nrow=4,ncol=12)
+for(i in 1:nrow(example)){
+    for(j in 1:ncol(example)){
+        if(i %% 2 == 0 & j %% 2 == 0){
+            example[i,j] = 1
+        }
+    }
+}
+example
+```
+
+---
+
+# Writing scam emails with for() loops
+
+```{r}
+email_list <- c()
+
+for(i in 1:4){
+    email_temp <- paste0("Dear ", people[i], email)
+    email_list <- c(email_list,email_temp)
+}
+email_list
+```
+
+---
+
+# Functions: the basic unit of R code
+
+- R is a **functional** programming language, meaning code is organized into functions
+--
+
+- Any R code can be organized into a function
+--
+
+- To read the code for a function, type the name of that function in the console without parentheses
+--
+
+- Benefits of functions
+	- Makes code more **modular**, making it easier to read and fail more gracefully
+	- Generalizable for new data
+	- Cuts down on global variables
+	- Can be organized into packages
+
+---
+
+# Anatomy of a function
+
+```{r}
+## Your function can have parameters
+## You can specify a default value using '='
+example_function <- function(param1, param2=TRUE){
+    ## You can add error messages to ensure your input is correct
+    if(class(param1)!="numeric" & class(param1)!="integer"){
+        stop("'param1' must be numeric")
+    }
+    if(param2){
+        ## Always make sure your code terminates with a return() 
+        return(param1+1)
+    }else{
+        return(param1-1)
+    }
+}
+```
+
+---
+
+# Example function
+
+```{r,error=TRUE}
+example_function(param1="test")
+
+example_function(param1=4)
+
+example_function(param1=4,param2=FALSE)
+```
+
+---
+
+# Writing scam emails with functions
+
+```{r}
+write_scam_email <- function(victim, salutation = "Dr."){
+    temp_email <- paste0("Dear ", salutation, " ", victim, email)
+    return(temp_email)
+}
+```
+
+```{r}
+write_scam_email(victim=people[1], salutation = "Mr.")
+write_scam_email(victim=people[2])
+```
+
+---
+
+# Apply()ing functions
+
+- If you've written a nice function that needs to be used on a large number of inputs, use `apply()` functions
+--
+
+- `apply()` can always replace a `for()` loop, and embraces the functional nature of R
+--
+
+- Also reduces global variables and is trivial to parallelize
+--
+
+- Flavors:
+  - `apply()` is used on 2 dimensional data structures, can iterate over rows, columns, or both
+  - `sapply()` and `lapply()` are for 1 dimensional data, and return a vector and list, respectively
+  
+---
+
+# Anatomy of an apply() statement
+
+```{r}
+## Just wrap your function in the apply() statement
+## This is equivalent to sapply(c(1,2), example_function)
+sapply(c(1:5), function(param1, param2=TRUE){
+    if(class(param1)!="numeric" & class(param1)!="integer"){
+        stop("'param1' must be numeric")
+    }
+    if(param2){
+        return(param1+1)
+    }else{
+        return(param1-1)
+    }
+})
+```
+
+---
+
+# lapply() for scam emails
+
+```{r}
+lapply(people, write_scam_email, salutation = "Dr.")
+```
+
+---
+
+# apply()
+
+```{r,echo = FALSE}
+example <- matrix(sample(c("orange","pear","apple"),
+                         12,replace = TRUE),nrow=2,ncol=6)
+example
+```
+
+```{r}
+apply(example, 2, function(x){
+    index <- which(x=="pear")
+    x[index] <- "grape"
+    return(x)
+})
+```
+
+---
+
+# In summary
+
+- Vectorize your operations whenever possible
+
+- `for()` loops and `apply()` functions are interchangeable and allow you to run the same code on large amounts of data
+
+- **Organize your code into functions whenever possible**
+
+- Modular code is easier to read and troubleshoot
