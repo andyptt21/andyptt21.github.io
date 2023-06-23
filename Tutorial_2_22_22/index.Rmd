@@ -13,10 +13,9 @@ background-image: url(title_background.svg)
 background-size: cover
 
 <font color = "white">
-# How to write code that runs a bunch of times (with R)
+# Automating the boring stuff (mostly with R)
 .pull-left[
-### Spring Coding Camp 2022
-### Tuesday 2/22/2022
+### Summer Coding Camp 2023
 ### Andy Patt
 ]
 
@@ -111,13 +110,10 @@ mark {
 --
 
 - More reproducible
---
-
-- Better for the environment
 
 ---
 
-# Problem
+# A Sample Problem
 
 - I want to steal a bunch of people's bank account credentials
 --
@@ -354,7 +350,7 @@ write_scam_email(victim=people[2])
 
 ```{r}
 ## Just wrap your function in the apply() statement
-## This is equivalent to sapply(c(1,2), example_function)
+## This is equivalent to sapply(c(1:5), example_function)
 sapply(c(1:5), function(param1, param2=TRUE){
     if(class(param1)!="numeric" & class(param1)!="integer"){
         stop("'param1' must be numeric")

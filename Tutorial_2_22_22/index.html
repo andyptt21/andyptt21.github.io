@@ -3,7 +3,7 @@
   <head>
     <title>index.knit</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.11/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.21/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
@@ -17,10 +17,9 @@ background-image: url(title_background.svg)
 background-size: cover
 
 &lt;font color = "white"&gt;
-# How to write code that runs a bunch of times (with R)
+# Automating the boring stuff (mostly with R)
 .pull-left[
-### Spring Coding Camp 2022
-### Tuesday 2/22/2022
+### Summer Coding Camp 2023
 ### Andy Patt
 ]
 
@@ -113,13 +112,10 @@ mark {
 --
 
 - More reproducible
---
-
-- Better for the environment
 
 ---
 
-# Problem
+# A Sample Problem
 
 - I want to steal a bunch of people's bank account credentials
 --
@@ -444,7 +440,7 @@ write_scam_email(victim=people[2])
 
 ```r
 ## Just wrap your function in the apply() statement
-## This is equivalent to sapply(c(1,2), example_function)
+## This is equivalent to sapply(c(1:5), example_function)
 sapply(c(1:5), function(param1, param2=TRUE){
     if(class(param1)!="numeric" &amp; class(param1)!="integer"){
         stop("'param1' must be numeric")
@@ -490,9 +486,9 @@ lapply(people, write_scam_email, salutation = "Dr.")
 
 
 ```
-##      [,1]    [,2]     [,3]   [,4]     [,5]   [,6]    
-## [1,] "apple" "orange" "pear" "orange" "pear" "orange"
-## [2,] "pear"  "pear"   "pear" "apple"  "pear" "orange"
+##      [,1]    [,2]    [,3]     [,4]    [,5]    [,6]    
+## [1,] "apple" "pear"  "orange" "apple" "apple" "pear"  
+## [2,] "pear"  "apple" "pear"   "apple" "pear"  "orange"
 ```
 
 
@@ -505,9 +501,9 @@ apply(example, 2, function(x){
 ```
 
 ```
-##      [,1]    [,2]     [,3]    [,4]     [,5]    [,6]    
-## [1,] "apple" "orange" "grape" "orange" "grape" "orange"
-## [2,] "grape" "grape"  "grape" "apple"  "grape" "orange"
+##      [,1]    [,2]    [,3]     [,4]    [,5]    [,6]    
+## [1,] "apple" "grape" "orange" "apple" "apple" "grape" 
+## [2,] "grape" "apple" "grape"  "apple" "grape" "orange"
 ```
 
 ---
@@ -567,6 +563,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
